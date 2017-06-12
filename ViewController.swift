@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var exponentialMessUp: Int = 1
+    
     var scoreLabel: UILabel = {
         let label = UILabel()
         label.text = "0 points"
@@ -92,17 +94,13 @@ class ViewController: UIViewController {
             setColors()
         }
         
-        if isMatch == true && sender.tag == 1 {
-            score -= 1
+        if (isMatch == true && sender.tag == 1) || (isMatch == false && sender.tag == 0) {
+            score -= 10 * exponentialMessUp
+            exponentialMessUp *= exponentialMessUp
 //            showAnswerAlertFor(correct: false)
             showIncorrectAnswerAlert()
         }
         
-        if isMatch == false && sender.tag == 0 {
-            score -= 1
-//            showAnswerAlertFor(correct: false)
-            showIncorrectAnswerAlert()
-        }
         
         if isMatch == false && sender.tag == 1 {
             score += 1
@@ -122,6 +120,7 @@ class ViewController: UIViewController {
         let answerAlert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let resetAction = UIAlertAction(title: "Reset", style: .destructive) { (_) in
             self.score = 0
+            self.exponentialMessUp = 1
             self.setColors()
         }
         answerAlert.addAction(resetAction)
