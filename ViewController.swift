@@ -51,20 +51,7 @@ class ViewController: UIViewController {
         return view
     }()
     
-    let doesMatchButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("Thanks, come on in", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.titleLabel?.textColor = .white
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
-        button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
-        button.tag = 0
-        return button
-    }()
-
-    
-    let doesNotMatchButton: UIButton = {
+    let getLostButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Get lost!", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -74,13 +61,28 @@ class ViewController: UIViewController {
         button.titleLabel?.numberOfLines = 0
         button.backgroundColor = .blue
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
-        button.tag = 1
+        button.tag = 0
         return button
     }()
     
+    let comeOnInButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Thanks, come on in", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
+        button.tag = 1
+        return button
+    }()
+
+    
+
+    
     
     func handleMatch(sender: UIButton!) {
-        //doesMatchButton has a tag of 0 and doesNotMatchButton has a tag of 1
+        // getLost tag = 0, comeOnIn tag = 1
         var isMatch = Bool()
         if largeSquare.image == smallSquare.image {
             isMatch = true
@@ -89,44 +91,38 @@ class ViewController: UIViewController {
         }
         
         if isMatch == true && sender.tag == 0 {
-            score += 1
-//            showAnswerAlertFor(correct: true)
-            setColors()
-        }
-        
-        if (isMatch == true && sender.tag == 1) || (isMatch == false && sender.tag == 0) {
             score -= 10 * exponentialMessUp
+            showIncorrectAnswerAlert(getLost: true)
             exponentialMessUp *= 2
-//            showAnswerAlertFor(correct: false)
-            showIncorrectAnswerAlert()
         }
         
+        if (isMatch == true && sender.tag == 1) || (isMatch == false && sender.tag == 0)  {
+            score += 1
+            setImages()
+        }
         
         if isMatch == false && sender.tag == 1 {
-            score += 1
-//            showAnswerAlertFor(correct: true)
-            setColors()
+            score -= 10 * exponentialMessUp
+            showIncorrectAnswerAlert(getLost: false)
+            exponentialMessUp *= 2
         }
     }
     
-    func showIncorrectAnswerAlert() {
-//        var title = String()
-//        if correct == true {
-//            title = "Correct: Score + 1"
-//        } else if correct == false {
-//            title = "Incorrect: Score - 1"
-//        }
-        let title = "Incorrect: Score - 1"
-        let answerAlert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+    func showIncorrectAnswerAlert(getLost: Bool) {
+
+        let getLostTitle = "Hey! What did you do that for?! You're costing us money!"
+        let wrongLetInTitle = "Hey! You let someone in you weren't supposed to!"
+        let message = "Incorrect: Score - \(10 * exponentialMessUp)"
+        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: message, preferredStyle: .alert)
         let resetAction = UIAlertAction(title: "Reset", style: .destructive) { (_) in
             self.score = 0
             self.exponentialMessUp = 1
-            self.setColors()
+            self.setImages()
         }
         answerAlert.addAction(resetAction)
 
         let nextRoundAction = UIAlertAction(title: "Next Round", style: .default) { (_) in
-            self.setColors()
+            self.setImages()
         }
         answerAlert.addAction(nextRoundAction)
         
@@ -140,7 +136,7 @@ class ViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        let stackView = UIStackView(arrangedSubviews: [doesNotMatchButton, doesMatchButton])
+        let stackView = UIStackView(arrangedSubviews: [getLostButton, comeOnInButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -151,7 +147,7 @@ class ViewController: UIViewController {
         view.addSubview(containerView)
         view.addSubview(scoreLabel)
 
-        setColors()
+        setImages()
         
         // anchoring views using the anchoring extension in Extensions.swift
         largeSquare.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
@@ -170,7 +166,7 @@ class ViewController: UIViewController {
     
     // first make a copy of colorsArray so we can remove the random color selected for the large square. The color is removed because we handle the option that the colors match using a random number between 1 and 100. If the number less than 60, the smaller square is set to the same color as the large square (a match) and if the number is greater than 60, a random color is chosen from the 15 remaining colors in the array.
     
-    func setColors() {
+    func setImages() {
         var internalImageArray = imageArray
         
         // randomItem is a static func that picks a random element in an array.
