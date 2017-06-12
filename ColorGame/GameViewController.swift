@@ -63,27 +63,19 @@ class GameViewController: UIViewController {
         return view
     }()
     
-    let getLostButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("Get lost!", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.textAlignment = .center
-        button.titleLabel?.lineBreakMode = .byWordWrapping
-        button.titleLabel?.numberOfLines = 0
-        button.backgroundColor = .blue
+    let denyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "deny"), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
         button.tag = 0
         return button
     }()
     
-    let comeOnInButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("Thanks, come on in", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.titleLabel?.textColor = .white
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+    let approveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "approve"), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
         button.tag = 1
         return button
@@ -91,7 +83,12 @@ class GameViewController: UIViewController {
     
     
     
-    
+    let dynamicButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "button"), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
+        return button
+    }()
     
     func handleMatch(sender: UIButton!) {
         // getLost tag = 0, comeOnIn tag = 1
@@ -101,12 +98,11 @@ class GameViewController: UIViewController {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCard.identificationImageKey else { return }
         
-        if personImageKey == IDCardViewKey {
+        if personImageKey == IDCardViewKey && idIsExpired == false {
             isMatch = true
         } else {
             isMatch = false
         }
-        
         
         if isMatch == true && sender.tag == 0 {
             lives -= 1
@@ -114,13 +110,7 @@ class GameViewController: UIViewController {
         }
         
         if isMatch == true && sender.tag == 1  {
-            if idIsExpired == true {
-                showIncorrectResponseAlert(getLost: false)
-            } else {
-                peopleLetIn += 1
-                selectRandomPerson()
-                
-            }
+            selectRandomPerson()
         }
         
         if isMatch == false && sender.tag == 0 {
@@ -154,10 +144,7 @@ class GameViewController: UIViewController {
         
         fetchPeople()
         
-        let stackView = UIStackView(arrangedSubviews: [getLostButton, comeOnInButton])
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
+        
         
         let backgroundImageView = UIImageView()
         backgroundImageView.image = #imageLiteral(resourceName: "background")
@@ -168,8 +155,10 @@ class GameViewController: UIViewController {
         view.addSubview(backgroundImageView)
         view.addSubview(tableImageView)
         
+        view.addSubview(dynamicButton)
         view.addSubview(personImage)
-        view.addSubview(stackView)
+        view.addSubview(approveButton)
+        view.addSubview(denyButton)
         view.addSubview(IDCard)
         view.addSubview(letInLabel)
         view.addSubview(timerLabel)
@@ -178,18 +167,21 @@ class GameViewController: UIViewController {
         
         selectRandomPerson()
         
-
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
         
-        // anchoring views using the anchoring extension in Extensions.swift
         personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
         personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 70)
+        dynamicButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 45, paddingRight: 0, width: 50, height: 50)
+        dynamicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        IDCard.anchor(top: nil, left: view.centerXAnchor, bottom: stackView.topAnchor, right: stackView.rightAnchor, paddingTop: 0, paddingLeft: -24, paddingBottom: 28, paddingRight: 0, width: 0, height: 140)
+        denyButton.anchor(top: dynamicButton.topAnchor, left: nil, bottom: view.bottomAnchor, right: dynamicButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: -4, width: 90, height: 90)
+        
+        approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 90)
+        
+        IDCard.anchor(top: nil, left: view.centerXAnchor, bottom: dynamicButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: -24, paddingBottom: 28, paddingRight: 8, width: 0, height: 140)
         
         letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
