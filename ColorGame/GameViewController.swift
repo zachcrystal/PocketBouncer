@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     var people: [Person]?
     
     var idIsExpired: Bool?
+    var legalAge: Bool?
     
     var lives = 3 {
         didSet {
@@ -33,7 +34,6 @@ class GameViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
     
     var letInLabel: UILabel = {
         let label = UILabel()
@@ -85,7 +85,7 @@ class GameViewController: UIViewController {
     
     let dynamicButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "button"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "next"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
         return button
     }()
@@ -98,7 +98,7 @@ class GameViewController: UIViewController {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCard.identificationImageKey else { return }
         
-        if personImageKey == IDCardViewKey && idIsExpired == false {
+        if personImageKey == IDCardViewKey && idIsExpired == false && legalAge == true {
             isMatch = true
         } else {
             isMatch = false
@@ -144,8 +144,6 @@ class GameViewController: UIViewController {
         
         fetchPeople()
         
-        
-        
         let backgroundImageView = UIImageView()
         backgroundImageView.image = #imageLiteral(resourceName: "background")
         
@@ -171,15 +169,15 @@ class GameViewController: UIViewController {
         
         tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
         
-        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
+        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 300)
         personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         dynamicButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 45, paddingRight: 0, width: 50, height: 50)
         dynamicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        denyButton.anchor(top: dynamicButton.topAnchor, left: nil, bottom: view.bottomAnchor, right: dynamicButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: -4, width: 90, height: 90)
+        denyButton.anchor(top: dynamicButton.topAnchor, left: nil, bottom: view.bottomAnchor, right: dynamicButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: -4, width: 90, height: 0)
         
-        approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 90)
+        approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 0)
         
         IDCard.anchor(top: nil, left: view.centerXAnchor, bottom: dynamicButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: -24, paddingBottom: 28, paddingRight: 8, width: 0, height: 140)
         
@@ -187,8 +185,6 @@ class GameViewController: UIViewController {
         
         timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
     }
     
     func fetchPeople() {
@@ -212,14 +208,12 @@ class GameViewController: UIViewController {
         }
     }
     
-    
     func updateCounter() {
         if countdown > 0 {
             countdown -= 1
             timerLabel.text = "\(countdown)"
         }
     }
-    
     
     // first make a copy of people array so we can remove the random person selected for the large square. The person is removed because we handle the option that the people match using a random number between 1 and 100. If the number less than 80, the smaller square is set to the same color as the large square (a match) and if the number is greater than 60, a random color is chosen from the 15 remaining colors in the array.
     
@@ -233,8 +227,6 @@ class GameViewController: UIViewController {
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
             personImageKey = key
-            
-            
         }
         
         let currentTimestamp = Date().timeIntervalSince1970
@@ -244,6 +236,12 @@ class GameViewController: UIViewController {
             idIsExpired = false
         } else if expiryTimestamp < currentTimestamp {
             idIsExpired = true
+        }
+        
+        if randomPerson.age >= 21 {
+            legalAge = true
+        } else {
+            legalAge = false
         }
         
         let value = arc4random_uniform(100) + 1
@@ -261,12 +259,5 @@ class GameViewController: UIViewController {
             IDCard.person = randomPerson
         }
     }
-    
-    
-    
-    func image(image1: UIImage, isEqualTo image2: UIImage) -> Bool {
-        let data1: NSData = UIImagePNGRepresentation(image1)! as NSData
-        let data2: NSData = UIImagePNGRepresentation(image2)! as NSData
-        return data1.isEqual(data2)
-    }
+
 }

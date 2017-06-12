@@ -20,9 +20,18 @@ class IDCardView: UIView {
             
             nameLabel.text = "\(person.firstName) \(person.lastName)"
             expiryLabel.text = person.expiryDateString
+            addressLabel.text = person.address
+            setupAttributedText()
         }
     }
     
+    func setupAttributedText() {
+        guard let person = person else { return }
+        let attributedText = NSMutableAttributedString(string: "DOB:", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
+        attributedText.append(NSAttributedString(string: " \(person.dob)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        
+        dobLabel.attributedText = attributedText
+    }
     
     
     var identificationImageKey: String?
@@ -30,7 +39,7 @@ class IDCardView: UIView {
     let identificationImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "placeholder")
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = .black
         return iv
     }()
     
@@ -41,6 +50,14 @@ class IDCardView: UIView {
         return label
     }()
     
+    lazy var dobLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+
+    
     let expiryLabel: UILabel = {
         let label = UILabel()
         label.text = "01-01-2001"
@@ -49,6 +66,16 @@ class IDCardView: UIView {
         label.textAlignment = .right
         return label
     }()
+    
+    let addressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "123 Fake Street"
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,13 +88,18 @@ class IDCardView: UIView {
         addSubview(identificationImageView)
         addSubview(nameLabel)
         addSubview(expiryLabel)
-        
+        addSubview(addressLabel)
+        addSubview(dobLabel)
+
         identificationImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft:10, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
         
         nameLabel.anchor(top: identificationImageView.topAnchor, left: identificationImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 20)
         
         expiryLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 8, width: 0, height: 20)
         
+        addressLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        dobLabel.anchor(top: addressLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
     }

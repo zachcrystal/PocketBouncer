@@ -63,3 +63,9 @@ extension Array where Element: Equatable {
     }
 }
 
+extension Date {
+    var ageInt: Int {
+        return Calendar.current.dateComponents([.year], from: self, to: Date()).year!
+    }
+}
+
