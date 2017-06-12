@@ -86,32 +86,37 @@ class ViewController: UIViewController {
         
         if isMatch == true && sender.tag == 0 {
             score += 1
-            showAnswerAlertFor(correct: true)
+//            showAnswerAlertFor(correct: true)
+            setColors()
         }
         
         if isMatch == true && sender.tag == 1 {
             score -= 1
-            showAnswerAlertFor(correct: false)
+//            showAnswerAlertFor(correct: false)
+            showIncorrectAnswerAlert()
         }
         
         if isMatch == false && sender.tag == 0 {
             score -= 1
-            showAnswerAlertFor(correct: false)
+//            showAnswerAlertFor(correct: false)
+            showIncorrectAnswerAlert()
         }
         
         if isMatch == false && sender.tag == 1 {
             score += 1
-            showAnswerAlertFor(correct: true)
+//            showAnswerAlertFor(correct: true)
+            setColors()
         }
     }
     
-    func showAnswerAlertFor(correct: Bool) {
-        var title = String()
-        if correct == true {
-            title = "Correct: Score + 1"
-        } else if correct == false {
-            title = "Incorrect: Score - 1"
-        }
+    func showIncorrectAnswerAlert() {
+//        var title = String()
+//        if correct == true {
+//            title = "Correct: Score + 1"
+//        } else if correct == false {
+//            title = "Incorrect: Score - 1"
+//        }
+        let title = "Incorrect: Score - 1"
         let answerAlert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let resetAction = UIAlertAction(title: "Reset", style: .destructive) { (_) in
             self.score = 0
