@@ -12,7 +12,9 @@ class ViewController: UIViewController {
     
     // 16 colors
     
-     let colorsArray: [UIColor] = [.cyan, .blue, .green, .magenta, .orange, .purple, .red, .yellow, .brown, .gray, UIColor.rgb(1, 0.65, 0.84), UIColor.rgb(0.46, 1, 0.15), UIColor.rgb(1, 0.85, 0.69), UIColor.rgb(0.33, 0.71, 0.61), UIColor.rgb(0.16, 0.17, 0.2), UIColor.rgb(0, 0.61, 1)]
+//     let colorsArray: [UIColor] = [.cyan, .blue, .green, .magenta, .orange, .purple, .red, .yellow, .brown, .gray, UIColor.rgb(1, 0.65, 0.84), UIColor.rgb(0.46, 1, 0.15), UIColor.rgb(1, 0.85, 0.69), UIColor.rgb(0.33, 0.71, 0.61), UIColor.rgb(0.16, 0.17, 0.2), UIColor.rgb(0, 0.61, 1)]
+    
+    let imageArray: [UIImage] = [#imageLiteral(resourceName: "image1"), #imageLiteral(resourceName: "image2"), #imageLiteral(resourceName: "image3"), #imageLiteral(resourceName: "image4"), #imageLiteral(resourceName: "image5")]
     
     var score: Int = 0 {
         didSet {
@@ -27,16 +29,16 @@ class ViewController: UIViewController {
         return label
     }()
     
-    var largeSquare: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
+    var largeSquare: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "placeholder")
+        return iv
     }()
     
-    var smallSquare: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
+    var smallSquare: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "placeholder")
+        return iv
     }()
     
     let containerView: UIView = {
@@ -49,7 +51,7 @@ class ViewController: UIViewController {
     
     let doesMatchButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("the two colors match", for: .normal)
+        button.setTitle("Thanks, come on in", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.titleLabel?.textColor = .white
         button.setTitleColor(.white, for: .normal)
@@ -62,7 +64,7 @@ class ViewController: UIViewController {
     
     let doesNotMatchButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("the two colors do not\nmatch", for: .normal)
+        button.setTitle("Get lost!", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.titleLabel?.textColor = .white
         button.titleLabel?.textAlignment = .center
@@ -78,7 +80,7 @@ class ViewController: UIViewController {
     func handleMatch(sender: UIButton!) {
         //doesMatchButton has a tag of 0 and doesNotMatchButton has a tag of 1
         var isMatch = Bool()
-        if largeSquare.backgroundColor == smallSquare.backgroundColor {
+        if largeSquare.image == smallSquare.image {
             isMatch = true
         } else {
             isMatch = false
@@ -139,7 +141,7 @@ class ViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        let stackView = UIStackView(arrangedSubviews: [doesMatchButton, doesNotMatchButton])
+        let stackView = UIStackView(arrangedSubviews: [doesNotMatchButton, doesMatchButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -170,11 +172,11 @@ class ViewController: UIViewController {
     // first make a copy of colorsArray so we can remove the random color selected for the large square. The color is removed because we handle the option that the colors match using a random number between 1 and 100. If the number less than 60, the smaller square is set to the same color as the large square (a match) and if the number is greater than 60, a random color is chosen from the 15 remaining colors in the array.
     
     func setColors() {
-        var internalColorsArray = colorsArray
+        var internalImageArray = imageArray
         
         // randomItem is a static func that picks a random element in an array.
-        let randomColor = internalColorsArray.randomItem()
-        largeSquare.backgroundColor = randomColor
+        let randomImage = internalImageArray.randomItem()
+        largeSquare.image = randomImage
         
     
             
@@ -183,12 +185,12 @@ class ViewController: UIViewController {
         if value > 60 {
             // since the number is greater than 60, the colors are not going to be a match, therefore we need to remove the color of the large square from the array so we don't get a match
             
-            if let index = internalColorsArray.index(of: randomColor) {
-                internalColorsArray.remove(at: index)
+            if let index = internalImageArray.index(of: randomImage) {
+                internalImageArray.remove(at: index)
             }
-            smallSquare.backgroundColor = internalColorsArray.randomItem()
+            smallSquare.image = internalImageArray.randomItem()
         } else {
-            smallSquare.backgroundColor = randomColor
+            smallSquare.image = randomImage
         }
     }
 }
