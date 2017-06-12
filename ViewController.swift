@@ -155,7 +155,7 @@ class ViewController: UIViewController {
         setColors()
         
         // anchoring views using the anchoring extension in Extensions.swift
-        largeSquare.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        largeSquare.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
         largeSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 70)
