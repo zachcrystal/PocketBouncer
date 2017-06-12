@@ -39,7 +39,7 @@ class IDCardView: UIView {
     let identificationImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "placeholder")
-        iv.backgroundColor = .black
+        iv.backgroundColor = .lightGray
         return iv
     }()
     
@@ -70,7 +70,7 @@ class IDCardView: UIView {
     let addressLabel: UILabel = {
         let label = UILabel()
         label.text = "123 Fake Street"
-        label.textColor = .lightGray
+        label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 0
         return label
