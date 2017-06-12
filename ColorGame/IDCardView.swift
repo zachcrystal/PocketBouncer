@@ -16,8 +16,9 @@ class IDCardView: UIView {
             for (key, value) in person.avatarDictionary {
                 identificationImageKey = key
                 identificationImageView.image = value
-
             }
+            
+            nameLabel.text = "\(person.firstName) \(person.lastName)"
         }
     }
     
@@ -29,6 +30,13 @@ class IDCardView: UIView {
         return iv
     }()
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "John Smith"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -38,8 +46,11 @@ class IDCardView: UIView {
         clipsToBounds = true
         
         addSubview(identificationImageView)
+        addSubview(nameLabel)
         
         identificationImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft:10, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+        
+        nameLabel.anchor(top: identificationImageView.topAnchor, left: identificationImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 20)
         
     }
     
