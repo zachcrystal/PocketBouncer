@@ -30,9 +30,14 @@ class GameViewController: UIViewController {
     
     var countdown = 30
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     var letInLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.text = "0 people let in"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
@@ -40,6 +45,7 @@ class GameViewController: UIViewController {
     
     var timerLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.text = "30"
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
@@ -54,9 +60,6 @@ class GameViewController: UIViewController {
     
     let IDCard: IDCardView = {
         let view = IDCardView()
-        view.backgroundColor = .clear
-        view.layer.borderWidth = 5
-        view.layer.borderColor = UIColor.black.cgColor
         return view
     }()
     
@@ -156,6 +159,15 @@ class GameViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 10
         
+        let backgroundImageView = UIImageView()
+        backgroundImageView.image = #imageLiteral(resourceName: "background")
+        
+        let tableImageView = UIImageView()
+        tableImageView.image = #imageLiteral(resourceName: "tableonly")
+        
+        view.addSubview(backgroundImageView)
+        view.addSubview(tableImageView)
+        
         view.addSubview(personImage)
         view.addSubview(stackView)
         view.addSubview(IDCard)
@@ -166,8 +178,13 @@ class GameViewController: UIViewController {
         
         selectRandomPerson()
         
+
+        backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
+        
         // anchoring views using the anchoring extension in Extensions.swift
-        personImage.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 140, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
+        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 200)
         personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 70)
@@ -176,7 +193,7 @@ class GameViewController: UIViewController {
         
         letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        timerLabel.anchor(top: nil, left: nil, bottom: personImage.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 30, paddingRight: 0, width: 0, height: 30)
+        timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         

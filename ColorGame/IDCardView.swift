@@ -52,9 +52,9 @@ class IDCardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .white
         layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 5
+        layer.borderWidth = 3
         layer.cornerRadius = 10
         clipsToBounds = true
         
