@@ -19,10 +19,14 @@ class IDCardView: UIView {
             }
             
             nameLabel.text = "\(person.firstName) \(person.lastName)"
+            expiryLabel.text = person.expiryDateString
         }
     }
     
+    
+    
     var identificationImageKey: String?
+    
     let identificationImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "placeholder")
@@ -37,6 +41,15 @@ class IDCardView: UIView {
         return label
     }()
     
+    let expiryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "01-01-2001"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .red
+        label.textAlignment = .right
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -47,10 +60,15 @@ class IDCardView: UIView {
         
         addSubview(identificationImageView)
         addSubview(nameLabel)
+        addSubview(expiryLabel)
         
         identificationImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft:10, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
         
         nameLabel.anchor(top: identificationImageView.topAnchor, left: identificationImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 20)
+        
+        expiryLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 8, width: 0, height: 20)
+        
+        
         
     }
     

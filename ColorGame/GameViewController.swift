@@ -9,21 +9,31 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    
     var people: [Person]?
     
+    var idIsExpired: Bool?
     
-    var score: Int = 0 {
+    var lives = 3 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            if lives == 0 {
+                // do something
+            }
         }
     }
-    var exponentialMessUp: Int = 1
+    
+    var peopleLetIn: Int = 0 {
+        didSet {
+            letInLabel.text = "\(peopleLetIn): people let in"
+        }
+    }
     
     var countdown = 30
     
-    var scoreLabel: UILabel = {
+    
+    var letInLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 points"
+        label.text = "0 people let in"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -96,20 +106,27 @@ class GameViewController: UIViewController {
         
         
         if isMatch == true && sender.tag == 0 {
-            score -= 10 * exponentialMessUp
+            lives -= 1
             showIncorrectResponseAlert(getLost: true)
-            exponentialMessUp *= 2
         }
         
-        if (isMatch == true && sender.tag == 1) || (isMatch == false && sender.tag == 0)  {
-            score += 1
+        if isMatch == true && sender.tag == 1  {
+            if idIsExpired == true {
+                showIncorrectResponseAlert(getLost: false)
+            } else {
+                peopleLetIn += 1
+                selectRandomPerson()
+                
+            }
+        }
+        
+        if isMatch == false && sender.tag == 0 {
             selectRandomPerson()
         }
         
         if isMatch == false && sender.tag == 1 {
-            score -= 10 * exponentialMessUp
+            lives -= 1
             showIncorrectResponseAlert(getLost: false)
-            exponentialMessUp *= 2
         }
     }
     
@@ -117,8 +134,7 @@ class GameViewController: UIViewController {
         
         let getLostTitle = "Hey! What did you do that for?! You're costing us money!"
         let wrongLetInTitle = "Hey! You let someone in you weren't supposed to!"
-        let message = "Incorrect: Score - \(10 * exponentialMessUp)"
-        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: message, preferredStyle: .alert)
+        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: nil, preferredStyle: .alert)
         let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
             self.selectRandomPerson()
         }
@@ -143,7 +159,7 @@ class GameViewController: UIViewController {
         view.addSubview(personImage)
         view.addSubview(stackView)
         view.addSubview(IDCard)
-        view.addSubview(scoreLabel)
+        view.addSubview(letInLabel)
         view.addSubview(timerLabel)
         
         var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
@@ -158,7 +174,7 @@ class GameViewController: UIViewController {
         
         IDCard.anchor(top: nil, left: view.centerXAnchor, bottom: stackView.topAnchor, right: stackView.rightAnchor, paddingTop: 0, paddingLeft: -24, paddingBottom: 28, paddingRight: 0, width: 0, height: 140)
         
-        scoreLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         timerLabel.anchor(top: nil, left: nil, bottom: personImage.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 30, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -208,6 +224,17 @@ class GameViewController: UIViewController {
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
             personImageKey = key
+            
+            
+        }
+        
+        let currentTimestamp = Date().timeIntervalSince1970
+        let expiryTimestamp = randomPerson.expiryDateTimeStamp
+        
+        if expiryTimestamp > currentTimestamp {
+            idIsExpired = false
+        } else if expiryTimestamp < currentTimestamp {
+            idIsExpired = true
         }
         
         let value = arc4random_uniform(100) + 1
@@ -225,6 +252,8 @@ class GameViewController: UIViewController {
             IDCard.person = randomPerson
         }
     }
+    
+    
     
     func image(image1: UIImage, isEqualTo image2: UIImage) -> Bool {
         let data1: NSData = UIImagePNGRepresentation(image1)! as NSData

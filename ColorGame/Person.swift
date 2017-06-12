@@ -13,7 +13,8 @@ class Person: Equatable {
     let firstName: String
     let lastName: String
     let dob: String
-//    let age: Int
+    let expiryDateString: String
+    let expiryDateTimeStamp: Double
     let avatarDictionary: [String: UIImage]
     
     init(jsonDictionary: [String: Any]) {
@@ -24,6 +25,14 @@ class Person: Equatable {
         let imageString = jsonDictionary["imageString"] as! String
         self.avatarDictionary = [imageString: UIImage(named: imageString)!]
         
+        self.expiryDateString = jsonDictionary["expiryDate"] as! String
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "MM-dd-yyyy"
+        
+        let date = dateFormatterGet.date(from: expiryDateString)
+        
+        self.expiryDateTimeStamp = date?.timeIntervalSince1970 ?? 0
     }
     
     static func ==(lhs: Person, rhs: Person) -> Bool {
