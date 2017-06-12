@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         
         if (isMatch == true && sender.tag == 1) || (isMatch == false && sender.tag == 0) {
             score -= 10 * exponentialMessUp
-            exponentialMessUp *= exponentialMessUp
+            exponentialMessUp *= 2
 //            showAnswerAlertFor(correct: false)
             showIncorrectAnswerAlert()
         }
