@@ -55,9 +55,7 @@ class IDCardView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
-    
 
-    
     let expiryLabel: UILabel = {
         let label = UILabel()
         label.text = "01-01-2001"
@@ -79,6 +77,7 @@ class IDCardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .white
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 3
@@ -100,10 +99,14 @@ class IDCardView: UIView {
         addressLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         dobLabel.anchor(top: addressLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        
+
+//        perform3dTransform()
     }
     
+    func perform3dTransform() {
+
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

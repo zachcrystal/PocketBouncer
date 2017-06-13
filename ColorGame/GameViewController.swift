@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
     
     var peopleLetIn: Int = 0 {
         didSet {
-            letInLabel.text = "\(peopleLetIn): people let in"
+            letInLabel.text = "People let in: \(peopleLetIn)"
         }
     }
     
@@ -111,6 +111,7 @@ class GameViewController: UIViewController {
         
         if isMatch == true && sender.tag == 1  {
             selectRandomPerson()
+            peopleLetIn += 1
         }
         
         if isMatch == false && sender.tag == 0 {
@@ -137,18 +138,26 @@ class GameViewController: UIViewController {
         
     }
     
+    let backgroundImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "background")
+        return iv
+    }()
+    
+    let tableImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "tableonly")
+        return iv
+    }()
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
         fetchPeople()
-        
-        let backgroundImageView = UIImageView()
-        backgroundImageView.image = #imageLiteral(resourceName: "background")
-        
-        let tableImageView = UIImageView()
-        tableImageView.image = #imageLiteral(resourceName: "tableonly")
         
         view.addSubview(backgroundImageView)
         view.addSubview(tableImageView)
@@ -157,7 +166,6 @@ class GameViewController: UIViewController {
         view.addSubview(personImage)
         view.addSubview(approveButton)
         view.addSubview(denyButton)
-        view.addSubview(IDCard)
         view.addSubview(letInLabel)
         view.addSubview(timerLabel)
         
@@ -179,13 +187,49 @@ class GameViewController: UIViewController {
         
         approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 0)
         
-        IDCard.anchor(top: nil, left: view.centerXAnchor, bottom: dynamicButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: -24, paddingBottom: 28, paddingRight: 8, width: 0, height: 140)
+        showIDCard()
+        
+        
+        
         
         letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     }
+    
+    fileprivate func showIDCard() {
+       
+
+        view.addSubview(IDCard)
+        IDCard.anchor(top: tableImageView.topAnchor , left: nil, bottom: nil , right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 240, height: 180)
+        IDCard.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        
+        var transform = CATransform3DIdentity
+        let divider: CGFloat = 500
+        let degree: Double = 43
+        let x: CGFloat = 1
+        let y: CGFloat = 0
+        let z: CGFloat = 0
+        let anchorPointX = 0.5
+        let anchorPointY = 0.5
+        
+        IDCard.layer.anchorPoint = CGPoint(x: anchorPointX, y: anchorPointY)
+        
+        transform = CATransform3DIdentity
+        transform.m34 = -1.0/divider
+        
+        let rotateAngle = CGFloat((degree * Double.pi) / 180.0)
+        transform = CATransform3DRotate(transform, rotateAngle, x, y, z)
+        
+        IDCard.layer.transform = transform
+        IDCard.layer.zPosition = 100
+
+    }
+
+    
     
     func fetchPeople() {
         guard let path = Bundle.main.path(forResource: "People", ofType: "json") else { return }
@@ -217,17 +261,41 @@ class GameViewController: UIViewController {
     
     // first make a copy of people array so we can remove the random person selected for the large square. The person is removed because we handle the option that the people match using a random number between 1 and 100. If the number less than 80, the smaller square is set to the same color as the large square (a match) and if the number is greater than 60, a random color is chosen from the 15 remaining colors in the array.
     
+    var randomPerson: Person?
     
-    func selectRandomPerson() {
+    fileprivate func selectRandomPerson() {
         
         guard let people = people else { return }
         var internalPersonArray = people
         // randomItem is a static func that picks a random element in an array.
-        let randomPerson = internalPersonArray.randomItem()
+        randomPerson = internalPersonArray.randomItem()
+        guard let randomPerson = randomPerson else { return }
+        
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
             personImageKey = key
         }
+        
+        let probabilityValue = arc4random_uniform(100) + 1
+        if probabilityValue > 80 {
+            // since the number is greater than 60, the colors are not going to be a match, therefore we need to remove the color of the large square from the array so we don't get a match
+            
+            if let index = internalPersonArray.index(of: randomPerson) {
+                internalPersonArray.remove(at: index)
+            }
+            
+            let anotherRandomPerson = internalPersonArray.randomItem()
+            IDCard.person = anotherRandomPerson
+        } else {
+            IDCard.person = randomPerson
+        }
+        
+        checkIfPersonCanEnter(person: randomPerson)
+    }
+    
+    fileprivate func checkIfPersonCanEnter(person: Person) {
+        
+        guard let randomPerson = randomPerson else { return }
         
         let currentTimestamp = Date().timeIntervalSince1970
         let expiryTimestamp = randomPerson.expiryDateTimeStamp
@@ -243,21 +311,5 @@ class GameViewController: UIViewController {
         } else {
             legalAge = false
         }
-        
-        let value = arc4random_uniform(100) + 1
-        print(value)
-        if value > 80 {
-            // since the number is greater than 60, the colors are not going to be a match, therefore we need to remove the color of the large square from the array so we don't get a match
-            
-            if let index = internalPersonArray.index(of: randomPerson) {
-                internalPersonArray.remove(at: index)
-            }
-            
-            let anotherRandomPerson = internalPersonArray.randomItem()
-            IDCard.person = anotherRandomPerson
-        } else {
-            IDCard.person = randomPerson
-        }
     }
-
 }
