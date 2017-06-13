@@ -7,8 +7,38 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController {
+    
+    var audioPlayer: AVAudioPlayer?
+    
+    func playMusic() {
+        guard let sound = NSDataAsset(name: "MusicLoop3") else {
+            print("asset not found")
+            return
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            audioPlayer = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeMPEGLayer3)
+            
+            audioPlayer!.play()
+            audioPlayer!.numberOfLoops = -1
+            
+        } catch let error as NSError {
+            print("error: \(error.localizedDescription)")
+        }
+    }
+    
+    func stopAudio() {
+        if audioPlayer != nil {
+            audioPlayer?.stop()
+            audioPlayer = nil
+        }
+    }
     
     var people: [Person]?
     
@@ -29,7 +59,34 @@ class GameViewController: UIViewController {
         }
     }
     
-    var countdown = 30
+    var countdown = 30 {
+        didSet {
+            if countdown == 0 {
+                endOfRound()
+            }
+        }
+    }
+    
+    func endOfRound() {
+        let endOfRoundTitle = "Your shift for the night is finally over! Lets see how you did..."
+        let endOfRoundMessage = "You let in \(peopleLetIn) people"
+        let answerAlert = UIAlertController(title: endOfRoundTitle, message: endOfRoundMessage, preferredStyle: .alert)
+        let nextRoundAction = UIAlertAction(title: "Start next shift", style: .default) { (_) in
+            self.startNewRound()
+        }
+        answerAlert.addAction(nextRoundAction)
+        
+        present(answerAlert, animated: true, completion: nil)
+        
+    }
+    
+    func startNewRound() {
+        countdown = 30
+        updateCounter()
+        peopleLetIn = 0
+        lives = 3
+        selectRandomPerson()
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -149,8 +206,8 @@ class GameViewController: UIViewController {
         iv.image = #imageLiteral(resourceName: "tableonly")
         return iv
     }()
-
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,18 +247,17 @@ class GameViewController: UIViewController {
         showIDCard()
         
         
-        
-        
         letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        playMusic()
     }
     
     fileprivate func showIDCard() {
-       
-
+        
+        
         view.addSubview(IDCard)
         IDCard.anchor(top: tableImageView.topAnchor , left: nil, bottom: nil , right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 240, height: 180)
         IDCard.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -226,9 +282,9 @@ class GameViewController: UIViewController {
         
         IDCard.layer.transform = transform
         IDCard.layer.zPosition = 100
-
+        
     }
-
+    
     
     
     func fetchPeople() {
