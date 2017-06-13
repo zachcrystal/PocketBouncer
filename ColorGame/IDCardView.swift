@@ -19,18 +19,23 @@ class IDCardView: UIView {
             }
             
             nameLabel.text = "\(person.firstName) \(person.lastName)"
-            expiryLabel.text = person.expiryDateString
+            expiryLabel.text = "EXPIRATION DATE\n\(person.expiryDateString)"
             addressLabel.text = person.address
+            idBadgeImageView.image = person.idBadge
             setupAttributedText()
+            
         }
     }
     
     func setupAttributedText() {
         guard let person = person else { return }
-        let attributedText = NSMutableAttributedString(string: "DOB:", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
-        attributedText.append(NSAttributedString(string: " \(person.dob)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        let attributedDobText = NSMutableAttributedString(string: "DOB:", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
+        attributedDobText.append(NSAttributedString(string: " \(person.dob)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        dobLabel.attributedText = attributedDobText
         
-        dobLabel.attributedText = attributedText
+        let attributedExpiryString = NSMutableAttributedString(string: "EXPIRATION DATE\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 9)])
+        attributedExpiryString.append(NSAttributedString(string: "\(person.expiryDateString)", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.5)]))
+        expiryLabel.attributedText = attributedExpiryString
     }
     
     
@@ -40,6 +45,13 @@ class IDCardView: UIView {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "placeholder")
         iv.backgroundColor = .lightGray
+        return iv
+    }()
+    
+    let idBadgeImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "placeholder")
+        iv.backgroundColor = .clear
         return iv
     }()
     
@@ -55,13 +67,12 @@ class IDCardView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
-
+    
     let expiryLabel: UILabel = {
         let label = UILabel()
-        label.text = "01-01-2001"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .red
-        label.textAlignment = .right
+        label.textAlignment = .justified
+        label.numberOfLines = 2
         return label
     }()
     
@@ -69,7 +80,7 @@ class IDCardView: UIView {
         let label = UILabel()
         label.text = "123 Fake Street"
         label.textColor = .darkGray
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.numberOfLines = 0
         return label
     }()
@@ -84,29 +95,39 @@ class IDCardView: UIView {
         layer.cornerRadius = 10
         clipsToBounds = true
         
-        addSubview(identificationImageView)
-        addSubview(nameLabel)
+        let stackView = UIStackView(arrangedSubviews: [identificationImageView, idBadgeImageView])
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        
+        let textStackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel, dobLabel])
+        textStackView.axis = .vertical
+        
+        addSubview(stackView)
         addSubview(expiryLabel)
-        addSubview(addressLabel)
-        addSubview(dobLabel)
-
-        identificationImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft:10, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+//        addSubview(nameLabel)
+//        addSubview(addressLabel)
+//        addSubview(dobLabel)
+        addSubview(textStackView)
         
-        nameLabel.anchor(top: identificationImageView.topAnchor, left: identificationImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 20)
         
-        expiryLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 8, width: 0, height: 20)
+        // total height is 180
         
-        addressLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        dobLabel.anchor(top: addressLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-
-//        perform3dTransform()
+        // 120 with padding
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 9, paddingBottom: 0, paddingRight: 9, width: 0, height: (240 / 2) - 16)
+        
+        expiryLabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
+        
+        textStackView.anchor(top: stackView.bottomAnchor, left: stackView.leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 2, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        
+       
+//        nameLabel.anchor(top: stackView.bottomAnchor, left: stackView.leftAnchor, bottom: nil, right: nil, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 20)
+//        
+//        addressLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        
+//        dobLabel.anchor(top: addressLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
-    func perform3dTransform() {
-
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

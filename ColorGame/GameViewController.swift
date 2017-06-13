@@ -252,7 +252,7 @@ class GameViewController: UIViewController {
         timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        playMusic()
+//        playMusic()
     }
     
     fileprivate func showIDCard() {

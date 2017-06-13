@@ -18,6 +18,7 @@ class Person: Equatable {
     let expiryDateString: String
     let expiryDateTimeStamp: Double
     let avatarDictionary: [String: UIImage]
+    let idBadge: UIImage
     
     init(jsonDictionary: [String: Any]) {
         self.firstName = jsonDictionary["firstname"] as! String
@@ -38,6 +39,9 @@ class Person: Equatable {
         dateFormatterGet.dateFormat = "MM-dd-yyyy"
         let date = dateFormatterGet.date(from: expiryDateString)
         self.expiryDateTimeStamp = date?.timeIntervalSince1970 ?? 0
+        
+        let idBadgeString = jsonDictionary["idBadge"] as! String
+        self.idBadge = UIImage(named: idBadgeString)!
     }
     
     static func ==(lhs: Person, rhs: Person) -> Bool {
