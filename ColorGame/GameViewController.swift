@@ -6,6 +6,12 @@
 //  Copyright © 2017 Zach Crystal. All rights reserved.
 //
 
+/* 
+ TODO: Swiping
+ - make the entire screen swipeable but only move the person and the card... 
+ - it won't call the slide out method, but it will call the slide in method
+ */
+
 import UIKit
 import AVFoundation
 
@@ -144,21 +150,24 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
     }
     
-    var originalCenter: CGPoint?
     var IDCardCenter: CGPoint?
+    var personImageCenter: CGPoint?
+    
     
     func handlePan(_ sender: UIPanGestureRecognizer) {
-        guard let IDCardContainerView = sender.view else { return }
+        guard let view = sender.view else { return }
         guard let IDCardContainerViewCenter = IDCardCenter else { return }
+        guard let personImageCenter = personImageCenter else { return }
         let point = sender.translation(in: view)
         IDCardContainer.center = CGPoint(x: IDCardContainerViewCenter.x + point.x, y: IDCardContainerViewCenter.y)
+        personImage.center = CGPoint(x: personImageCenter.x + point.x, y: personImageCenter.y)
         
         if sender.state == UIGestureRecognizerState.ended {
             
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
-                guard let originalCenter = self.originalCenter else { return }
-                IDCardContainerView.center = originalCenter
+                self.IDCardContainer.center = IDCardContainerViewCenter
+                self.personImage.center = personImageCenter
             }
         }
     }
@@ -213,8 +222,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        IDCardCenter = self.IDCardContainer.center
-        originalCenter = self.IDCardContainer.center
+        IDCardCenter = IDCardContainer.center
+        personImageCenter = personImage.center
     }
 
     // MARK: - Layout
@@ -253,6 +262,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
         circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor).isActive = true
 
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         
         setupIDCard()
 
@@ -278,7 +288,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         view.addSubview(IDCardContainer)
         
-        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+//        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
     }
     
     fileprivate func slideInIDCardAndPerson() {
@@ -424,10 +434,4 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     func timerDidEnd() {
         showIncorrectResponseAlert(getLost: true, timerDidRunOut: true)
     }
-    
-    
-    
-    
-
-
 }
