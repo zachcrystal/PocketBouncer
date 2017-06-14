@@ -9,7 +9,14 @@
 import UIKit
 import AVFoundation
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, SRCountdownTimerDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
+    // MARK: - Isolated Properties
     
     var people: [Person]?
     
@@ -24,9 +31,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    // MARK: - UIKit Components
     
     var scoreLabel: UILabel = {
         let label = UILabel()
@@ -43,15 +48,6 @@ class GameViewController: UIViewController {
         return iv
     }()
     
-    var IDCard: IDCardView = {
-        let view = IDCardView()
-        return view
-    }()
-    
-    let IDCardContainer: IDCardContainerView = {
-        let view = IDCardContainerView()
-        return view
-    }()
     
     let denyButton: UIButton = {
         let button = UIButton(type: .system)
@@ -77,7 +73,7 @@ class GameViewController: UIViewController {
         return button
     }()
     
-    let dynamicButton: UIButton = {
+    let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "next"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
@@ -99,7 +95,8 @@ class GameViewController: UIViewController {
         iv.image = #imageLiteral(resourceName: "tableonly")
         return iv
     }()
-
+    
+    // MARK: - Action Selectors
     
     func handleMatch(sender: UIButton!) {
         approveButton.isEnabled = false
@@ -125,178 +122,27 @@ class GameViewController: UIViewController {
         if isMatch == true && sender.tag == 1  {
             score += 1
             slideOutIDCardAndPerson()
-
+            
         }
         
         if isMatch == false && sender.tag == 0 {
             score += 1
             slideOutIDCardAndPerson()
-
+            
         }
         
         if isMatch == false && sender.tag == 1 {
             showIncorrectResponseAlert(getLost: false)
             slideOutIDCardAndPerson()
-
-        }
-    }
-    
-    fileprivate func showIncorrectResponseAlert(getLost: Bool) {
-        
-        let getLostTitle = "Hey! What did you do that for?! You're costing us money!"
-        let wrongLetInTitle = "Hey! You let someone in you weren't supposed to!"
-        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: nil, preferredStyle: .alert)
-        let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
-            self.selectRandomPerson()
-            self.score = 0
             
         }
-        answerAlert.addAction(nextRoundAction)
-        
-        present(answerAlert, animated: true, completion: nil)
-        
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        fetchPeople()
-        
-        setupLayout()
-        
-        selectRandomPerson()
-        slideInIDCardAndPerson()
-        //        playMusic()
-        
     }
     
     func handleNextPerson() {
         slideInIDCardAndPerson()
+        circleTimer.start(beginingValue: 3)
         
     }
-    
-    
-    fileprivate func setupLayout() {
-        view.addSubview(backgroundImageView)
-        
-        tableImageView.frame = CGRect(x: 0, y: view.bounds.height * 0.60, width: view.bounds.width, height: view.bounds.height * 0.40)
-        view.addSubview(tableImageView)
-        view.addSubview(dynamicButton)
-        view.addSubview(personImage)
-        view.addSubview(approveButton)
-        view.addSubview(denyButton)
-        view.addSubview(scoreLabel)
-        
-        backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        
-//        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 300)
-//        personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
-
-//        personImage.center.x = tableImageView.center.x
-        personImage.frame.size = CGSize(width: 250, height: 250)
-        personImage.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        personImage.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
-
-        
-
-        
-        dynamicButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 45, paddingRight: 0, width: 50, height: 50)
-        dynamicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        denyButton.anchor(top: dynamicButton.topAnchor, left: nil, bottom: view.bottomAnchor, right: dynamicButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: -4, width: 90, height: 0)
-        
-        approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 0)
-        
-        scoreLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 42, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        setupIDCard()
-        
-//        tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
-
-        
-  
-    }
-    
-    fileprivate func setupIDCard() {
-        
-        IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
-        IDCardContainer.center.x -= view.bounds.width
-        personImage.center.x -= view.bounds.width
-
-
-        
-        view.addSubview(IDCardContainer)
-        
-        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
-    }
-    
-    fileprivate func slideInIDCardAndPerson() {
-        print("fart")
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.IDCardContainer.center.x = self.view.bounds.width / 2
-        }) { (_) in
-            // completion closure kept if needed in future
-        }
-        
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.personImage.center.x = self.view.bounds.width / 2
-        }) { (_) in
-            // completion closure kept if needed in future
-            self.removeNextAndEnableButtons()
-
-        }
-        
-    }
-    
-       fileprivate func slideOutIDCardAndPerson() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.IDCardContainer.center.x += self.view.bounds.width
-        }) { (_) in
-            self.IDCardContainer.center.x = -self.view.bounds.width / 2
-
-        }
-//        personImage.center.x = self.view.bounds.width / 2
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.personImage.center.x += self.view.bounds.width
-        }) { (_) in
-            self.personImage.center.x = -self.view.bounds.width / 2
-            self.selectRandomPerson()
-            self.setupNextButtonAndDisableButtons()
-        }
-
-    }
-    
-    func setupNextButtonAndDisableButtons() {
-        dynamicButton.isEnabled = true
-        dynamicButton.isUserInteractionEnabled = true
-            }
-    
-    func removeNextAndEnableButtons() {
-        dynamicButton.isEnabled = false
-        dynamicButton.isUserInteractionEnabled = false
-        approveButton.isEnabled = true
-        approveButton.isUserInteractionEnabled = true
-        denyButton.isEnabled = true
-        denyButton.isUserInteractionEnabled = true
-
-    }
-    
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        IDCardCenter = self.IDCardContainer.center
-        originalCenter = self.IDCardContainer.center
-    }
-    
     
     var originalCenter: CGPoint?
     var IDCardCenter: CGPoint?
@@ -316,6 +162,178 @@ class GameViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - Alert Controller
+    
+    fileprivate func showIncorrectResponseAlert(getLost: Bool, timerDidRunOut: Bool = false) {
+        if timerDidRunOut == false {
+            circleTimer.pause()
+        }
+        
+        if score > highScore {
+            highScore = score
+        }
+        
+        let getLostTitle = "Hey! What did you do that for?! You're costing us money!"
+        let wrongLetInTitle = "Hey! You let someone in you weren't supposed to!"
+        let message = "Score: \(score)\nPersonal Best: \(highScore)"
+        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: message, preferredStyle: .alert)
+        let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
+            self.score = 0
+            self.selectRandomPerson()
+            self.handleNextPerson()
+            
+            
+        }
+        answerAlert.addAction(nextRoundAction)
+        
+        present(answerAlert, animated: true, completion: nil)
+        
+    }
+    
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        circleTimer.delegate = self
+        
+        fetchPeople()
+        
+        setupLayout()
+        
+        selectRandomPerson()
+        slideInIDCardAndPerson()
+        //        playMusic()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        IDCardCenter = self.IDCardContainer.center
+        originalCenter = self.IDCardContainer.center
+    }
+
+    // MARK: - Layout
+    
+    fileprivate func setupLayout() {
+        view.addSubview(backgroundImageView)
+        
+        tableImageView.frame = CGRect(x: 0, y: view.bounds.height * 0.60, width: view.bounds.width, height: view.bounds.height * 0.40)
+        view.addSubview(tableImageView)
+        view.addSubview(nextButton)
+        view.addSubview(personImage)
+        view.addSubview(approveButton)
+        view.addSubview(denyButton)
+        view.addSubview(scoreLabel)
+        
+        backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        personImage.frame.size = CGSize(width: 250, height: 250)
+        personImage.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+        personImage.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
+        
+        nextButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 45, paddingRight: 0, width: 50, height: 50)
+        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        denyButton.anchor(top: nextButton.topAnchor, left: nil, bottom: view.bottomAnchor, right: nextButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: -4, width: 90, height: 0)
+        
+        approveButton.anchor(top: nextButton.topAnchor, left: nextButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 0)
+        
+        
+        scoreLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(circleTimer)
+        circleTimer.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 75, height: 75)
+        circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
+        circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor).isActive = true
+
+        
+        setupIDCard()
+
+    }
+    
+    // MARK: - IDCard
+    
+    var IDCard: IDCardView = {
+        let view = IDCardView()
+        return view
+    }()
+    
+    let IDCardContainer: IDCardContainerView = {
+        let view = IDCardContainerView()
+        return view
+    }()
+    
+    fileprivate func setupIDCard() {
+        
+        IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
+        IDCardContainer.center.x -= view.bounds.width
+        personImage.center.x -= view.bounds.width
+        
+        view.addSubview(IDCardContainer)
+        
+        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+    }
+    
+    fileprivate func slideInIDCardAndPerson() {
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.IDCardContainer.center.x = self.view.bounds.width / 2
+        }) { (_) in
+            // completion closure kept if needed in future
+        }
+        
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.personImage.center.x = self.view.bounds.width / 2
+        }) { (_) in
+            // completion closure kept if needed in future
+            self.removeNextAndEnableButtons()
+            
+        }
+        
+    }
+    
+    fileprivate func slideOutIDCardAndPerson() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.IDCardContainer.center.x += self.view.bounds.width
+        }) { (_) in
+            self.IDCardContainer.center.x = -self.view.bounds.width / 2
+            
+        }
+        //        personImage.center.x = self.view.bounds.width / 2
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.personImage.center.x += self.view.bounds.width
+        }) { (_) in
+            self.personImage.center.x = -self.view.bounds.width / 2
+            self.selectRandomPerson()
+            self.setupNextButtonAndDisableButtons()
+        }
+        
+    }
+    
+    // MARK: - Buttons
+    
+    func setupNextButtonAndDisableButtons() {
+        nextButton.isEnabled = true
+        nextButton.isUserInteractionEnabled = true
+    }
+    
+    func removeNextAndEnableButtons() {
+        nextButton.isEnabled = false
+        nextButton.isUserInteractionEnabled = false
+        approveButton.isEnabled = true
+        approveButton.isUserInteractionEnabled = true
+        denyButton.isEnabled = true
+        denyButton.isUserInteractionEnabled = true
+        
+    }
+    
+    // MARK: - JSON Serialization
     
     fileprivate func fetchPeople() {
         guard let path = Bundle.main.path(forResource: "People", ofType: "json") else { return }
@@ -338,7 +356,7 @@ class GameViewController: UIViewController {
         }
     }
     
-     // first make a copy of people array so we can remove the random person selected for the large square. The person is removed because we handle the option that the people match using a random number between 1 and 100. If the number less than 80, the smaller square is set to the same color as the large square (a match) and if the number is greater than 60, a random color is chosen from the 15 remaining colors in the array.
+    // MARK: - New Person Setup
     
     var randomPerson: Person?
     
@@ -357,7 +375,6 @@ class GameViewController: UIViewController {
         
         let probabilityValue = arc4random_uniform(100) + 1
         if probabilityValue > 80 {
-            // since the number is greater than 60, the colors are not going to be a match, therefore we need to remove the color of the large square from the array so we don't get a match
             
             if let index = internalPersonArray.index(of: randomPerson) {
                 internalPersonArray.remove(at: index)
@@ -391,4 +408,26 @@ class GameViewController: UIViewController {
             legalAge = false
         }
     }
+    
+    // MARK: - Timer
+    
+    let circleTimer: SRCountdownTimer = {
+        let timer = SRCountdownTimer()
+        timer.start(beginingValue: 4)
+        timer.backgroundColor = .clear
+        timer.lineWidth = 5
+        timer.lineColor = .white
+        return timer
+    }()
+    
+    
+    func timerDidEnd() {
+        showIncorrectResponseAlert(getLost: true, timerDidRunOut: true)
+    }
+    
+    
+    
+    
+
+
 }

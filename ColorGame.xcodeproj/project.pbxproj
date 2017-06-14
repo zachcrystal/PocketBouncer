@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
 		92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */; };
 		92D036AA1EF0CCEC00B7D082 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D036A91EF0CCEC00B7D082 /* Sound.swift */; };
 		92E84CF41EEE07D80074C05A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84CF31EEE07D80074C05A /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		923436741EF1175E004CEA6D /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardContainerView.swift; sourceTree = "<group>"; };
 		92D036A91EF0CCEC00B7D082 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		92E84CF01EEE07D80074C05A /* ColorGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 			children = (
 				92E84D161EEEE93C0074C05A /* IDCardView.swift */,
 				92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */,
+				923436741EF1175E004CEA6D /* SRCountdownTimer.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */,
 				92D036AA1EF0CCEC00B7D082 /* Sound.swift in Sources */,
 				92E84D171EEEE93C0074C05A /* IDCardView.swift in Sources */,
 				92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */,
