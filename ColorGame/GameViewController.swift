@@ -6,9 +6,9 @@
 //  Copyright © 2017 Zach Crystal. All rights reserved.
 //
 
-/* 
+/*
  TODO: Swiping
- - make the entire screen swipeable but only move the person and the card... 
+ - make the entire screen swipeable but only move the person and the card...
  - it won't call the slide out method, but it will call the slide in method
  */
 
@@ -21,13 +21,17 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return .lightContent
     }
     
+    // MARK: - Match Variables
+    var isSamePerson: Bool?
+    var isExpired: Bool?
+    var isLegal: Bool?
+
     
     // MARK: - Isolated Properties
     
     var people: [Person]?
     
-    var idIsExpired: Bool?
-    var legalAge: Bool?
+
     
     var highScore: Int = 0
     
@@ -53,7 +57,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         iv.image = #imageLiteral(resourceName: "placeholder")
         return iv
     }()
-    
     
     let denyButton: UIButton = {
         let button = UIButton(type: .system)
@@ -102,9 +105,15 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return iv
     }()
     
+    let thumbImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.alpha = 0
+        return iv
+    }()
+    
     // MARK: - Action Selectors
     
-    func handleMatch(sender: UIButton!) {
+    func handleMatch(sender: Any) {
         approveButton.isEnabled = false
         denyButton.isEnabled = false
         approveButton.isUserInteractionEnabled = false
@@ -114,30 +123,30 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
-        if personImageKey == IDCardViewKey && idIsExpired == false && legalAge == true {
+        if personImageKey == IDCardViewKey && isExpired == false && isLegal == true {
             isMatch = true
         } else {
             isMatch = false
         }
         
-        if isMatch == true && sender.tag == 0 {
+        if isMatch == true && (sender as! UIButton).tag == 0 {
             showIncorrectResponseAlert(getLost: true)
             slideOutIDCardAndPerson()
         }
         
-        if isMatch == true && sender.tag == 1  {
+        if isMatch == true && (sender as! UIButton).tag == 1  {
             score += 1
             slideOutIDCardAndPerson()
             
         }
         
-        if isMatch == false && sender.tag == 0 {
+        if isMatch == false && (sender as! UIButton).tag == 0 {
             score += 1
             slideOutIDCardAndPerson()
             
         }
         
-        if isMatch == false && sender.tag == 1 {
+        if isMatch == false && (sender as! UIButton).tag == 1 {
             showIncorrectResponseAlert(getLost: false)
             slideOutIDCardAndPerson()
             
@@ -146,7 +155,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     func handleNextPerson() {
         slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 3)
+        circleTimer.start(beginingValue: 30)
         
     }
     
@@ -158,20 +167,58 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         guard let view = sender.view else { return }
         guard let IDCardContainerViewCenter = IDCardCenter else { return }
         guard let personImageCenter = personImageCenter else { return }
-        let point = sender.translation(in: view)
-        IDCardContainer.center = CGPoint(x: IDCardContainerViewCenter.x + point.x, y: IDCardContainerViewCenter.y)
-        personImage.center = CGPoint(x: personImageCenter.x + point.x, y: personImageCenter.y)
+//        let xFromCenter = IDCardContainer.center.x - view.center.x
         
+        let point = sender.translation(in: view)
+        IDCardContainer.center = CGPoint(x: view.center.x + point.x, y: IDCardContainerViewCenter.y)
+        personImage.center = CGPoint(x: view.center.x + point.x, y: personImageCenter.y)
+        
+//        if xFromCenter > 0 {
+//            thumbImageView.image = #imageLiteral(resourceName: "thumbsup")
+//            thumbImageView.tintColor = .green
+//            
+//        } else {
+//            thumbImageView.image = #imageLiteral(resourceName: "thumbsdown")
+//            thumbImageView.tintColor = .red
+//            
+//        }
+//        
+//        thumbImageView.alpha = abs(xFromCenter) / view.center.x
+//        
         if sender.state == UIGestureRecognizerState.ended {
-            
+//
+//            if IDCardContainer.center.x < 70 {
+//                UIView.animate(withDuration: 0.3, animations: {
+//                    self.IDCardContainer.center.x = -self.view.bounds.width / 2
+//                    self.personImage.center.x = -self.view.bounds.width / 2
+//                    self.handleMatch(sender: UIPanGestureRecognizer.self)
+//                }) { (_) in
+//                    // completion block
+//                }
+//                return
+//            } else if IDCardContainer.center.x > (view.frame.width - 70) {
+//                UIView.animate(withDuration: 0.3, animations: {
+//                    self.IDCardContainer.center.x = self.view.bounds.width * 2
+//                    self.personImage.center.x = self.view.bounds.width * 2
+//                    self.handleMatch(sender: UIPanGestureRecognizer.self)
+//                }) { (_) in
+//                    self.IDCardContainer.center.x = -self.view.bounds.width / 2
+//                    self.personImage.center.x = -self.view.bounds.width / 2
+//                }
+//                
+//
+//            }
+    
+    
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
                 self.IDCardContainer.center = IDCardContainerViewCenter
                 self.personImage.center = personImageCenter
+//                self.thumbImageView.alpha = 0
             }
         }
     }
-
+    
     // MARK: - Alert Controller
     
     fileprivate func showIncorrectResponseAlert(getLost: Bool, timerDidRunOut: Bool = false) {
@@ -225,7 +272,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         IDCardCenter = IDCardContainer.center
         personImageCenter = personImage.center
     }
-
+    
     // MARK: - Layout
     
     fileprivate func setupLayout() {
@@ -238,6 +285,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(approveButton)
         view.addSubview(denyButton)
         view.addSubview(scoreLabel)
+        view.addSubview(thumbImageView)
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -261,11 +309,15 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         circleTimer.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 75, height: 75)
         circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
         circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor).isActive = true
-
+        
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         
+        thumbImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        thumbImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        thumbImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         setupIDCard()
-
+        
     }
     
     // MARK: - IDCard
@@ -287,8 +339,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         personImage.center.x -= view.bounds.width
         
         view.addSubview(IDCardContainer)
-        
-//        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
     }
     
     fileprivate func slideInIDCardAndPerson() {
@@ -310,14 +360,14 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     fileprivate func slideOutIDCardAndPerson() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.IDCardContainer.center.x += self.view.bounds.width
+            self.IDCardContainer.center.x = self.view.bounds.width * 2
         }) { (_) in
             self.IDCardContainer.center.x = -self.view.bounds.width / 2
             
         }
         //        personImage.center.x = self.view.bounds.width / 2
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.personImage.center.x += self.view.bounds.width
+            self.personImage.center.x = self.view.bounds.width * 2
         }) { (_) in
             self.personImage.center.x = -self.view.bounds.width / 2
             self.selectRandomPerson()
@@ -407,15 +457,15 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let expiryTimestamp = randomPerson.expiryDateTimeStamp
         
         if expiryTimestamp > currentTimestamp {
-            idIsExpired = false
+            isExpired = false
         } else if expiryTimestamp < currentTimestamp {
-            idIsExpired = true
+            isExpired = true
         }
         
         if randomPerson.age >= 21 {
-            legalAge = true
+            isLegal = true
         } else {
-            legalAge = false
+            isLegal = false
         }
     }
     
@@ -423,7 +473,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let circleTimer: SRCountdownTimer = {
         let timer = SRCountdownTimer()
-        timer.start(beginingValue: 4)
+        timer.start(beginingValue: 30)
         timer.backgroundColor = .clear
         timer.lineWidth = 5
         timer.lineColor = .white
