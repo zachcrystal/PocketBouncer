@@ -9,26 +9,7 @@
 import UIKit
 
 class IDCardView: UIView {
-    
-//    var person: Person? {
-//        didSet {
-//            guard let person = person else { return }
-//            for (key, value) in person.avatarDictionary {
-//                identificationImageKey = key
-//                identificationImageView.image = value
-//            }
-//            
-//            nameLabel.text = "\(person.firstName) \(person.lastName)"
-//            expiryLabel.text = "EXPIRATION DATE\n\(person.expiryDateString)"
-//            addressLabel.text = person.address
-//            idBadgeImageView.image = person.idBadge
-//            setupAttributedText()
-//            
-//        }
-//    }
-//    
-    
-    
+
     func setupAttributedText(dob: String, expiry: String) {
         let attributedDobText = NSMutableAttributedString(string: "DOB:", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
         attributedDobText.append(NSAttributedString(string: " \(dob)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
@@ -38,7 +19,6 @@ class IDCardView: UIView {
         attributedExpiryString.append(NSAttributedString(string: "\(expiry)", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.5)]))
         expiryLabel.attributedText = attributedExpiryString
     }
-    
     
     var identificationImageKey: String?
     
@@ -89,28 +69,8 @@ class IDCardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        loadSubviews()
     }
-    
-    
-    
-    
-    
-    // total height is 180
-    
-    
-    // 120 with padding
-    
-    
-    
-    func loadSubviews() {
-        
-        
-     
-        
-        
-    }
-    
+
     override func layoutSubviews() {
         
         
@@ -122,6 +82,7 @@ class IDCardView: UIView {
         
         let textStackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel, dobLabel])
         textStackView.axis = .vertical
+        textStackView.distribution = .fillProportionally
         
 
         

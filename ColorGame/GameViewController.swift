@@ -24,18 +24,6 @@ class GameViewController: UIViewController {
         }
     }
     
-    
-    fileprivate func gameover() {
-        let endOfRoundTitle = "Your shift for the night is finally over! Lets see how you did..."
-        let endOfRoundMessage = "You let in \(score) people"
-        let answerAlert = UIAlertController(title: endOfRoundTitle, message: endOfRoundMessage, preferredStyle: .alert)
-        let nextRoundAction = UIAlertAction(title: "Start next shift", style: .default)
-        answerAlert.addAction(nextRoundAction)
-        
-        present(answerAlert, animated: true, completion: nil)
-        
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -71,6 +59,9 @@ class GameViewController: UIViewController {
         button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
         button.tag = 0
+        button.adjustsImageWhenDisabled = true
+        button.isUserInteractionEnabled = false
+        button.isEnabled = false
         return button
     }()
     
@@ -80,13 +71,20 @@ class GameViewController: UIViewController {
         button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
         button.tag = 1
+        button.adjustsImageWhenDisabled = true
+        button.isUserInteractionEnabled = false
+        button.isEnabled = false
         return button
     }()
     
     let dynamicButton: UIButton = {
         let button = UIButton(type: .system)
-//        button.setImage(#imageLiteral(resourceName: "next"), for: .normal)
-//        button.imageView?.contentMode = .scaleToFill
+        button.setImage(#imageLiteral(resourceName: "next"), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
+        button.addTarget(self, action: #selector(handleNextPerson), for: .touchUpInside)
+        button.adjustsImageWhenDisabled = true
+        button.isUserInteractionEnabled = false
+        button.isEnabled = false
         return button
     }()
     
@@ -117,22 +115,25 @@ class GameViewController: UIViewController {
         
         if isMatch == true && sender.tag == 0 {
             showIncorrectResponseAlert(getLost: true)
+            slideOutIDCardAndPerson()
         }
         
         if isMatch == true && sender.tag == 1  {
             score += 1
-            selectRandomPerson()
-            slideInIDCardContainer()
+            slideOutIDCardAndPerson()
+
         }
         
         if isMatch == false && sender.tag == 0 {
             score += 1
-            selectRandomPerson()
-            slideInIDCardContainer()
+            slideOutIDCardAndPerson()
+
         }
         
         if isMatch == false && sender.tag == 1 {
             showIncorrectResponseAlert(getLost: false)
+            slideOutIDCardAndPerson()
+
         }
     }
     
@@ -143,7 +144,6 @@ class GameViewController: UIViewController {
         let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: nil, preferredStyle: .alert)
         let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
             self.selectRandomPerson()
-            self.slideInIDCardContainer()
             
         }
         answerAlert.addAction(nextRoundAction)
@@ -163,15 +163,21 @@ class GameViewController: UIViewController {
         setupLayout()
         
         selectRandomPerson()
-        slideInIDCardContainer()
-        
-        
-        
+        slideInIDCardAndPerson()
         //        playMusic()
+        
     }
+    
+    func handleNextPerson() {
+        slideInIDCardAndPerson()
+        
+    }
+    
     
     fileprivate func setupLayout() {
         view.addSubview(backgroundImageView)
+        
+        tableImageView.frame = CGRect(x: 0, y: view.bounds.height * 0.60, width: view.bounds.width, height: view.bounds.height * 0.40)
         view.addSubview(tableImageView)
         view.addSubview(dynamicButton)
         view.addSubview(personImage)
@@ -181,10 +187,18 @@ class GameViewController: UIViewController {
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
         
-        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 300)
-        personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        personImage.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 300)
+//        personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
+
+//        personImage.center.x = tableImageView.center.x
+        personImage.frame.size = CGSize(width: 250, height: 250)
+        personImage.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+        personImage.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
+
+        
+
         
         dynamicButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 45, paddingRight: 0, width: 50, height: 50)
         dynamicButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -198,40 +212,90 @@ class GameViewController: UIViewController {
         scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         setupIDCard()
+        
+//        tableImageView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 275)
+
+        
   
     }
     
     fileprivate func setupIDCard() {
         
         IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
+        IDCardContainer.center.x -= view.bounds.width
+        personImage.center.x -= view.bounds.width
+
+
         
         view.addSubview(IDCardContainer)
         
         IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
     }
     
-    fileprivate func slideInIDCardContainer() {
-        IDCardContainer.center.x -= view.bounds.width
-        
-//        UIView.animate(withDuration: 0.5) {
-//            self.IDCardContainer.center.x += self.view.bounds.width
-//        }
-        
+    fileprivate func slideInIDCardAndPerson() {
+        print("fart")
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.IDCardContainer.center.x += self.view.bounds.width
+            self.IDCardContainer.center.x = self.view.bounds.width / 2
         }) { (_) in
             // completion closure kept if needed in future
         }
+        
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.personImage.center.x = self.view.bounds.width / 2
+        }) { (_) in
+            // completion closure kept if needed in future
+            self.removeNextAndEnableButtons()
+
+        }
+        
     }
+    
+       fileprivate func slideOutIDCardAndPerson() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.IDCardContainer.center.x += self.view.bounds.width
+        }) { (_) in
+            self.IDCardContainer.center.x = -self.view.bounds.width / 2
+
+        }
+//        personImage.center.x = self.view.bounds.width / 2
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.personImage.center.x += self.view.bounds.width
+        }) { (_) in
+            self.personImage.center.x = -self.view.bounds.width / 2
+            self.selectRandomPerson()
+            self.setupNextButtonAndDisableButtons()
+        }
+
+    }
+    
+    func setupNextButtonAndDisableButtons() {
+        dynamicButton.isEnabled = true
+        dynamicButton.isUserInteractionEnabled = true
+        approveButton.isEnabled = false
+        approveButton.isUserInteractionEnabled = false
+        denyButton.isEnabled = false
+        denyButton.isUserInteractionEnabled = false
+    }
+    
+    func removeNextAndEnableButtons() {
+        dynamicButton.isEnabled = false
+        dynamicButton.isUserInteractionEnabled = false
+        approveButton.isEnabled = true
+        approveButton.isUserInteractionEnabled = true
+        denyButton.isEnabled = true
+        denyButton.isUserInteractionEnabled = true
+
+    }
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         IDCardCenter = self.IDCardContainer.center
         originalCenter = self.IDCardContainer.center
-        
-        
     }
+    
     
     var originalCenter: CGPoint?
     var IDCardCenter: CGPoint?
