@@ -102,6 +102,10 @@ class GameViewController: UIViewController {
 
     
     func handleMatch(sender: UIButton!) {
+        approveButton.isEnabled = false
+        denyButton.isEnabled = false
+        approveButton.isUserInteractionEnabled = false
+        denyButton.isEnabled = false
         // deny tag = 0, approve tag = 1
         
         var isMatch = Bool()
@@ -144,6 +148,7 @@ class GameViewController: UIViewController {
         let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: nil, preferredStyle: .alert)
         let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
             self.selectRandomPerson()
+            self.score = 0
             
         }
         answerAlert.addAction(nextRoundAction)
@@ -271,11 +276,7 @@ class GameViewController: UIViewController {
     func setupNextButtonAndDisableButtons() {
         dynamicButton.isEnabled = true
         dynamicButton.isUserInteractionEnabled = true
-        approveButton.isEnabled = false
-        approveButton.isUserInteractionEnabled = false
-        denyButton.isEnabled = false
-        denyButton.isUserInteractionEnabled = false
-    }
+            }
     
     func removeNextAndEnableButtons() {
         dynamicButton.isEnabled = false
