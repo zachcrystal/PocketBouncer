@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */; };
 		92E84CF41EEE07D80074C05A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84CF31EEE07D80074C05A /* AppDelegate.swift */; };
 		92E84CFB1EEE07D80074C05A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92E84CFA1EEE07D80074C05A /* Assets.xcassets */; };
 		92E84CFE1EEE07D80074C05A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E84CFC1EEE07D80074C05A /* LaunchScreen.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardContainerView.swift; sourceTree = "<group>"; };
 		92E84CF01EEE07D80074C05A /* ColorGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E84CF31EEE07D80074C05A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92E84CFA1EEE07D80074C05A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				92E84D161EEEE93C0074C05A /* IDCardView.swift */,
+				92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92E84D171EEEE93C0074C05A /* IDCardView.swift in Sources */,
+				92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */,
 				92E84CF41EEE07D80074C05A /* AppDelegate.swift in Sources */,
 				92E84D0E1EEE4CBA0074C05A /* Person.swift in Sources */,
 				92E84D1C1EEEF8A40074C05A /* GameViewController.swift in Sources */,

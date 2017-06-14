@@ -115,8 +115,14 @@ class GameViewController: UIViewController {
         return iv
     }()
     
-    let IDCard: IDCardView = {
+    var IDCard: IDCardView = {
         let view = IDCardView()
+        return view
+    }()
+    
+
+    let IDCardContainer: IDCardContainerView = {
+        let view = IDCardContainerView()
         return view
     }()
     
@@ -148,12 +154,10 @@ class GameViewController: UIViewController {
     }()
     
     func handleMatch(sender: UIButton!) {
-        // getLost tag = 0, comeOnIn tag = 1
-        print(sender.tag)
-        //        let IDCard = IDCardView()
+        // deny tag = 0, approve tag = 1
         
         var isMatch = Bool()
-        guard let IDCardViewKey = IDCard.identificationImageKey else { return }
+        guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
         if personImageKey == IDCardViewKey && idIsExpired == false && legalAge == true {
             isMatch = true
@@ -169,10 +173,12 @@ class GameViewController: UIViewController {
         if isMatch == true && sender.tag == 1  {
             selectRandomPerson()
             peopleLetIn += 1
+            slideInIDCardContainer()
         }
         
         if isMatch == false && sender.tag == 0 {
             selectRandomPerson()
+            slideInIDCardContainer()
         }
         
         if isMatch == false && sender.tag == 1 {
@@ -188,6 +194,8 @@ class GameViewController: UIViewController {
         let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: nil, preferredStyle: .alert)
         let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
             self.selectRandomPerson()
+            self.slideInIDCardContainer()
+
         }
         answerAlert.addAction(nextRoundAction)
         
@@ -207,8 +215,6 @@ class GameViewController: UIViewController {
         return iv
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -216,19 +222,27 @@ class GameViewController: UIViewController {
         
         fetchPeople()
         
+        setupLayout()
+        
+        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+        selectRandomPerson()
+        slideInIDCardContainer()
+        
+        
+        
+        //        playMusic()
+    }
+    
+    fileprivate func setupLayout() {
         view.addSubview(backgroundImageView)
         view.addSubview(tableImageView)
-        
         view.addSubview(dynamicButton)
         view.addSubview(personImage)
         view.addSubview(approveButton)
         view.addSubview(denyButton)
         view.addSubview(letInLabel)
         view.addSubview(timerLabel)
-        
-        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
-        selectRandomPerson()
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -244,46 +258,71 @@ class GameViewController: UIViewController {
         
         approveButton.anchor(top: dynamicButton.topAnchor, left: dynamicButton.rightAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: -4, paddingBottom: 4, paddingRight: 0, width: 90, height: 0)
         
-        showIDCard()
-        
         
         letInLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 36, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         timerLabel.anchor(top: letInLabel.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-//        playMusic()
+//
+//                IDCard.anchor(top: tableImageView.topAnchor , left: nil, bottom: nil , right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 240, height: 180)
+//                IDCard.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        setupIDCard()
+        
+        //        IDCard.center = CGPoint(view.frame.size.width / 2), tableImageView.frame.size.height / 3)
+
+        
+        
+        
+        
     }
     
-    fileprivate func showIDCard() {
+    func setupIDCard() {
         
+        IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
         
-        view.addSubview(IDCard)
-        IDCard.anchor(top: tableImageView.topAnchor , left: nil, bottom: nil , right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 240, height: 180)
-        IDCard.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(IDCardContainer)
         
+        IDCardContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+    }
+    
+    func slideInIDCardContainer() {
+        IDCardContainer.center.x -= view.bounds.width
         
-        var transform = CATransform3DIdentity
-        let divider: CGFloat = 500
-        let degree: Double = 43
-        let x: CGFloat = 1
-        let y: CGFloat = 0
-        let z: CGFloat = 0
-        let anchorPointX = 0.5
-        let anchorPointY = 0.5
+        UIView.animate(withDuration: 0.5) {
+            self.IDCardContainer.center.x += self.view.bounds.width
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        IDCard.layer.anchorPoint = CGPoint(x: anchorPointX, y: anchorPointY)
+        IDCardCenter = self.IDCardContainer.center
+        originalCenter = self.IDCardContainer.center
         
-        transform = CATransform3DIdentity
-        transform.m34 = -1.0/divider
-        
-        let rotateAngle = CGFloat((degree * Double.pi) / 180.0)
-        transform = CATransform3DRotate(transform, rotateAngle, x, y, z)
-        
-        IDCard.layer.transform = transform
-        IDCard.layer.zPosition = 100
         
     }
+    
+    var originalCenter: CGPoint?
+    var IDCardCenter: CGPoint?
+    
+    func handlePan(_ sender: UIPanGestureRecognizer) {
+        guard let IDCardContainerView = sender.view else { return }
+        guard let IDCardContainerViewCenter = IDCardCenter else { return }
+        let point = sender.translation(in: view)
+        IDCardContainer.center = CGPoint(x: IDCardContainerViewCenter.x + point.x, y: IDCardContainerViewCenter.y + point.y)
+        
+        if sender.state == UIGestureRecognizerState.ended {
+            
+            UIView.animate(withDuration: 0.2) {
+                self.view.layoutIfNeeded()
+                guard let originalCenter = self.originalCenter else { return }
+                IDCardContainerView.center = originalCenter
+            }
+        }
+    }
+    
     
     
     
@@ -341,9 +380,9 @@ class GameViewController: UIViewController {
             }
             
             let anotherRandomPerson = internalPersonArray.randomItem()
-            IDCard.person = anotherRandomPerson
+            IDCardContainer.person = anotherRandomPerson
         } else {
-            IDCard.person = randomPerson
+            IDCardContainer.person = randomPerson
         }
         
         checkIfPersonCanEnter(person: randomPerson)
