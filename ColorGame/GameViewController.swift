@@ -19,7 +19,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     var isSamePerson: Bool?
     var isExpired: Bool?
     var isLegal: Bool?
-
+    
     // MARK: - Isolated Properties
     
     var people: [Person]?
@@ -33,6 +33,18 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - UIKit Components
+    
+    var startButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Play Free Mode", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.setTitleColor(.purple, for: .normal)
+        button.backgroundColor = .white
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(handleStart), for: .touchUpInside)
+        return button
+    }()
     
     var scoreLabel: UILabel = {
         let label = UILabel()
@@ -101,10 +113,18 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     // MARK: - Action Selectors
     
-    func handleMatch(sender: Any) {
+    func handleStart() {
+        startButton.isHidden = true
+        slideInIDCardAndPerson()
+        circleTimer.start(beginingValue: 3)
+        
+        
+    }
+    
+    func handleMatch(sender: UIButton) {
         denyButton.isHidden = true
         approveButton.isHidden = true
-
+        
         // deny tag = 0, approve tag = 1
         
         var isMatch = Bool()
@@ -116,41 +136,41 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             isMatch = false
         }
         
-        if isMatch == true && (sender as! UIButton).tag == 0 {
+        if isMatch == true && sender.tag == 0 {
             showIncorrectResponseAlert(getLost: true)
             flashRed()
         }
         
-        if isMatch == true && (sender as! UIButton).tag == 1  {
+        if isMatch == true && sender.tag == 1  {
             score += 1
-            slideOutIDCardAndPerson()
+            slideOutIDCardAndPerson("right")
             
         }
         
-        if isMatch == false && (sender as! UIButton).tag == 0 {
+        if isMatch == false && sender.tag == 0 {
             score += 1
-            slideOutIDCardAndPerson()
+            slideOutIDCardAndPerson("left")
             
         }
         
-        if isMatch == false && (sender as! UIButton).tag == 1 {
+        if isMatch == false && sender.tag == 1 {
             showIncorrectResponseAlert(getLost: false)
             flashRed()
         }
     }
     
-
+    
     
     func handleNextPerson() {
         nextButton.isHidden = true
         approveButton.isHidden = false
         denyButton.isHidden = false
         slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 2)
+        circleTimer.start(beginingValue: 3)
         
     }
-
-
+    
+    
     // MARK: - Alert Controller
     
     fileprivate func showIncorrectResponseAlert(getLost: Bool, timerDidRunOut: Bool = false) {
@@ -197,7 +217,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         personShadow.isHidden = true
         
         selectRandomPerson()
-        slideInIDCardAndPerson()
         //        playMusic()
         
     }
@@ -212,7 +231,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.personShadow.isHidden = true
         }
     }
-
+    
     
     // MARK: - Layout
     
@@ -231,6 +250,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(scoreLabel)
         view.addSubview(buttonStackView)
         view.addSubview(nextButton)
+        view.addSubview(startButton)
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -251,12 +271,16 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         circleTimer.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 75, height: 75)
         circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
         circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor).isActive = true
-    
+        
         buttonStackView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 185, height: 85)
         buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         nextButton.anchor(top: nil, left: nil, bottom: buttonStackView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
         nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(startButton)
+        startButton.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: view.frame.width / 2, height: 60)
+        startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         setupIDCard()
         
@@ -299,24 +323,42 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
     }
     
-    fileprivate func slideOutIDCardAndPerson() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.IDCardContainer.center.x = self.view.bounds.width * 2
-        }) { (_) in
-            self.IDCardContainer.center.x = -self.view.bounds.width / 2
-            
-        }
-        //        personImage.center.x = self.view.bounds.width / 2
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.personImage.center.x = self.view.bounds.width * 2
-        }) { (_) in
-            self.personImage.center.x = -self.view.bounds.width / 2
-            self.selectRandomPerson()
-            self.nextButton.isHidden = false
+    fileprivate func slideOutIDCardAndPerson(_ direction: String) {
+        if direction == "right" {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.IDCardContainer.center.x = self.view.bounds.width * 2
+            }) { (_) in
+                self.IDCardContainer.center.x = -self.view.bounds.width / 2
+                
+            }
+            //        personImage.center.x = self.view.bounds.width / 2
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.personImage.center.x = self.view.bounds.width * 2
+            }) { (_) in
+                self.personImage.center.x = -self.view.bounds.width / 2
+                self.selectRandomPerson()
+                self.nextButton.isHidden = false
+            }
+        } else {
+            if direction == "left" {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                    self.IDCardContainer.center.x = -self.view.bounds.width / 2
+                }) { (_) in
+                    
+                }
+                //        personImage.center.x = self.view.bounds.width / 2
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                    self.personImage.center.x = -self.view.bounds.width / 2
+                }) { (_) in
+                    self.selectRandomPerson()
+                    self.nextButton.isHidden = false
+                }
+
+            }
         }
         
     }
-
+    
     
     // MARK: - JSON Serialization
     
@@ -360,6 +402,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         let probabilityValue = arc4random_uniform(100) + 1
         if probabilityValue > 80 {
+            personCanEnter = false
             
             if let index = internalPersonArray.index(of: randomPerson) {
                 internalPersonArray.remove(at: index)
@@ -373,6 +416,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         checkIfPersonCanEnter(person: randomPerson)
     }
+    
+    var personCanEnter: Bool?
     
     fileprivate func checkIfPersonCanEnter(person: Person) {
         
@@ -398,10 +443,10 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let circleTimer: SRCountdownTimer = {
         let timer = SRCountdownTimer()
-        timer.start(beginingValue: 2)
         timer.backgroundColor = .clear
         timer.lineWidth = 5
         timer.lineColor = .white
+        timer.isLabelHidden = true
         return timer
     }()
     
