@@ -20,27 +20,28 @@ class Person: Equatable {
     let avatarDictionary: [String: UIImage]
     let idBadge: UIImage
     
-    init(jsonDictionary: [String: Any]) {
-        self.firstName = jsonDictionary["firstname"] as! String
-        self.lastName = jsonDictionary["lastname"] as! String
+    init(personDictionary: [String: Any]) {
+        self.firstName = personDictionary["firstName"] as! String
+        self.lastName = personDictionary["lastName"] as! String
         
-        self.dob = jsonDictionary["birthday"] as! String
+        self.dob = personDictionary["dob"] as! String
         let strDob = dob
         let ageComponents = strDob.components(separatedBy: "-")
         let dateDob = Calendar.current.date(from: DateComponents(year: Int(ageComponents[2]), month: Int(ageComponents[1]), day: Int(ageComponents[0])))!
         self.age = dateDob.ageInt
         
-        self.address = jsonDictionary["address"] as! String
-        let imageString = jsonDictionary["imageString"] as! String
+//        self.address = personDictionary["address"] as! String
+        self.address = "123 Fake Street"
+        let imageString = personDictionary["avatar"] as! String
         self.avatarDictionary = [imageString: UIImage(named: imageString)!]
         
-        self.expiryDateString = jsonDictionary["expiryDate"] as! String
+        self.expiryDateString = personDictionary["expiryDate"] as! String
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "MM-dd-yyyy"
         let date = dateFormatterGet.date(from: expiryDateString)
         self.expiryDateTimeStamp = date?.timeIntervalSince1970 ?? 0
         
-        let idBadgeString = jsonDictionary["idBadge"] as! String
+        let idBadgeString = personDictionary["idBadge"] as! String
         self.idBadge = UIImage(named: idBadgeString)!
     }
     

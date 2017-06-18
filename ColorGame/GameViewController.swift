@@ -17,6 +17,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let components = Components.sharedComponentsData
 
+    
     // MARK: - Match Variables
     var isSamePerson: Bool?
     var isExpired: Bool?
@@ -25,6 +26,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     // MARK: - Isolated Properties
     
     var people: [Person]?
+    
+    let defaults = UserDefaults.standard
+    let highscoreKey = "highscore"
     
     var highScore: Int = 0
     
@@ -131,9 +135,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     func handlePlayAgain() {
         gameoverCard.removeFromSuperview()
         playAgainButton.removeFromSuperview()
-        self.unblur()
+//        self.unblur()
         self.score = 0
         self.selectRandomPerson()
+        slideInIDCardAndPerson()
+
         self.handleNextPerson()
     }
     
@@ -207,6 +213,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - Gameover
+    
     let gameoverCard = GameoverView()
     fileprivate func gameover(for reason: GameoverReason) {
         circleTimer.pause()
@@ -216,6 +223,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         if score > highScore {
             highScore = score
+            defaults.set(highScore, forKey: highscoreKey)
         }
         
         gameoverCard.reasonLabel.text = reason.rawValue
@@ -228,7 +236,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(playAgainButton)
         playAgainButton.anchor(top: gameoverCard.bottomAnchor, left: gameoverCard.leftAnchor, bottom: nil, right: gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
     }
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -238,8 +246,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         circleTimer.delegate = self
         
+        highScore = defaults.object(forKey: highscoreKey) as? Int ?? 0
+        
         hideApproveDenyButtons()
-        fetchPeople()
         setupLayout()
         nextButton.isHidden = true
         personShadow.isHidden = true
@@ -392,43 +401,17 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
     }
     
-    // MARK: - JSON Serialization
-    
-    fileprivate func fetchPeople() {
-        guard let path = Bundle.main.path(forResource: "People", ofType: "json") else { return }
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-            
-            guard let personDictionaries = json as? [[String: Any]] else { return }
-            
-            self.people = []
-            for personDictionary in personDictionaries {
-                let person = Person(jsonDictionary: personDictionary)
-                self.people?.append(person)
-            }
-            
-        } catch {
-            print(error)
-        }
-    }
-    
     // MARK: - New Person Setup
     
     var randomPerson: Person?
     
     fileprivate func selectRandomPerson() {
+        let genderProbability = arc4random_uniform(10) + 1
+     
+        let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
-        guard let people = people else { return }
-        var internalPersonArray = people
-        // randomItem is a static func that picks a random element in an array.
-        randomPerson = internalPersonArray.randomItem()
-        guard let randomPerson = randomPerson else { return }
-        let randomDob = components.dobs.randomItem()
-        randomPerson.dobTest = randomDob
-        
+        let randomPerson = Person(personDictionary: personDictionary)
+
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
             personImageKey = key
@@ -437,12 +420,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let probabilityValue = arc4random_uniform(100) + 1
         if probabilityValue > 80 {
             personCanEnter = false
-            
-            if let index = internalPersonArray.index(of: randomPerson) {
-                internalPersonArray.remove(at: index)
-            }
-            
-            let anotherRandomPerson = internalPersonArray.randomItem()
+
+            let anotherPersonDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
+            let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary)
             IDCardContainer.person = anotherRandomPerson
         } else {
             IDCardContainer.person = randomPerson
@@ -455,10 +435,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     fileprivate func checkIfPersonCanEnter(person: Person) {
         
-        guard let randomPerson = randomPerson else { return }
-        
         let currentTimestamp = Date().timeIntervalSince1970
-        let expiryTimestamp = randomPerson.expiryDateTimeStamp
+        let expiryTimestamp = person.expiryDateTimeStamp
         
         if expiryTimestamp > currentTimestamp {
             isExpired = false
@@ -466,7 +444,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             isExpired = true
         }
         
-        if randomPerson.age >= 21 {
+        if person.age >= 21 {
             isLegal = true
         } else {
             isLegal = false

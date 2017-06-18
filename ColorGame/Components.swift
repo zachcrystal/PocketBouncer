@@ -17,6 +17,23 @@ class Components {
     var maleFirstNames: [String] = []
     var femaleFirstNames: [String] = []
     var lastNames: [String] = []
+    var maleAvatars: [String] = []
+    var femaleAvatars: [String] = []
+    var idBadges: [String] = []
+    
+       enum Gender {
+        case male
+        case female
+        
+    }
+    
+    func buildPerson(gender: Gender) -> [String: Any] {
+        
+        let personDictionary = [ "firstName": gender == .male ? maleFirstNames.randomItem() : femaleFirstNames.randomItem(), "lastName": lastNames.randomItem(), "dob": dobs.randomItem(), "expiryDate": expiryDates.randomItem(), "avatar": gender == .male ? maleAvatars.randomItem() : femaleAvatars.randomItem(), "idBadge": idBadges.randomItem()]
+        
+        return personDictionary
+        
+    }
     
     init () {
         
@@ -34,25 +51,23 @@ class Components {
             let maleFirstNames = componentDictionaries["maleFirstNames"] as! [String]
             let femaleFirstNames = componentDictionaries["femaleFirstNames"] as! [String]
             let lastNames = componentDictionaries["femaleFirstNames"] as! [String]
-
+            let maleAvatars = componentDictionaries["maleAvatars"] as! [String]
+            let femaleAvatars = componentDictionaries["femaleAvatars"] as! [String]
+            let idBadges = componentDictionaries["idBadges"] as! [String]
             
             self.dobs = dobs
             self.expiryDates = expiryDates
             self.maleFirstNames = maleFirstNames
             self.femaleFirstNames = femaleFirstNames
             self.lastNames = lastNames
-            
-            
+            self.maleAvatars = maleAvatars
+            self.femaleAvatars = femaleAvatars
+            self.idBadges = idBadges
             
         } catch {
             print(error)
         }
         
     }
-    
-    
-//    static func buildPerson() -> Person {
-//        
-//    }
     
 }
