@@ -15,6 +15,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return .lightContent
     }
     
+    let components = Components.sharedComponentsData
+
     // MARK: - Match Variables
     var isSamePerson: Bool?
     var isExpired: Bool?
@@ -111,19 +113,49 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return iv
     }()
     
+    let playAgainButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(red:0.00, green:0.61, blue:1.00, alpha:0.9)
+        button.layer.cornerRadius = 10
+        button.setImage(#imageLiteral(resourceName: "play").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 3
+        button.layer.zPosition = 1500
+        button.addTarget(self, action: #selector(handlePlayAgain), for: .touchUpInside)
+        return button
+    }()
+    
+    
     // MARK: - Action Selectors
+    
+    func handlePlayAgain() {
+        gameoverCard.removeFromSuperview()
+        playAgainButton.removeFromSuperview()
+        self.unblur()
+        self.score = 0
+        self.selectRandomPerson()
+        self.handleNextPerson()
+    }
     
     func handleStart() {
         startButton.isHidden = true
+        unhideApproveDenyButtons()
         slideInIDCardAndPerson()
         circleTimer.start(beginingValue: 3)
-        
-        
+    }
+    
+    func hideApproveDenyButtons() {
+        denyButton.isHidden = true
+        approveButton.isHidden = true
+    }
+    
+    func unhideApproveDenyButtons() {
+        denyButton.isHidden = false
+        approveButton.isHidden = false
     }
     
     func handleMatch(sender: UIButton) {
-        denyButton.isHidden = true
-        approveButton.isHidden = true
+        hideApproveDenyButtons()
         
         // deny tag = 0, approve tag = 1
         
@@ -137,7 +169,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         if isMatch == true && sender.tag == 0 {
-            showIncorrectResponseAlert(getLost: true)
+            gameover(for: GameoverReason.falseDeny)
             flashRed()
         }
         
@@ -154,51 +186,49 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         if isMatch == false && sender.tag == 1 {
-            showIncorrectResponseAlert(getLost: false)
+            if personImageKey != IDCardViewKey {
+                gameover(for: .wrongID)
+            }
+            if isExpired == true {
+                gameover(for: .expiredID)
+            } else if isLegal == false {
+                gameover(for: .underage)
+            }
             flashRed()
         }
     }
     
-    
-    
     func handleNextPerson() {
         nextButton.isHidden = true
-        approveButton.isHidden = false
-        denyButton.isHidden = false
+        unhideApproveDenyButtons()
         slideInIDCardAndPerson()
         circleTimer.start(beginingValue: 3)
         
     }
     
-    
-    // MARK: - Alert Controller
-    
-    fileprivate func showIncorrectResponseAlert(getLost: Bool, timerDidRunOut: Bool = false) {
-        if timerDidRunOut == false {
-            circleTimer.pause()
-        }
+    // MARK: - Gameover
+    let gameoverCard = GameoverView()
+    fileprivate func gameover(for reason: GameoverReason) {
+        circleTimer.pause()
+        hideApproveDenyButtons()
+        gameoverCard.layer.zPosition = 1500
+        flashRed()
         
         if score > highScore {
             highScore = score
         }
         
-        let getLostTitle = "Hey! What did you do that for?! You're costing us money!"
-        let wrongLetInTitle = "Hey! You let someone in you weren't supposed to!"
-        let message = "Score: \(score)\nPersonal Best: \(highScore)"
-        let answerAlert = UIAlertController(title: getLost ? getLostTitle : wrongLetInTitle, message: message, preferredStyle: .alert)
-        let nextRoundAction = UIAlertAction(title: "Sorry! It won't happen again!", style: .default) { (_) in
-            self.score = 0
-            self.selectRandomPerson()
-            self.handleNextPerson()
-            
-            
-        }
-        answerAlert.addAction(nextRoundAction)
+        gameoverCard.reasonLabel.text = reason.rawValue
+        gameoverCard.scoreLabel.text = "Score: \(score)"
+        gameoverCard.highscoreLabel.text = "Highscore: \(highScore)"
         
-        present(answerAlert, animated: true, completion: nil)
-        
+        view.addSubview(gameoverCard)
+        gameoverCard.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 200)
+        gameoverCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20).isActive = true
+        view.addSubview(playAgainButton)
+        playAgainButton.anchor(top: gameoverCard.bottomAnchor, left: gameoverCard.leftAnchor, bottom: nil, right: gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
     }
-    
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -208,30 +238,15 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         circleTimer.delegate = self
         
-        
+        hideApproveDenyButtons()
         fetchPeople()
-        
         setupLayout()
-        
         nextButton.isHidden = true
         personShadow.isHidden = true
-        
         selectRandomPerson()
         //        playMusic()
         
     }
-    
-    func flashRed() {
-        personShadow.isHidden = false
-        
-        self.personShadow.alpha = 1
-        UIView.animate(withDuration: 4, animations: {
-            self.personShadow.alpha = 0
-        }) { (_) in
-            self.personShadow.isHidden = true
-        }
-    }
-    
     
     // MARK: - Layout
     
@@ -261,7 +276,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         personImage.frame.size = CGSize(width: 250, height: 250)
         personImage.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         personImage.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
-        
         
         scoreLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -298,6 +312,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return view
     }()
     
+    // MARK: - Animations
+    
     fileprivate func setupIDCard() {
         
         IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
@@ -331,7 +347,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                 self.IDCardContainer.center.x = -self.view.bounds.width / 2
                 
             }
-            //        personImage.center.x = self.view.bounds.width / 2
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.personImage.center.x = self.view.bounds.width * 2
             }) { (_) in
@@ -346,19 +361,36 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                 }) { (_) in
                     
                 }
-                //        personImage.center.x = self.view.bounds.width / 2
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                     self.personImage.center.x = -self.view.bounds.width / 2
                 }) { (_) in
                     self.selectRandomPerson()
                     self.nextButton.isHidden = false
                 }
-
+                
             }
         }
-        
     }
     
+    func flashRed() {
+        let redBorderFlash = UIImageView(frame: view.frame)
+        redBorderFlash.image = #imageLiteral(resourceName: "RedBorderFlash")
+        redBorderFlash.alpha = 1
+        redBorderFlash.layer.zPosition = 1200
+        view.addSubview(redBorderFlash)
+        
+        
+        personShadow.isHidden = false
+        
+        self.personShadow.alpha = 1
+        UIView.animate(withDuration: 4, animations: {
+            self.personShadow.alpha = 0
+            redBorderFlash.alpha = 0
+        }) { (_) in
+            self.personShadow.isHidden = true
+            redBorderFlash.removeFromSuperview()
+        }
+    }
     
     // MARK: - JSON Serialization
     
@@ -394,6 +426,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         // randomItem is a static func that picks a random element in an array.
         randomPerson = internalPersonArray.randomItem()
         guard let randomPerson = randomPerson else { return }
+        let randomDob = components.dobs.randomItem()
+        randomPerson.dobTest = randomDob
         
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
@@ -450,8 +484,12 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return timer
     }()
     
-    
     func timerDidEnd() {
-        showIncorrectResponseAlert(getLost: true, timerDidRunOut: true)
+        
+        if nextButton.isHidden == false {
+            gameover(for: .timerRanOutDuringNext)
+        } else {
+            gameover(for: .timerRanOutDuringPerson)
+        }
     }
 }

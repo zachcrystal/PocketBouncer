@@ -10,6 +10,7 @@ import UIKit
 
 class IDCardContainerView: UIView {
     
+    
     var person: Person? {
         didSet {
             guard let person = person else { return }
@@ -69,7 +70,7 @@ class IDCardContainerView: UIView {
         transform = CATransform3DRotate(transform, rotateAngle, x, y, z)
         
         self.layer.transform = transform
-        self.layer.zPosition = 100
+        self.layer.zPosition = 80
         
         
         IDCard.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)

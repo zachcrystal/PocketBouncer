@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
+		92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */; };
+		92BE8C1D1EF5C40300D15E45 /* GameoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */; };
+		92BE8C1F1EF60BD100D15E45 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1E1EF60BD100D15E45 /* Components.swift */; };
+		92BE8C211EF60E8C00D15E45 /* Components.json in Resources */ = {isa = PBXBuildFile; fileRef = 92BE8C201EF60E8C00D15E45 /* Components.json */; };
 		92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */; };
 		92D036AA1EF0CCEC00B7D082 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D036A91EF0CCEC00B7D082 /* Sound.swift */; };
 		92E84CF41EEE07D80074C05A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84CF31EEE07D80074C05A /* AppDelegate.swift */; };
@@ -22,6 +26,10 @@
 
 /* Begin PBXFileReference section */
 		923436741EF1175E004CEA6D /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
+		92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverReason.swift; sourceTree = "<group>"; };
+		92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverView.swift; sourceTree = "<group>"; };
+		92BE8C1E1EF60BD100D15E45 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		92BE8C201EF60E8C00D15E45 /* Components.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Components.json; sourceTree = "<group>"; };
 		92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardContainerView.swift; sourceTree = "<group>"; };
 		92D036A91EF0CCEC00B7D082 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		92E84CF01EEE07D80074C05A /* ColorGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +55,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92BE8C1B1EF5C3F000D15E45 /* Gameover */ = {
+			isa = PBXGroup;
+			children = (
+				92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */,
+				92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */,
+			);
+			name = Gameover;
+			sourceTree = "<group>";
+		};
+		92BE8C221EF645CC00D15E45 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				92E84D141EEE77C00074C05A /* People.json */,
+				92BE8C201EF60E8C00D15E45 /* Components.json */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		92E84CE71EEE07D80074C05A = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +92,12 @@
 		92E84CF21EEE07D80074C05A /* ColorGame */ = {
 			isa = PBXGroup;
 			children = (
-				92E84D141EEE77C00074C05A /* People.json */,
 				92E84CF31EEE07D80074C05A /* AppDelegate.swift */,
+				92BE8C1B1EF5C3F000D15E45 /* Gameover */,
 				92E84D0F1EEE4CC80074C05A /* Models */,
-				92E84D191EEEF7BA0074C05A /* Views */,
+				92E84D191EEEF7BA0074C05A /* IDCard */,
 				92E84D1A1EEEF7C20074C05A /* Controllers */,
+				92BE8C221EF645CC00D15E45 /* Data */,
 				92D036A91EF0CCEC00B7D082 /* Sound.swift */,
 				92E84CFA1EEE07D80074C05A /* Assets.xcassets */,
 				92E84CFC1EEE07D80074C05A /* LaunchScreen.storyboard */,
@@ -84,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				92E84D0D1EEE4CBA0074C05A /* Person.swift */,
+				92BE8C1E1EF60BD100D15E45 /* Components.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -92,18 +120,18 @@
 			isa = PBXGroup;
 			children = (
 				92E84D091EEE09A30074C05A /* Extensions.swift */,
+				923436741EF1175E004CEA6D /* SRCountdownTimer.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		92E84D191EEEF7BA0074C05A /* Views */ = {
+		92E84D191EEEF7BA0074C05A /* IDCard */ = {
 			isa = PBXGroup;
 			children = (
 				92E84D161EEEE93C0074C05A /* IDCardView.swift */,
 				92D036A71EF0A2AD00B7D082 /* IDCardContainerView.swift */,
-				923436741EF1175E004CEA6D /* SRCountdownTimer.swift */,
 			);
-			name = Views;
+			name = IDCard;
 			sourceTree = "<group>";
 		};
 		92E84D1A1EEEF7C20074C05A /* Controllers */ = {
@@ -175,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92E84CFE1EEE07D80074C05A /* LaunchScreen.storyboard in Resources */,
+				92BE8C211EF60E8C00D15E45 /* Components.json in Resources */,
 				92E84CFB1EEE07D80074C05A /* Assets.xcassets in Resources */,
 				92E84D151EEE77C00074C05A /* People.json in Resources */,
 			);
@@ -187,9 +216,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */,
 				923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */,
+				92BE8C1F1EF60BD100D15E45 /* Components.swift in Sources */,
 				92D036AA1EF0CCEC00B7D082 /* Sound.swift in Sources */,
 				92E84D171EEEE93C0074C05A /* IDCardView.swift in Sources */,
+				92BE8C1D1EF5C40300D15E45 /* GameoverView.swift in Sources */,
 				92D036A81EF0A2AD00B7D082 /* IDCardContainerView.swift in Sources */,
 				92E84CF41EEE07D80074C05A /* AppDelegate.swift in Sources */,
 				92E84D0E1EEE4CBA0074C05A /* Person.swift in Sources */,

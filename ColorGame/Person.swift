@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import WebKit
 
 class Person: Equatable {
     let firstName: String
     let lastName: String
     let dob: String
+    var dobTest: String? = nil
     let age: Int
     let address: String
     let expiryDateString: String
