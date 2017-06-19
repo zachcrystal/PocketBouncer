@@ -1,0 +1,833 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		012216C369F0D8318A280F8BCDE3B428 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6B605E3EB5D4A794A197FB6DA1E30A /* App.swift */; };
+		0B3CFFE1F2EC65A986FE0AA0F7FFAFA4 /* Faker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C216427E9C466CFCCD9C6F323A5C87AB /* Faker.swift */; };
+		0E00D928EDAFF39E77A90D52E0AED6E1 /* fa.json in Resources */ = {isa = PBXBuildFile; fileRef = 34F557D97134B62EEC8708B0658197C9 /* fa.json */; };
+		11B5DF5D3FF3D4AFD0CFEB44C0B3BFA1 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B00E972050AA3609EC3CB9387FEC62 /* Name.swift */; };
+		145A2A06D84BB267DCFA863E1028ADAF /* ja.json in Resources */ = {isa = PBXBuildFile; fileRef = E1F2AB6EBD9B70751D2D72238E351F1D /* ja.json */; };
+		16F42BF375B3677739F8AA468C2F06A7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA79B8172B0A1C8580C5872F5DA9D03 /* Team.swift */; };
+		20C301F8EA842463177CC7B727058DAC /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B328636491B159B0123CA49EB1A5D0 /* Company.swift */; };
+		298644E73B69C91AC45FC1FE4F692542 /* sv.json in Resources */ = {isa = PBXBuildFile; fileRef = CD06050C84000C5CF97462BDD7AE123B /* sv.json */; };
+		3635D9B2812A1B8047643B5D3112D2CE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7421D2AF77643E67A4406A8FCEF1532 /* ArrayExtension.swift */; };
+		3DDFADFBE883589060A9982CFB17C4BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		44DEE7031917A532485633897095B5C9 /* en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C6F197C47409409B2355751C70A830D /* en-GB.json */; };
+		4C27560D177860C9D46382A24148EF56 /* Commerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6247442AD2A8BE553FE4EA3F17E8880F /* Commerce.swift */; };
+		4DEC19E7C03A9C3291DE41CE35EEB0EF /* nb-NO.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C87245D31CABDA8513867FC30E94420 /* nb-NO.json */; };
+		5035DAC2D9EF82E9D9788B43FEF22865 /* de-CH.json in Resources */ = {isa = PBXBuildFile; fileRef = 95843310E390EC6E461ABEDF93B54681 /* de-CH.json */; };
+		5825E146596AC8BF7B7A757BE2626354 /* pl.json in Resources */ = {isa = PBXBuildFile; fileRef = D4AC6AC931D05E49E14F7FC25001D05C /* pl.json */; };
+		59D454623603D43F2823ABBA42887DCA /* en-CA.json in Resources */ = {isa = PBXBuildFile; fileRef = D1455ED32D7F9D30FA0FE72BA2D020AC /* en-CA.json */; };
+		5BFCD5F9F85CAE2D104FB8F2490C8827 /* zh-TW.json in Resources */ = {isa = PBXBuildFile; fileRef = 363C56FCC8031C5DBB69A7A2909BAA79 /* zh-TW.json */; };
+		5E3687D7AD5C4B71BDD55B3E72C4DE51 /* es.json in Resources */ = {isa = PBXBuildFile; fileRef = 891A5B9EEDAA9CAF421BE8831B7ADF67 /* es.json */; };
+		5F17369C2AB189AA028FFACBD0D38426 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54F487957A8DF3223D29F11D3C8A16 /* Provider.swift */; };
+		609E9A5EEE66CF00DCE9F2E215E79CA7 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = 38E9CD25103F20596BFC59AC60533484 /* en.json */; };
+		6122E5C27C4059B06F190796FA354089 /* fr.json in Resources */ = {isa = PBXBuildFile; fileRef = A272674A466B7DB1F79BD5343B68F29F /* fr.json */; };
+		6134A8DC2E9F4A6D809F2880614E1CC1 /* Faker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */; };
+		6243ECD63492CD676B75774E2FA3427E /* it.json in Resources */ = {isa = PBXBuildFile; fileRef = 247FFB3A5271061C609C2CA80785F990 /* it.json */; };
+		65D3842CCCC9EF15CAC25BFC72AEBB06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		689387DF8E0DC2D88B8025D87456A6B3 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778FD13631CF097BBE8CB027FB76758 /* PhoneNumber.swift */; };
+		68B0A2BF1648E265E4B2C92B228E936C /* de-AT.json in Resources */ = {isa = PBXBuildFile; fileRef = D440FDB1F013A28B69154AC973E00288 /* de-AT.json */; };
+		713A0F0ECC2DC902A2B62E09F4454AE9 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A699E71BC649EE05540B827A6024E638 /* Generator.swift */; };
+		749610C3798F18EC4E6086168CF3CB15 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C2351EF23CF2089E68A539FD95C6B /* Business.swift */; };
+		76CD27CDD527A3E747775B70AE47F522 /* ru.json in Resources */ = {isa = PBXBuildFile; fileRef = 54C600F2209C239F3B9E1D0627E29B5B /* ru.json */; };
+		77C77A45FA3D3ABC900840BED294DD06 /* Pods-ColorGame-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8043D59614ACFE34F278AF84C284C87B /* de.json in Resources */ = {isa = PBXBuildFile; fileRef = 6453E80B615AB930DBF512A816C559F4 /* de.json */; };
+		9050A04C1DBDF4FBDB32491ECB43AACE /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D9020349E34B99386A843C84A8AAA /* Parser.swift */; };
+		A6B7938AB0B4BAEF9D86C17AEF2FC55A /* zh-CN.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AAE10A3838F94E24E916D433D652FCF /* zh-CN.json */; };
+		A787C5DE64EDBB6022CA35C8E92424AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A08B79CBFE91D9B604591BD8B8C2B08 /* Config.swift */; };
+		AEA5837269197C8C8969EE3FA3D2410C /* en-IND.json in Resources */ = {isa = PBXBuildFile; fileRef = 90F42F0735AD8AF5490BCE0E23FA6D18 /* en-IND.json */; };
+		B10799486DDDEDB87840989D58E23A35 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05998B349CFD005CAAF20D560DEF6B7C /* Address.swift */; };
+		B24B510D52661470850CC081FF78DBE1 /* sk.json in Resources */ = {isa = PBXBuildFile; fileRef = B99C7B831B2DD27C36EE48CEEC99C00D /* sk.json */; };
+		BC25A02FFEFCF3A51BD3266E2D3B46CA /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303D5C95C6421AA693113ECC4F96915 /* Number.swift */; };
+		BF2809020536426AF092D5F0007C64DE /* Fakery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E5A191FD3F46E7317CE031CA32ED566B /* Fakery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C305FDB68C5B95DD17634D65E0DBF6A2 /* en-TEST.json in Resources */ = {isa = PBXBuildFile; fileRef = F110D4AC44BD4FA45607F53E4FF52B8B /* en-TEST.json */; };
+		C573F3292602DF4D00732F72ECF5F2F8 /* uk.json in Resources */ = {isa = PBXBuildFile; fileRef = 68E970370313B5C745CD25D870A5E27D /* uk.json */; };
+		D65E8D819F0997E9A55AA227E80B5470 /* Pods-ColorGame-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */; };
+		D736E48C93C71425A94119F5A1709C70 /* Fakery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB883C9EC288E06668F3734F3E7DF373 /* Fakery-dummy.m */; };
+		E557D814DB56AE718202563E4CE5B2A2 /* en-AU.json in Resources */ = {isa = PBXBuildFile; fileRef = 350E6F0AD0766B62DE39684224E2717E /* en-AU.json */; };
+		E989A658F01B6817A2794F766DB1CFD9 /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8002324EF08DE6C109E05A773CB009A /* Internet.swift */; };
+		F15432A40E2459B0AE1BAEEFEFF3E4F2 /* ko.json in Resources */ = {isa = PBXBuildFile; fileRef = D6DA409868141A724B3F615713B0A318 /* ko.json */; };
+		F19CF8DD48E2DBDA9E85D154594577FA /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3635406C714284BF10EFEA0DE7E160C /* Lorem.swift */; };
+		F2A4062B1975D4AAFE6131DF296F50A4 /* en-US.json in Resources */ = {isa = PBXBuildFile; fileRef = E296C07E38B2519BE6B8A178BF72E62B /* en-US.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C5B529863ED4956EDDE497ADA2B735D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C498EBDBE0A2EF6EF719EC8718286AD6;
+			remoteInfo = "Fakery-Faker";
+		};
+		36C38E9788430C416FDBE6E9D69FB69A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 481A2DE87CCC53B450C75302063F2CB1;
+			remoteInfo = Fakery;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00B00E972050AA3609EC3CB9387FEC62 /* Name.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Name.swift; path = Source/Generators/Name.swift; sourceTree = "<group>"; };
+		05998B349CFD005CAAF20D560DEF6B7C /* Address.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Source/Generators/Address.swift; sourceTree = "<group>"; };
+		0778FD13631CF097BBE8CB027FB76758 /* PhoneNumber.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhoneNumber.swift; path = Source/Generators/PhoneNumber.swift; sourceTree = "<group>"; };
+		07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ColorGame-dummy.m"; sourceTree = "<group>"; };
+		0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Fakery.framework; path = Fakery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CA74A43BB4ADF4B399BFE214D99B970 /* Pods-ColorGame-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ColorGame-frameworks.sh"; sourceTree = "<group>"; };
+		195D9020349E34B99386A843C84A8AAA /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Source/Data/Parser.swift; sourceTree = "<group>"; };
+		1AAE10A3838F94E24E916D433D652FCF /* zh-CN.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-CN.json"; path = "Resources/Locales/zh-CN.json"; sourceTree = "<group>"; };
+		1E3D1BF83D14DBB8F69D61BA7343A46B /* Pods-ColorGame-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ColorGame-acknowledgements.plist"; sourceTree = "<group>"; };
+		245CA538F0C5E68F8FA00550289DB117 /* Fakery-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fakery-prefix.pch"; sourceTree = "<group>"; };
+		247FFB3A5271061C609C2CA80785F990 /* it.json */ = {isa = PBXFileReference; includeInIndex = 1; name = it.json; path = Resources/Locales/it.json; sourceTree = "<group>"; };
+		28B328636491B159B0123CA49EB1A5D0 /* Company.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Company.swift; path = Source/Generators/Company.swift; sourceTree = "<group>"; };
+		2A08B79CBFE91D9B604591BD8B8C2B08 /* Config.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
+		2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ColorGame.release.xcconfig"; sourceTree = "<group>"; };
+		2DCF273AC7A0E86B700F1BAE9FC6559A /* Pods-ColorGame-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ColorGame-acknowledgements.markdown"; sourceTree = "<group>"; };
+		305A208AD1090AC201960D590AE9E3DB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3303D5C95C6421AA693113ECC4F96915 /* Number.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Number.swift; path = Source/Generators/Number.swift; sourceTree = "<group>"; };
+		34F557D97134B62EEC8708B0658197C9 /* fa.json */ = {isa = PBXFileReference; includeInIndex = 1; name = fa.json; path = Resources/Locales/fa.json; sourceTree = "<group>"; };
+		350E6F0AD0766B62DE39684224E2717E /* en-AU.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-AU.json"; path = "Resources/Locales/en-AU.json"; sourceTree = "<group>"; };
+		363C56FCC8031C5DBB69A7A2909BAA79 /* zh-TW.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-TW.json"; path = "Resources/Locales/zh-TW.json"; sourceTree = "<group>"; };
+		38E9CD25103F20596BFC59AC60533484 /* en.json */ = {isa = PBXFileReference; includeInIndex = 1; name = en.json; path = Resources/Locales/en.json; sourceTree = "<group>"; };
+		3C6F197C47409409B2355751C70A830D /* en-GB.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-GB.json"; path = "Resources/Locales/en-GB.json"; sourceTree = "<group>"; };
+		498C2351EF23CF2089E68A539FD95C6B /* Business.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Business.swift; path = Source/Generators/Business.swift; sourceTree = "<group>"; };
+		4F3C6229E81011223E98139C02B41013 /* Fakery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Fakery.modulemap; sourceTree = "<group>"; };
+		54C600F2209C239F3B9E1D0627E29B5B /* ru.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.json; path = Resources/Locales/ru.json; sourceTree = "<group>"; };
+		54F4FB4DC6E896F1D5C23DD86ECD40DC /* Pods-ColorGame-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ColorGame-resources.sh"; sourceTree = "<group>"; };
+		5CA79B8172B0A1C8580C5872F5DA9D03 /* Team.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Team.swift; path = Source/Generators/Team.swift; sourceTree = "<group>"; };
+		6247442AD2A8BE553FE4EA3F17E8880F /* Commerce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Commerce.swift; path = Source/Generators/Commerce.swift; sourceTree = "<group>"; };
+		6453E80B615AB930DBF512A816C559F4 /* de.json */ = {isa = PBXFileReference; includeInIndex = 1; name = de.json; path = Resources/Locales/de.json; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		68E970370313B5C745CD25D870A5E27D /* uk.json */ = {isa = PBXFileReference; includeInIndex = 1; name = uk.json; path = Resources/Locales/uk.json; sourceTree = "<group>"; };
+		6C87245D31CABDA8513867FC30E94420 /* nb-NO.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "nb-NO.json"; path = "Resources/Locales/nb-NO.json"; sourceTree = "<group>"; };
+		7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fakery.xcconfig; sourceTree = "<group>"; };
+		7C0D2ECD4D6FDBC2BA090C6A28A998D2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		891A5B9EEDAA9CAF421BE8831B7ADF67 /* es.json */ = {isa = PBXFileReference; includeInIndex = 1; name = es.json; path = Resources/Locales/es.json; sourceTree = "<group>"; };
+		8C54F487957A8DF3223D29F11D3C8A16 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Source/Data/Provider.swift; sourceTree = "<group>"; };
+		90F42F0735AD8AF5490BCE0E23FA6D18 /* en-IND.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-IND.json"; path = "Resources/Locales/en-IND.json"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95843310E390EC6E461ABEDF93B54681 /* de-CH.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "de-CH.json"; path = "Resources/Locales/de-CH.json"; sourceTree = "<group>"; };
+		9B6B605E3EB5D4A794A197FB6DA1E30A /* App.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = App.swift; path = Source/Generators/App.swift; sourceTree = "<group>"; };
+		9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Faker.bundle; path = Faker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A272674A466B7DB1F79BD5343B68F29F /* fr.json */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.json; path = Resources/Locales/fr.json; sourceTree = "<group>"; };
+		A699E71BC649EE05540B827A6024E638 /* Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = Source/Generators/Generator.swift; sourceTree = "<group>"; };
+		B8002324EF08DE6C109E05A773CB009A /* Internet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Internet.swift; path = Source/Generators/Internet.swift; sourceTree = "<group>"; };
+		B99C7B831B2DD27C36EE48CEEC99C00D /* sk.json */ = {isa = PBXFileReference; includeInIndex = 1; name = sk.json; path = Resources/Locales/sk.json; sourceTree = "<group>"; };
+		C216427E9C466CFCCD9C6F323A5C87AB /* Faker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Faker.swift; path = Source/Faker.swift; sourceTree = "<group>"; };
+		C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ColorGame.framework; path = "Pods-ColorGame.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7BCC782DCD94092B15A036E26F1F02 /* Pods-ColorGame.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ColorGame.modulemap"; sourceTree = "<group>"; };
+		CD06050C84000C5CF97462BDD7AE123B /* sv.json */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.json; path = Resources/Locales/sv.json; sourceTree = "<group>"; };
+		D1455ED32D7F9D30FA0FE72BA2D020AC /* en-CA.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-CA.json"; path = "Resources/Locales/en-CA.json"; sourceTree = "<group>"; };
+		D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ColorGame-umbrella.h"; sourceTree = "<group>"; };
+		D233781BE05B05A425C3D4648DED5357 /* ResourceBundle-Faker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Faker-Info.plist"; sourceTree = "<group>"; };
+		D440FDB1F013A28B69154AC973E00288 /* de-AT.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "de-AT.json"; path = "Resources/Locales/de-AT.json"; sourceTree = "<group>"; };
+		D4AC6AC931D05E49E14F7FC25001D05C /* pl.json */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.json; path = Resources/Locales/pl.json; sourceTree = "<group>"; };
+		D6DA409868141A724B3F615713B0A318 /* ko.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ko.json; path = Resources/Locales/ko.json; sourceTree = "<group>"; };
+		DB883C9EC288E06668F3734F3E7DF373 /* Fakery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Fakery-dummy.m"; sourceTree = "<group>"; };
+		E1F2AB6EBD9B70751D2D72238E351F1D /* ja.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.json; path = Resources/Locales/ja.json; sourceTree = "<group>"; };
+		E296C07E38B2519BE6B8A178BF72E62B /* en-US.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-US.json"; path = "Resources/Locales/en-US.json"; sourceTree = "<group>"; };
+		E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ColorGame.debug.xcconfig"; sourceTree = "<group>"; };
+		E5A191FD3F46E7317CE031CA32ED566B /* Fakery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fakery-umbrella.h"; sourceTree = "<group>"; };
+		F110D4AC44BD4FA45607F53E4FF52B8B /* en-TEST.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-TEST.json"; path = "Resources/Locales/en-TEST.json"; sourceTree = "<group>"; };
+		F3635406C714284BF10EFEA0DE7E160C /* Lorem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lorem.swift; path = Source/Generators/Lorem.swift; sourceTree = "<group>"; };
+		F7421D2AF77643E67A4406A8FCEF1532 /* ArrayExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = Source/Extensions/ArrayExtension.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		272A2A81982BEEDDA6F6FA28B41CA499 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DDFADFBE883589060A9982CFB17C4BB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B131E5E72E010B2346AAD51DB1131E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65D3842CCCC9EF15CAC25BFC72AEBB06 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6222B30E935CFE8EDC45873BD3EDAEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DCA41A3C14E36B1C953866DD092F089 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F3C6229E81011223E98139C02B41013 /* Fakery.modulemap */,
+				7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */,
+				DB883C9EC288E06668F3734F3E7DF373 /* Fakery-dummy.m */,
+				245CA538F0C5E68F8FA00550289DB117 /* Fakery-prefix.pch */,
+				E5A191FD3F46E7317CE031CA32ED566B /* Fakery-umbrella.h */,
+				305A208AD1090AC201960D590AE9E3DB /* Info.plist */,
+				D233781BE05B05A425C3D4648DED5357 /* ResourceBundle-Faker-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Fakery";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				AB4457B621EE53494F4B225237011AF6 /* Pods */,
+				B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */,
+				FC62A67C3E1C54C1FFC5791A839E6CE6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		85397C9136530D6B57493C5538A40EAC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6453E80B615AB930DBF512A816C559F4 /* de.json */,
+				D440FDB1F013A28B69154AC973E00288 /* de-AT.json */,
+				95843310E390EC6E461ABEDF93B54681 /* de-CH.json */,
+				38E9CD25103F20596BFC59AC60533484 /* en.json */,
+				350E6F0AD0766B62DE39684224E2717E /* en-AU.json */,
+				D1455ED32D7F9D30FA0FE72BA2D020AC /* en-CA.json */,
+				3C6F197C47409409B2355751C70A830D /* en-GB.json */,
+				90F42F0735AD8AF5490BCE0E23FA6D18 /* en-IND.json */,
+				F110D4AC44BD4FA45607F53E4FF52B8B /* en-TEST.json */,
+				E296C07E38B2519BE6B8A178BF72E62B /* en-US.json */,
+				891A5B9EEDAA9CAF421BE8831B7ADF67 /* es.json */,
+				34F557D97134B62EEC8708B0658197C9 /* fa.json */,
+				A272674A466B7DB1F79BD5343B68F29F /* fr.json */,
+				247FFB3A5271061C609C2CA80785F990 /* it.json */,
+				E1F2AB6EBD9B70751D2D72238E351F1D /* ja.json */,
+				D6DA409868141A724B3F615713B0A318 /* ko.json */,
+				6C87245D31CABDA8513867FC30E94420 /* nb-NO.json */,
+				D4AC6AC931D05E49E14F7FC25001D05C /* pl.json */,
+				54C600F2209C239F3B9E1D0627E29B5B /* ru.json */,
+				B99C7B831B2DD27C36EE48CEEC99C00D /* sk.json */,
+				CD06050C84000C5CF97462BDD7AE123B /* sv.json */,
+				68E970370313B5C745CD25D870A5E27D /* uk.json */,
+				1AAE10A3838F94E24E916D433D652FCF /* zh-CN.json */,
+				363C56FCC8031C5DBB69A7A2909BAA79 /* zh-TW.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AB4457B621EE53494F4B225237011AF6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C23359438092A15549D45BE5C2DB3C2C /* Fakery */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */,
+				0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */,
+				C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C23359438092A15549D45BE5C2DB3C2C /* Fakery */ = {
+			isa = PBXGroup;
+			children = (
+				05998B349CFD005CAAF20D560DEF6B7C /* Address.swift */,
+				9B6B605E3EB5D4A794A197FB6DA1E30A /* App.swift */,
+				F7421D2AF77643E67A4406A8FCEF1532 /* ArrayExtension.swift */,
+				498C2351EF23CF2089E68A539FD95C6B /* Business.swift */,
+				6247442AD2A8BE553FE4EA3F17E8880F /* Commerce.swift */,
+				28B328636491B159B0123CA49EB1A5D0 /* Company.swift */,
+				2A08B79CBFE91D9B604591BD8B8C2B08 /* Config.swift */,
+				C216427E9C466CFCCD9C6F323A5C87AB /* Faker.swift */,
+				A699E71BC649EE05540B827A6024E638 /* Generator.swift */,
+				B8002324EF08DE6C109E05A773CB009A /* Internet.swift */,
+				F3635406C714284BF10EFEA0DE7E160C /* Lorem.swift */,
+				00B00E972050AA3609EC3CB9387FEC62 /* Name.swift */,
+				3303D5C95C6421AA693113ECC4F96915 /* Number.swift */,
+				195D9020349E34B99386A843C84A8AAA /* Parser.swift */,
+				0778FD13631CF097BBE8CB027FB76758 /* PhoneNumber.swift */,
+				8C54F487957A8DF3223D29F11D3C8A16 /* Provider.swift */,
+				5CA79B8172B0A1C8580C5872F5DA9D03 /* Team.swift */,
+				85397C9136530D6B57493C5538A40EAC /* Resources */,
+				3DCA41A3C14E36B1C953866DD092F089 /* Support Files */,
+			);
+			name = Fakery;
+			path = Fakery;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E84645937B08F3BB951604B4A4981887 /* Pods-ColorGame */ = {
+			isa = PBXGroup;
+			children = (
+				7C0D2ECD4D6FDBC2BA090C6A28A998D2 /* Info.plist */,
+				CA7BCC782DCD94092B15A036E26F1F02 /* Pods-ColorGame.modulemap */,
+				2DCF273AC7A0E86B700F1BAE9FC6559A /* Pods-ColorGame-acknowledgements.markdown */,
+				1E3D1BF83D14DBB8F69D61BA7343A46B /* Pods-ColorGame-acknowledgements.plist */,
+				07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */,
+				0CA74A43BB4ADF4B399BFE214D99B970 /* Pods-ColorGame-frameworks.sh */,
+				54F4FB4DC6E896F1D5C23DD86ECD40DC /* Pods-ColorGame-resources.sh */,
+				D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */,
+				E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */,
+				2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */,
+			);
+			name = "Pods-ColorGame";
+			path = "Target Support Files/Pods-ColorGame";
+			sourceTree = "<group>";
+		};
+		FC62A67C3E1C54C1FFC5791A839E6CE6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E84645937B08F3BB951604B4A4981887 /* Pods-ColorGame */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		319598F8FDC7981A4BE663A566A27EC3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77C77A45FA3D3ABC900840BED294DD06 /* Pods-ColorGame-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32FEDF32833CA4391A1676CD5C28207 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF2809020536426AF092D5F0007C64DE /* Fakery-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		07ABB6954C7A10823465559B7FD7CE1B /* Pods-ColorGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEFB9AE9743270556C1F9480ED27C088 /* Build configuration list for PBXNativeTarget "Pods-ColorGame" */;
+			buildPhases = (
+				8535C57CCBDD39A093697EB740E1FA56 /* Sources */,
+				5B131E5E72E010B2346AAD51DB1131E9 /* Frameworks */,
+				319598F8FDC7981A4BE663A566A27EC3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9D78E742F6DF3C1119D952B7A511C7C /* PBXTargetDependency */,
+			);
+			name = "Pods-ColorGame";
+			productName = "Pods-ColorGame";
+			productReference = C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		481A2DE87CCC53B450C75302063F2CB1 /* Fakery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC42024938969071495900F584D7B1BF /* Build configuration list for PBXNativeTarget "Fakery" */;
+			buildPhases = (
+				D7A38586716BD7057C2F54188D23B53D /* Sources */,
+				272A2A81982BEEDDA6F6FA28B41CA499 /* Frameworks */,
+				7F8E1769ADCBC8A383434F7EC9284AF1 /* Resources */,
+				B32FEDF32833CA4391A1676CD5C28207 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				219583FEF20BB96A06796F02B2D01CE8 /* PBXTargetDependency */,
+			);
+			name = Fakery;
+			productName = Fakery;
+			productReference = 0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06AD70143366D3D6E46A2546E114BA05 /* Build configuration list for PBXNativeTarget "Fakery-Faker" */;
+			buildPhases = (
+				EAE1DF320505B77AB1A40B4097584461 /* Sources */,
+				A6222B30E935CFE8EDC45873BD3EDAEC /* Frameworks */,
+				DE7B6BD1C399769C0E2EB1BA82FFB272 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fakery-Faker";
+			productName = "Fakery-Faker";
+			productReference = 9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				481A2DE87CCC53B450C75302063F2CB1 /* Fakery */,
+				C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */,
+				07ABB6954C7A10823465559B7FD7CE1B /* Pods-ColorGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F8E1769ADCBC8A383434F7EC9284AF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6134A8DC2E9F4A6D809F2880614E1CC1 /* Faker.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE7B6BD1C399769C0E2EB1BA82FFB272 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68B0A2BF1648E265E4B2C92B228E936C /* de-AT.json in Resources */,
+				5035DAC2D9EF82E9D9788B43FEF22865 /* de-CH.json in Resources */,
+				8043D59614ACFE34F278AF84C284C87B /* de.json in Resources */,
+				E557D814DB56AE718202563E4CE5B2A2 /* en-AU.json in Resources */,
+				59D454623603D43F2823ABBA42887DCA /* en-CA.json in Resources */,
+				44DEE7031917A532485633897095B5C9 /* en-GB.json in Resources */,
+				AEA5837269197C8C8969EE3FA3D2410C /* en-IND.json in Resources */,
+				C305FDB68C5B95DD17634D65E0DBF6A2 /* en-TEST.json in Resources */,
+				F2A4062B1975D4AAFE6131DF296F50A4 /* en-US.json in Resources */,
+				609E9A5EEE66CF00DCE9F2E215E79CA7 /* en.json in Resources */,
+				5E3687D7AD5C4B71BDD55B3E72C4DE51 /* es.json in Resources */,
+				0E00D928EDAFF39E77A90D52E0AED6E1 /* fa.json in Resources */,
+				6122E5C27C4059B06F190796FA354089 /* fr.json in Resources */,
+				6243ECD63492CD676B75774E2FA3427E /* it.json in Resources */,
+				145A2A06D84BB267DCFA863E1028ADAF /* ja.json in Resources */,
+				F15432A40E2459B0AE1BAEEFEFF3E4F2 /* ko.json in Resources */,
+				4DEC19E7C03A9C3291DE41CE35EEB0EF /* nb-NO.json in Resources */,
+				5825E146596AC8BF7B7A757BE2626354 /* pl.json in Resources */,
+				76CD27CDD527A3E747775B70AE47F522 /* ru.json in Resources */,
+				B24B510D52661470850CC081FF78DBE1 /* sk.json in Resources */,
+				298644E73B69C91AC45FC1FE4F692542 /* sv.json in Resources */,
+				C573F3292602DF4D00732F72ECF5F2F8 /* uk.json in Resources */,
+				A6B7938AB0B4BAEF9D86C17AEF2FC55A /* zh-CN.json in Resources */,
+				5BFCD5F9F85CAE2D104FB8F2490C8827 /* zh-TW.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8535C57CCBDD39A093697EB740E1FA56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D65E8D819F0997E9A55AA227E80B5470 /* Pods-ColorGame-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7A38586716BD7057C2F54188D23B53D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10799486DDDEDB87840989D58E23A35 /* Address.swift in Sources */,
+				012216C369F0D8318A280F8BCDE3B428 /* App.swift in Sources */,
+				3635D9B2812A1B8047643B5D3112D2CE /* ArrayExtension.swift in Sources */,
+				749610C3798F18EC4E6086168CF3CB15 /* Business.swift in Sources */,
+				4C27560D177860C9D46382A24148EF56 /* Commerce.swift in Sources */,
+				20C301F8EA842463177CC7B727058DAC /* Company.swift in Sources */,
+				A787C5DE64EDBB6022CA35C8E92424AC /* Config.swift in Sources */,
+				0B3CFFE1F2EC65A986FE0AA0F7FFAFA4 /* Faker.swift in Sources */,
+				D736E48C93C71425A94119F5A1709C70 /* Fakery-dummy.m in Sources */,
+				713A0F0ECC2DC902A2B62E09F4454AE9 /* Generator.swift in Sources */,
+				E989A658F01B6817A2794F766DB1CFD9 /* Internet.swift in Sources */,
+				F19CF8DD48E2DBDA9E85D154594577FA /* Lorem.swift in Sources */,
+				11B5DF5D3FF3D4AFD0CFEB44C0B3BFA1 /* Name.swift in Sources */,
+				BC25A02FFEFCF3A51BD3266E2D3B46CA /* Number.swift in Sources */,
+				9050A04C1DBDF4FBDB32491ECB43AACE /* Parser.swift in Sources */,
+				689387DF8E0DC2D88B8025D87456A6B3 /* PhoneNumber.swift in Sources */,
+				5F17369C2AB189AA028FFACBD0D38426 /* Provider.swift in Sources */,
+				16F42BF375B3677739F8AA468C2F06A7 /* Team.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAE1DF320505B77AB1A40B4097584461 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		219583FEF20BB96A06796F02B2D01CE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Fakery-Faker";
+			target = C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */;
+			targetProxy = 2C5B529863ED4956EDDE497ADA2B735D /* PBXContainerItemProxy */;
+		};
+		C9D78E742F6DF3C1119D952B7A511C7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Fakery;
+			target = 481A2DE87CCC53B450C75302063F2CB1 /* Fakery */;
+			targetProxy = 36C38E9788430C416FDBE6E9D69FB69A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C1794624CDABFD95232E743F935B664 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Fakery/Fakery-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Fakery/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Fakery/Fakery.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Fakery;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		163D87BE96A63549B0EACF1CC31A2E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		6B8F3A96901414D1DF1765C991E16A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ColorGame/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ColorGame/Pods-ColorGame.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ColorGame;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		707B86CFB21B645E37109F39754D4051 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7C402ACE6F4C40F54AA11455D51AA303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Fakery";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Fakery/ResourceBundle-Faker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = Faker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		86E8215F224E4F1CF929AC3043D9B992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ColorGame/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ColorGame/Pods-ColorGame.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ColorGame;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8D3C14AD42D9F53BEE911D6BFABEBF46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Fakery/Fakery-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Fakery/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Fakery/Fakery.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Fakery;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8F932DCDEFFB0A28528CFA1D570E391C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Fakery";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Fakery/ResourceBundle-Faker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = Faker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06AD70143366D3D6E46A2546E114BA05 /* Build configuration list for PBXNativeTarget "Fakery-Faker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C402ACE6F4C40F54AA11455D51AA303 /* Debug */,
+				8F932DCDEFFB0A28528CFA1D570E391C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				163D87BE96A63549B0EACF1CC31A2E90 /* Debug */,
+				707B86CFB21B645E37109F39754D4051 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC42024938969071495900F584D7B1BF /* Build configuration list for PBXNativeTarget "Fakery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D3C14AD42D9F53BEE911D6BFABEBF46 /* Debug */,
+				0C1794624CDABFD95232E743F935B664 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEFB9AE9743270556C1F9480ED27C088 /* Build configuration list for PBXNativeTarget "Pods-ColorGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86E8215F224E4F1CF929AC3043D9B992 /* Debug */,
+				6B8F3A96901414D1DF1765C991E16A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
