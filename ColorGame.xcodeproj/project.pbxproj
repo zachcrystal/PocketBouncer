@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2726629A96EDCA4317D04CB8 /* Pods_ColorGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */; };
 		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
 		92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */; };
 		92BE8C1D1EF5C40300D15E45 /* GameoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AC4813C1410BB381FA706C1 /* Pods-ColorGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ColorGame/Pods-ColorGame.debug.xcconfig"; sourceTree = "<group>"; };
+		9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		923436741EF1175E004CEA6D /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverReason.swift; sourceTree = "<group>"; };
 		92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverView.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 		92E84D141EEE77C00074C05A /* People.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = People.json; sourceTree = "<group>"; };
 		92E84D161EEEE93C0074C05A /* IDCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardView.swift; sourceTree = "<group>"; };
 		92E84D1B1EEEF8A40074C05A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		AB6E3868B82AE0007F79C0A6 /* Pods-ColorGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ColorGame/Pods-ColorGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2726629A96EDCA4317D04CB8 /* Pods_ColorGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,8 @@
 			children = (
 				92E84CF21EEE07D80074C05A /* ColorGame */,
 				92E84CF11EEE07D80074C05A /* Products */,
+				CD37F103773DA7B26F85B4F5 /* Pods */,
+				EE51AB8B7F94C8B0731F159E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +149,23 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		CD37F103773DA7B26F85B4F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2AC4813C1410BB381FA706C1 /* Pods-ColorGame.debug.xcconfig */,
+				AB6E3868B82AE0007F79C0A6 /* Pods-ColorGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EE51AB8B7F94C8B0731F159E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92E84D021EEE07D80074C05A /* Build configuration list for PBXNativeTarget "ColorGame" */;
 			buildPhases = (
+				9E5071A5409D2BF7CD36567C /* [CP] Check Pods Manifest.lock */,
 				92E84CEC1EEE07D80074C05A /* Sources */,
 				92E84CED1EEE07D80074C05A /* Frameworks */,
 				92E84CEE1EEE07D80074C05A /* Resources */,
+				3B880582067EFDA06F795D8E /* [CP] Embed Pods Frameworks */,
+				24DC421D9B9AB67E5C298C35 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,6 +237,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24DC421D9B9AB67E5C298C35 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorGame/Pods-ColorGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B880582067EFDA06F795D8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorGame/Pods-ColorGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E5071A5409D2BF7CD36567C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		92E84CEC1EEE07D80074C05A /* Sources */ = {
@@ -339,6 +414,7 @@
 		};
 		92E84D031EEE07D80074C05A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AC4813C1410BB381FA706C1 /* Pods-ColorGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7RM6BABA7D;
@@ -352,6 +428,7 @@
 		};
 		92E84D041EEE07D80074C05A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB6E3868B82AE0007F79C0A6 /* Pods-ColorGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7RM6BABA7D;

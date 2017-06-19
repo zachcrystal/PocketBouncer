@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Fakery
 
 class Components {
     
@@ -21,15 +22,19 @@ class Components {
     var femaleAvatars: [String] = []
     var idBadges: [String] = []
     
-       enum Gender {
+    enum Gender {
         case male
         case female
         
     }
     
     func buildPerson(gender: Gender) -> [String: Any] {
+        let faker = Faker(locale: "en")
         
-        let personDictionary = [ "firstName": gender == .male ? maleFirstNames.randomItem() : femaleFirstNames.randomItem(), "lastName": lastNames.randomItem(), "dob": dobs.randomItem(), "expiryDate": expiryDates.randomItem(), "avatar": gender == .male ? maleAvatars.randomItem() : femaleAvatars.randomItem(), "idBadge": idBadges.randomItem()]
+        let address = "\(faker.address.streetAddress(includeSecondary: true))\n\(faker.address.city()), \(faker.address.stateAbbreviation()) \(faker.address.postcode())"
+        print(address)
+        
+        let personDictionary = [ "firstName": gender == .male ? maleFirstNames.randomItem() : femaleFirstNames.randomItem(), "lastName": lastNames.randomItem(), "dob": dobs.randomItem(), "expiryDate": expiryDates.randomItem(), "avatar": gender == .male ? maleAvatars.randomItem() : femaleAvatars.randomItem(), "idBadge": idBadges.randomItem(), "address": address]
         
         return personDictionary
         
@@ -67,7 +72,5 @@ class Components {
         } catch {
             print(error)
         }
-        
     }
-    
 }
