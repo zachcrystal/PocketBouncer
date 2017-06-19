@@ -32,7 +32,6 @@ class Components {
         let faker = Faker(locale: "en")
         
         let address = "\(faker.address.streetAddress(includeSecondary: true))\n\(faker.address.city()), \(faker.address.stateAbbreviation()) \(faker.address.postcode())"
-        print(address)
         
         let personDictionary = [ "firstName": gender == .male ? maleFirstNames.randomItem() : femaleFirstNames.randomItem(), "lastName": lastNames.randomItem(), "dob": dobs.randomItem(), "expiryDate": expiryDates.randomItem(), "avatar": gender == .male ? maleAvatars.randomItem() : femaleAvatars.randomItem(), "idBadge": idBadges.randomItem(), "address": address]
         

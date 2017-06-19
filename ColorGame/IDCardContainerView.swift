@@ -54,7 +54,7 @@ class IDCardContainerView: UIView {
         
         var transform = CATransform3DIdentity
         let divider: CGFloat = 500
-        let degree: Double = 43
+        let degree: Double = 45
         let x: CGFloat = 1
         let y: CGFloat = 0
         let z: CGFloat = 0

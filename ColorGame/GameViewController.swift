@@ -16,7 +16,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     let components = Components.sharedComponentsData
-
+    
     
     // MARK: - Match Variables
     var isSamePerson: Bool?
@@ -119,28 +119,54 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let playAgainButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red:0.00, green:0.61, blue:1.00, alpha:0.9)
+        button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.setImage(#imageLiteral(resourceName: "play").withRenderingMode(.alwaysOriginal), for: .normal)
-        button.layer.borderColor = UIColor.white.cgColor
+        button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        button.tintColor = .black
+        button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 3
         button.layer.zPosition = 1500
         button.addTarget(self, action: #selector(handlePlayAgain), for: .touchUpInside)
         return button
     }()
     
-    
     // MARK: - Action Selectors
     
     func handlePlayAgain() {
         gameoverCard.removeFromSuperview()
         playAgainButton.removeFromSuperview()
-//        self.unblur()
         self.score = 0
         self.selectRandomPerson()
         slideInIDCardAndPerson()
-
         self.handleNextPerson()
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            
+            var transform = CATransform3DIdentity
+            let divider: CGFloat = 500
+            let degree: Double = 45
+            let x: CGFloat = 1
+            let y: CGFloat = 0
+            let z: CGFloat = 0
+            let anchorPointX = 0.5
+            let anchorPointY = 0.5
+            
+            self.IDCardContainer.layer.anchorPoint = CGPoint(x: anchorPointX, y: anchorPointY)
+            
+            transform = CATransform3DIdentity
+            transform.m34 = -1.0/divider
+            
+            let rotateAngle = CGFloat((degree * Double.pi) / 180.0)
+            transform = CATransform3DRotate(transform, rotateAngle, x, y, z)
+            
+            self.IDCardContainer.layer.transform = transform
+            self.IDCardContainer.layer.zPosition = 80
+            
+            self.IDCardContainer.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 1.39)
+            
+        }) { (_) in
+            
+        }
     }
     
     func handleStart() {
@@ -218,7 +244,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     fileprivate func gameover(for reason: GameoverReason) {
         circleTimer.pause()
         hideApproveDenyButtons()
-        gameoverCard.layer.zPosition = 1500
         flashRed()
         
         if score > highScore {
@@ -226,15 +251,41 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             defaults.set(highScore, forKey: highscoreKey)
         }
         
-        gameoverCard.reasonLabel.text = reason.rawValue
-        gameoverCard.scoreLabel.text = "Score: \(score)"
-        gameoverCard.highscoreLabel.text = "Highscore: \(highScore)"
-        
-        view.addSubview(gameoverCard)
-        gameoverCard.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 200)
-        gameoverCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20).isActive = true
-        view.addSubview(playAgainButton)
-        playAgainButton.anchor(top: gameoverCard.bottomAnchor, left: gameoverCard.leftAnchor, bottom: nil, right: gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            
+            var transform = CATransform3DIdentity
+            let divider: CGFloat = 500
+            let degree: Double = 0
+            let x: CGFloat = 1
+            let y: CGFloat = 0
+            let z: CGFloat = 0
+            let anchorPointX = 0.5
+            let anchorPointY = 0.5
+            
+            self.IDCardContainer.layer.anchorPoint = CGPoint(x: anchorPointX, y: anchorPointY)
+            
+            transform = CATransform3DIdentity
+            transform.m34 = -1.0/divider
+            
+            let rotateAngle = CGFloat((degree * Double.pi) / 180.0)
+            transform = CATransform3DRotate(transform, rotateAngle, x, y, z)
+            
+            self.IDCardContainer.layer.transform = transform
+            self.IDCardContainer.layer.zPosition = 80
+            
+            self.IDCardContainer.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 20)
+            
+            self.gameoverCard.highscoreLabel.text = "Highscore: \(self.highScore)"
+            self.gameoverCard.scoreLabel.text = "Score: \(self.score)"
+            self.gameoverCard.reasonLabel.text = reason.rawValue
+            self.IDCardContainer.addSubview(self.gameoverCard)
+            self.gameoverCard.anchor(top: self.IDCardContainer.topAnchor, left: self.IDCardContainer.leftAnchor, bottom: self.IDCardContainer.bottomAnchor, right: self.IDCardContainer.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
+            
+            
+        }) { (_) in
+            self.view.addSubview(self.playAgainButton)
+            self.playAgainButton.anchor(top: self.gameoverCard.bottomAnchor, left: self.gameoverCard.leftAnchor, bottom: nil, right: self.gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
+        }
     }
     
     // MARK: - Life Cycle
@@ -332,6 +383,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(IDCardContainer)
     }
     
+    let testGameoverCard = GameoverView()
+    
+    
+    
+    
     fileprivate func slideInIDCardAndPerson() {
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             self.IDCardContainer.center.x = self.view.bounds.width / 2
@@ -360,8 +416,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                 self.personImage.center.x = self.view.bounds.width * 2
             }) { (_) in
                 self.personImage.center.x = -self.view.bounds.width / 2
-                self.selectRandomPerson()
                 self.nextButton.isHidden = false
+                self.selectRandomPerson()
             }
         } else {
             if direction == "left" {
@@ -407,11 +463,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
-     
+        
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
         let randomPerson = Person(personDictionary: personDictionary)
-
+        
         for (key, value) in randomPerson.avatarDictionary {
             personImage.image = value
             personImageKey = key
@@ -420,7 +476,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let probabilityValue = arc4random_uniform(100) + 1
         if probabilityValue > 80 {
             personCanEnter = false
-
+            
             let anotherPersonDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
             let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary)
             IDCardContainer.person = anotherRandomPerson

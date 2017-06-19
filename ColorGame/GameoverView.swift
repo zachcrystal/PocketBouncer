@@ -12,7 +12,7 @@ class GameoverView: UIView {
         
     var reasonLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
@@ -21,24 +21,22 @@ class GameoverView: UIView {
     
     var scoreLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
     var highscoreLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(red:0.00, green:0.61, blue:1.00, alpha:0.9)
+        backgroundColor = UIColor.white
         layer.cornerRadius = 10
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 3
         clipsToBounds = true
     }
     
@@ -50,7 +48,7 @@ class GameoverView: UIView {
         addSubview(reasonLabel)
         
         let scoreStackview = UIStackView(arrangedSubviews: [scoreLabel, highscoreLabel])
-        scoreStackview.axis = .horizontal
+        scoreStackview.axis = .vertical
         scoreStackview.distribution = .fillProportionally
         scoreStackview.alignment = .center
         
