@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import AudioToolbox
 
 class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
@@ -34,7 +35,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     var score: Int = 0 {
         didSet {
-            scoreLabel.text = "\(score)"
+            let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 10)])
+            attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
+            attributedScoreText.append(NSAttributedString(string: "\(score)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
+            scoreLabel.attributedText = attributedScoreText
+
         }
     }
     
@@ -54,9 +59,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     var scoreLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 10)])
+        attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
+        attributedScoreText.append(NSAttributedString(string: "0", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
+        label.attributedText = attributedScoreText
         label.textColor = .white
-        label.text = "0"
-        label.font = UIFont.boldSystemFont(ofSize: 36)
         return label
     }()
     
@@ -102,7 +111,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let backgroundImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "Background")
+        iv.image = #imageLiteral(resourceName: "Background2")
         return iv
     }()
     
@@ -245,6 +254,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     fileprivate func gameover(for reason: GameoverReason) {
         circleTimer.pause()
         hideApproveDenyButtons()
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         flashRed()
         
         if score > highScore {
@@ -345,7 +355,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(circleTimer)
         circleTimer.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 75, height: 75)
         circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
-        circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor).isActive = true
+        circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor, constant: -4).isActive = true
         
         buttonStackView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 185, height: 85)
         buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
