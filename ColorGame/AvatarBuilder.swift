@@ -23,7 +23,7 @@ class AvatarBuilder {
     var maleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringeChip"), #imageLiteral(resourceName: "Tuft"), #imageLiteral(resourceName: "Bobble")]
     var facialHair = [nil, #imageLiteral(resourceName: "BeardSmall")]
     var femaleHairBack: [UIImage] = [#imageLiteral(resourceName: "Long")]
-    var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe")]
+    var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe"), #imageLiteral(resourceName: "Tuft")]
     var hairColours: [UIColor] = [UIColor(red:0.60, green:0.60, blue:0.60, alpha:1.00), UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), UIColor(red:0.95, green:0.91, blue:0.41, alpha:1.00), UIColor(red:0.89, green:0.64, blue:0.31, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)]
     
     // Layer Positions
