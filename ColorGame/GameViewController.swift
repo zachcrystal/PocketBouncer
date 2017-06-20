@@ -101,14 +101,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return button
     }()
     
-    let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "BigRedButton").withRenderingMode(.alwaysOriginal), for: .normal)
-        button.imageView?.contentMode = .scaleToFill
-        button.addTarget(self, action: #selector(handleNextPerson), for: .touchUpInside)
-        return button
-    }()
-    
     let backgroundImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "Background2")
@@ -148,7 +140,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         self.score = 0
         self.selectRandomPerson()
         slideInIDCardAndPerson()
-        self.handleNextPerson()
+        self.presentNextPerson()
         
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             
@@ -240,8 +232,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
     }
     
-    func handleNextPerson() {
-        nextButton.isHidden = true
+    func presentNextPerson() {
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
         circleTimer.start(beginingValue: 5)
@@ -312,7 +303,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         hideApproveDenyButtons()
         setupLayout()
-        nextButton.isHidden = true
         personShadow.isHidden = true
         selectRandomPerson()
         //        playMusic()
@@ -335,7 +325,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(personImageView)
         view.addSubview(scoreLabel)
         view.addSubview(buttonStackView)
-        view.addSubview(nextButton)
         view.addSubview(startButton)
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -359,9 +348,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         buttonStackView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 185, height: 85)
         buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        nextButton.anchor(top: nil, left: nil, bottom: buttonStackView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
-        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(startButton)
         startButton.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: view.frame.width / 2, height: 60)
@@ -422,31 +408,33 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     fileprivate func slideOutIDCardAndPerson(_ direction: Direction) {
         if direction == .right {
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.IDCardContainer.center.x = self.view.bounds.width * 2
+                self.circleTimer.pause()
             }) { (_) in
                 self.IDCardContainer.center.x = -self.view.bounds.width / 2
                 
             }
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.personImageView.center.x = self.view.bounds.width * 2
             }) { (_) in
                 self.personImageView.center.x = -self.view.bounds.width / 2
-                self.nextButton.isHidden = false
                 self.selectRandomPerson()
+                self.presentNextPerson()
             }
         } else {
             if direction == .left {
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                     self.IDCardContainer.center.x = -self.view.bounds.width / 2
+                    self.circleTimer.pause()
                 }) { (_) in
                     
                 }
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                     self.personImageView.center.x = -self.view.bounds.width / 2
                 }) { (_) in
                     self.selectRandomPerson()
-                    self.nextButton.isHidden = false
+                    self.presentNextPerson()
                 }
                 
             }
@@ -537,11 +525,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }()
     
     func timerDidEnd() {
-        
-        if nextButton.isHidden == false {
-            gameover(for: .timerRanOutDuringNext)
-        } else {
-            gameover(for: .timerRanOutDuringPerson)
-        }
+        gameover(for: .timerRanOutDuringPerson)
     }
 }
