@@ -21,6 +21,7 @@ class Components {
     var maleAvatars: [String] = []
     var femaleAvatars: [String] = []
     var idBadges: [String] = []
+    let skinColour: [String] = ["Peach", "Brown", "Beige"]
     
     enum Gender {
         case male
@@ -38,6 +39,7 @@ class Components {
         return personDictionary
         
     }
+    
     
     init () {
         

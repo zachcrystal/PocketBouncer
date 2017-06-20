@@ -19,7 +19,13 @@ class Person: Equatable {
     let avatarDictionary: [String: UIImage]
     let idBadge: UIImage
     
-    init(personDictionary: [String: Any]) {
+    enum Gender {
+        case male
+        case female
+        
+    }
+    
+    init(personDictionary: [String: Any], gender: Gender) {
         self.firstName = personDictionary["firstName"] as! String
         self.lastName = personDictionary["lastName"] as! String
         
@@ -37,8 +43,12 @@ class Person: Equatable {
         self.age = dateDob.ageInt
         
         self.address = personDictionary["address"] as! String
-        let imageString = personDictionary["avatar"] as! String
-        self.avatarDictionary = [imageString: UIImage(named: imageString)!]
+        
+        let avatarBuilder = AvatarBuilder.avatarBuilder
+        let avatar = avatarBuilder.buildAvatar(for: gender)
+        let uuid = UUID().uuidString
+        
+        self.avatarDictionary = [uuid: avatar]
         
         self.expiryDateString = personDictionary["expiryDate"] as! String
         let dateFormatterGet = DateFormatter()

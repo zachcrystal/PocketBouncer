@@ -22,10 +22,10 @@ class IDCardView: UIView {
     
     var identificationImageKey: String?
     
-    let identificationImageView: UIImageView = {
+    var identificationImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "placeholder")
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = UIColor(white: 0, alpha: 0.2)
         return iv
     }()
     
@@ -75,14 +75,15 @@ class IDCardView: UIView {
         
         
         let stackView = UIStackView(arrangedSubviews: [identificationImageView, idBadgeImageView])
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = 40
         
         
         let textStackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel, dobLabel])
         textStackView.axis = .vertical
         textStackView.distribution = .fillProportionally
+        
         
 
         
@@ -90,7 +91,7 @@ class IDCardView: UIView {
         addSubview(expiryLabel)
         addSubview(textStackView)
         
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 9, paddingBottom: 0, paddingRight: 9, width: 0, height: (240 / 2) - 16)
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 9, paddingBottom: 0, paddingRight: 9, width: 0, height: (240 / 2))
         
         expiryLabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
         textStackView.anchor(top: stackView.bottomAnchor, left: stackView.leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 2, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)

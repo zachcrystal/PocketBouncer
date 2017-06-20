@@ -60,9 +60,10 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return label
     }()
     
-    var personImageKey: String?
-    var personImage: UIImageView = {
+    var personImageViewKey: String?
+    var personImageView: UIImageView = {
         let iv = UIImageView()
+        iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "placeholder")
         return iv
     }()
@@ -173,7 +174,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         startButton.isHidden = true
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 3)
+        circleTimer.start(beginingValue: 5)
     }
     
     func hideApproveDenyButtons() {
@@ -194,7 +195,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
-        if personImageKey == IDCardViewKey && isExpired == false && isLegal == true {
+        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true {
             isMatch = true
         } else {
             isMatch = false
@@ -207,18 +208,18 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         if isMatch == true && sender.tag == 1  {
             score += 1
-            slideOutIDCardAndPerson("right")
+            slideOutIDCardAndPerson(.right)
             
         }
         
         if isMatch == false && sender.tag == 0 {
             score += 1
-            slideOutIDCardAndPerson("left")
+            slideOutIDCardAndPerson(.left)
             
         }
         
         if isMatch == false && sender.tag == 1 {
-            if personImageKey != IDCardViewKey {
+            if personImageViewKey != IDCardViewKey {
                 gameover(for: .wrongID)
             }
             if isExpired == true {
@@ -234,7 +235,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         nextButton.isHidden = true
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 3)
+        circleTimer.start(beginingValue: 5)
         
     }
     
@@ -321,7 +322,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         tableImageView.frame = CGRect(x: 0, y: view.bounds.height * 0.60, width: view.bounds.width, height: view.bounds.height * 0.40)
         view.addSubview(tableImageView)
         view.addSubview(personShadow)
-        view.addSubview(personImage)
+        view.addSubview(personImageView)
         view.addSubview(scoreLabel)
         view.addSubview(buttonStackView)
         view.addSubview(nextButton)
@@ -333,9 +334,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         personShadow.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         personShadow.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
         
-        personImage.frame.size = CGSize(width: 250, height: 250)
-        personImage.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        personImage.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
+        personImageView.frame.size = CGSize(width: 240 * 0.7, height: 400 * 0.7)
+        personImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+        personImageView.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
         
         scoreLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -378,7 +379,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
         IDCardContainer.center.x -= view.bounds.width
-        personImage.center.x -= view.bounds.width
+        personImageView.center.x -= view.bounds.width
         
         view.addSubview(IDCardContainer)
     }
@@ -396,7 +397,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-            self.personImage.center.x = self.view.bounds.width / 2
+            self.personImageView.center.x = self.view.bounds.width / 2
         }) { (_) in
             // completion closure kept if needed in future
             
@@ -404,8 +405,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
     }
     
-    fileprivate func slideOutIDCardAndPerson(_ direction: String) {
-        if direction == "right" {
+    enum Direction {
+        case right
+        case left
+    }
+    
+    fileprivate func slideOutIDCardAndPerson(_ direction: Direction) {
+        if direction == .right {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.IDCardContainer.center.x = self.view.bounds.width * 2
             }) { (_) in
@@ -413,21 +419,21 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                 
             }
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-                self.personImage.center.x = self.view.bounds.width * 2
+                self.personImageView.center.x = self.view.bounds.width * 2
             }) { (_) in
-                self.personImage.center.x = -self.view.bounds.width / 2
+                self.personImageView.center.x = -self.view.bounds.width / 2
                 self.nextButton.isHidden = false
                 self.selectRandomPerson()
             }
         } else {
-            if direction == "left" {
+            if direction == .left {
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                     self.IDCardContainer.center.x = -self.view.bounds.width / 2
                 }) { (_) in
                     
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-                    self.personImage.center.x = -self.view.bounds.width / 2
+                    self.personImageView.center.x = -self.view.bounds.width / 2
                 }) { (_) in
                     self.selectRandomPerson()
                     self.nextButton.isHidden = false
@@ -464,21 +470,23 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
         
+        
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
-        let randomPerson = Person(personDictionary: personDictionary)
+        let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male)
         
         for (key, value) in randomPerson.avatarDictionary {
-            personImage.image = value
-            personImageKey = key
+            personImageView.image = value
+            personImageViewKey = key
         }
         
         let probabilityValue = arc4random_uniform(100) + 1
         if probabilityValue > 80 {
             personCanEnter = false
             
+            let anotherGenderProbability = arc4random_uniform(10) + 1
             let anotherPersonDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
-            let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary)
+            let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary, gender: anotherGenderProbability >= 5 ? .female : .male)
             IDCardContainer.person = anotherRandomPerson
         } else {
             IDCardContainer.person = randomPerson
@@ -500,7 +508,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             isExpired = true
         }
         
-        if person.age >= 21 {
+        if person.age >= 19 {
             isLegal = true
         } else {
             isLegal = false
