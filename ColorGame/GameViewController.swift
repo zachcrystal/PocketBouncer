@@ -102,13 +102,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     let backgroundImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "background")
+        iv.image = #imageLiteral(resourceName: "Background")
         return iv
     }()
     
     let tableImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "tableonly")
+        iv.image = #imageLiteral(resourceName: "Table")
         return iv
     }()
     

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2726629A96EDCA4317D04CB8 /* Pods_ColorGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */; };
 		9218E0091EF8311300B6A4C5 /* AvatarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9218E0081EF8311300B6A4C5 /* AvatarBuilder.swift */; };
-		9218E00B1EF8337900B6A4C5 /* AvatarComponents.json in Resources */ = {isa = PBXBuildFile; fileRef = 9218E00A1EF8337900B6A4C5 /* AvatarComponents.json */; };
 		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
 		92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */; };
 		92BE8C1D1EF5C40300D15E45 /* GameoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */; };
@@ -30,7 +29,6 @@
 		2AC4813C1410BB381FA706C1 /* Pods-ColorGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ColorGame/Pods-ColorGame.debug.xcconfig"; sourceTree = "<group>"; };
 		9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9218E0081EF8311300B6A4C5 /* AvatarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBuilder.swift; sourceTree = "<group>"; };
-		9218E00A1EF8337900B6A4C5 /* AvatarComponents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AvatarComponents.json; sourceTree = "<group>"; };
 		923436741EF1175E004CEA6D /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverReason.swift; sourceTree = "<group>"; };
 		92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverView.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				92BE8C201EF60E8C00D15E45 /* Components.json */,
-				9218E00A1EF8337900B6A4C5 /* AvatarComponents.json */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -234,7 +231,6 @@
 			files = (
 				92E84CFE1EEE07D80074C05A /* LaunchScreen.storyboard in Resources */,
 				92BE8C211EF60E8C00D15E45 /* Components.json in Resources */,
-				9218E00B1EF8337900B6A4C5 /* AvatarComponents.json in Resources */,
 				92E84CFB1EEE07D80074C05A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
