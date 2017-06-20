@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92E84CEF1EEE07D80074C05A"
-               BuildableName = "ColorGame.app"
-               BlueprintName = "ColorGame"
-               ReferencedContainer = "container:ColorGame.xcodeproj">
+               BuildableName = "PocketBouncer.app"
+               BlueprintName = "PocketBouncer"
+               ReferencedContainer = "container:PocketBouncer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92E84CEF1EEE07D80074C05A"
-            BuildableName = "ColorGame.app"
-            BlueprintName = "ColorGame"
-            ReferencedContainer = "container:ColorGame.xcodeproj">
+            BuildableName = "PocketBouncer.app"
+            BlueprintName = "PocketBouncer"
+            ReferencedContainer = "container:PocketBouncer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92E84CEF1EEE07D80074C05A"
-            BuildableName = "ColorGame.app"
-            BlueprintName = "ColorGame"
-            ReferencedContainer = "container:ColorGame.xcodeproj">
+            BuildableName = "PocketBouncer.app"
+            BlueprintName = "PocketBouncer"
+            ReferencedContainer = "container:PocketBouncer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92E84CEF1EEE07D80074C05A"
-            BuildableName = "ColorGame.app"
-            BlueprintName = "ColorGame"
-            ReferencedContainer = "container:ColorGame.xcodeproj">
+            BuildableName = "PocketBouncer.app"
+            BlueprintName = "PocketBouncer"
+            ReferencedContainer = "container:PocketBouncer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
