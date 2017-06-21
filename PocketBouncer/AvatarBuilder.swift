@@ -12,21 +12,22 @@ class AvatarBuilder {
     
     static let avatarBuilder = AvatarBuilder()
     
-    var skinColours: [UIImage] = [#imageLiteral(resourceName: "PeachFace"), #imageLiteral(resourceName: "BeigeFace"), #imageLiteral(resourceName: "BrownFace")]
-    var noses: [UIImage] = [#imageLiteral(resourceName: "WideNose"), #imageLiteral(resourceName: "NormalNose"), #imageLiteral(resourceName: "RoundNose")]
+    var skinColors: [[String: UIColor]] = [["Dark": UIColor(red:0.95, green:0.72, blue:0.40, alpha:1.00), "Light": UIColor(red:0.96, green:0.81, blue:0.58, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.42, blue:0.20, alpha:1.00), "Light": UIColor(red:0.72, green:0.56, blue:0.27, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), "Light": UIColor(red:0.71, green:0.63, blue:0.46, alpha:1.00)]]
+    var noses: [UIImage] = [#imageLiteral(resourceName: "WideNose"), #imageLiteral(resourceName: "RoundNose"), #imageLiteral(resourceName: "NormalNose")]
     var eyeColours: [UIColor] = [UIColor(red:0.28, green:0.59, blue:0.61, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00), UIColor(red:0.31, green:0.65, blue:0.24, alpha:1.00), UIColor(red:0.54, green:0.42, blue:0.20, alpha:1.00)]
-    var eyes: [UIImage] = [#imageLiteral(resourceName: "NormalEyes"), #imageLiteral(resourceName: "HappyEyes"), #imageLiteral(resourceName: "DownEyes")]
+    var eyes: [UIImage] = [#imageLiteral(resourceName: "DownEyes"), #imageLiteral(resourceName: "HappyEyes"), #imageLiteral(resourceName: "NormalEyes")]
     var shirtAccessories = [nil, #imageLiteral(resourceName: "StripesHorz"), #imageLiteral(resourceName: "StripesVert"), #imageLiteral(resourceName: "Lapels"), #imageLiteral(resourceName: "Collar")]
-    var mouths: [UIImage] = [#imageLiteral(resourceName: "Round"), #imageLiteral(resourceName: "SmallTongue"), #imageLiteral(resourceName: "HappySmallWhite"), #imageLiteral(resourceName: "Singing"), #imageLiteral(resourceName: "Closed"), #imageLiteral(resourceName: "HappySmallBlack"), #imageLiteral(resourceName: "MouthTongue")]
+    var mouths: [UIImage] = [#imageLiteral(resourceName: "MouthTongue"), #imageLiteral(resourceName: "HappySmallBlack"), #imageLiteral(resourceName: "SmallTongue"), #imageLiteral(resourceName: "HappySmallWhite"), #imageLiteral(resourceName: "Closed"), #imageLiteral(resourceName: "Round"), #imageLiteral(resourceName: "Singing")]
     var colourPaletes: [[String: UIColor]] = [["Dark": UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00), "Light": UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.00)], ["Dark": UIColor(red:0.57, green:0.57, blue:0.57, alpha:1.00), "Light": UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.00)], ["Dark": UIColor(red:0.60, green:0.17, blue:0.14, alpha:1.00), "Light": UIColor(red:0.77, green:0.26, blue:0.23, alpha:1.00)], ["Dark": UIColor(red:0.72, green:0.48, blue:0.19, alpha:1.00), "Light": UIColor(red:0.84, green:0.60, blue:0.30, alpha:1.00)], ["Dark": UIColor(red:0.82, green:0.76, blue:0.26, alpha:1.00), "Light": UIColor(red:0.91, green:0.87, blue:0.39, alpha:1.00)], ["Dark": UIColor(red:0.30, green:0.62, blue:0.23, alpha:1.00), "Light": UIColor(red:0.38, green:0.77, blue:0.30, alpha:1.00)], ["Dark": UIColor(red:0.15, green:0.23, blue:0.60, alpha:1.00), "Light": UIColor(red:0.25, green:0.34, blue:0.77, alpha:1.00)], ["Dark": UIColor(red:0.40, green:0.18, blue:0.52, alpha:1.00), "Light": UIColor(red:0.49, green:0.29, blue:0.62, alpha:1.00)], ["Dark": UIColor(red:0.56, green:0.18, blue:0.39, alpha:1.00), "Light": UIColor(red:0.73, green:0.27, blue:0.53, alpha:1.00)]]
     var maleHairBack: [UIImage] = [#imageLiteral(resourceName: "Short")]
-    var maleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringeChip"), #imageLiteral(resourceName: "Tuft"), #imageLiteral(resourceName: "Bobble")]
-    var facialHair = [nil, nil, #imageLiteral(resourceName: "BeardSmall"), #imageLiteral(resourceName: "BeardLarge")]
-    var cheeks = [nil, #imageLiteral(resourceName: "Freckles"), #imageLiteral(resourceName: "Cheeks"), #imageLiteral(resourceName: "CheeksRed")]
-    var femaleHairBack: [UIImage] = [#imageLiteral(resourceName: "Long"), #imageLiteral(resourceName: "MediumWings"), #imageLiteral(resourceName: "Afro"), #imageLiteral(resourceName: "Tuck")]
+    var maleHairFront: [UIImage] = [#imageLiteral(resourceName: "Tuft"), #imageLiteral(resourceName: "Bobble"), #imageLiteral(resourceName: "LongFringeChip")]
+    var facialHair = [nil, nil, #imageLiteral(resourceName: "BeardLarge"), #imageLiteral(resourceName: "BeardSmall")]
+    var cheeks = [nil, #imageLiteral(resourceName: "Freckles"), #imageLiteral(resourceName: "CheeksRed"), #imageLiteral(resourceName: "Cheeks")]
+    var femaleHairBack: [UIImage] = [#imageLiteral(resourceName: "Long"), #imageLiteral(resourceName: "MediumWings"), #imageLiteral(resourceName: "Tuck"), #imageLiteral(resourceName: "Afro")]
     var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe"), #imageLiteral(resourceName: "Tuft")]
     var hairColours: [UIColor] = [UIColor(red:0.60, green:0.60, blue:0.60, alpha:1.00), UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), UIColor(red:0.95, green:0.91, blue:0.41, alpha:1.00), UIColor(red:0.89, green:0.64, blue:0.31, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)]
-        
+    var glasses = [nil, nil, nil, #imageLiteral(resourceName: "RoundGlasses")]
+    
     func buildAvatar(for gender: Person.Gender) -> UIImage {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 400))
         view.layer.zPosition = -1
@@ -44,50 +45,74 @@ class AvatarBuilder {
         backImageView.layer.zPosition = 1
         view.addSubview(backImageView)
         
-        let stripes = UIImageView(image: shirtAccessories.randomItem())
-        if stripes.image != nil {
-            stripes.tintColor = lightColor
-            stripes.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-            if stripes.image != #imageLiteral(resourceName: "StripesHorz") {
-                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.6175)
-            } else {
-                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.67)
-            }
-            stripes.layer.zPosition = 1
-            view.addSubview(stripes)
-        }
-        
-        let faceImageView = UIImageView(image: skinColours.randomItem())
-        faceImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        faceImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.745)
-        faceImageView.layer.zPosition = 3
+        let skinColor = skinColors.randomItem()
+        let faceImageView = UIImageView(image: #imageLiteral(resourceName: "Face"))
+        faceImageView.tintColor = skinColor["Light"]
+        faceImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        faceImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.115)
+        faceImageView.layer.zPosition = 4
         view.addSubview(faceImageView)
         
+        let earsImageView = UIImageView(image: #imageLiteral(resourceName: "Ears"))
+        earsImageView.tintColor = skinColor["Dark"]
+        earsImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        earsImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.3325)
+        earsImageView.layer.zPosition = 4
+        view.addSubview(earsImageView)
+        
+        let neckImageView = UIImageView(image: #imageLiteral(resourceName: "Neck"))
+        neckImageView.tintColor = skinColor["Dark"]
+        neckImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        neckImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.475)
+        neckImageView.layer.zPosition = 3
+        view.addSubview(neckImageView)
+        
+        
         let noseImageView = UIImageView(image: noses.randomItem())
-        if faceImageView.image == #imageLiteral(resourceName: "PeachFace") {
-            noseImageView.tintColor = UIColor(red:0.99, green:0.71, blue:0.33, alpha:1.00)
-        } else if faceImageView.image == #imageLiteral(resourceName: "BeigeFace") {
-            noseImageView.tintColor = UIColor(red:0.53, green:0.46, blue:0.32, alpha:1.00)
-        } else if faceImageView.image == #imageLiteral(resourceName: "BrownFace") {
-            noseImageView.tintColor = UIColor(red:0.53, green:0.43, blue:0.24, alpha:1.00)
-        }
+        noseImageView.tintColor = skinColor["Dark"]
         noseImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         noseImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.395)
         noseImageView.layer.zPosition = 4
         view.addSubview(noseImageView)
         
         
+        let stripes = UIImageView(image: shirtAccessories.randomItem())
+        if stripes.image != nil {
+            stripes.tintColor = lightColor
+            stripes.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+            if stripes.image != #imageLiteral(resourceName: "StripesHorz") {
+                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.6175)
+                stripes.layer.zPosition = 1
+                if stripes.image == #imageLiteral(resourceName: "Lapels") {
+                    stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.60)
+                    stripes.layer.zPosition = 3
+                    let undershirtView = UIImageView(image: #imageLiteral(resourceName: "Undershirt"))
+                    undershirtView.tintColor = colourPaletes.randomItem()["Light"]
+                    undershirtView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+                    undershirtView.layer.zPosition = 1
+                    undershirtView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height)
+                    view.addSubview(undershirtView)
+                }
+            } else {
+                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.67)
+                stripes.layer.zPosition = 1
+            }
+            view.addSubview(stripes)
+        }
+        
+        
+        
         let eyesImageView = UIImageView(image: eyes.randomItem())
         eyesImageView.tintColor = eyeColours.randomItem()
-        eyesImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        eyesImageView.layer.position = CGPoint(x: faceImageView.bounds.width / 2, y: view.bounds.height * 0.25)
-        eyesImageView.layer.zPosition = 3
-        faceImageView.addSubview(eyesImageView)
+        eyesImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        eyesImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.31)
+        eyesImageView.layer.zPosition = 4
+        view.addSubview(eyesImageView)
         
         let mouthImageView = UIImageView(image: mouths.randomItem())
         mouthImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         mouthImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.4825)
-        mouthImageView.layer.zPosition = 4
+        mouthImageView.layer.zPosition = 5
         view.addSubview(mouthImageView)
         
         let hairBackView = UIImageView(image: gender == .male ? maleHairBack.randomItem() : femaleHairBack.randomItem())
@@ -100,7 +125,7 @@ class AvatarBuilder {
         let hairFrontView = UIImageView(image: gender == .male ? maleHairFront.randomItem() : femaleHairFront.randomItem())
         hairFrontView.tintColor = hairColor
         hairFrontView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.25)
-        hairFrontView.layer.zPosition = 3
+        hairFrontView.layer.zPosition = 5
         hairFrontView.layer.position = CGPoint(x: view.bounds.width / 2, y: faceImageView.frame.minY)
         view.addSubview(hairFrontView)
         
@@ -109,24 +134,26 @@ class AvatarBuilder {
             facialHairView.tintColor = hairColor
             facialHairView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
             facialHairView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.4575)
-            facialHairView.layer.zPosition = 3
+            facialHairView.layer.zPosition = 4
             view.addSubview(facialHairView)
         }
         
         let cheeksView = UIImageView(image: gender == .female ? cheeks.randomItem() : nil)
         if cheeksView.image != nil {
-            if faceImageView.image == #imageLiteral(resourceName: "PeachFace") {
-                cheeksView.tintColor = UIColor(red:0.99, green:0.71, blue:0.33, alpha:1.00)
-            } else if faceImageView.image == #imageLiteral(resourceName: "BeigeFace") {
-                cheeksView.tintColor = UIColor(red:0.53, green:0.46, blue:0.32, alpha:1.00)
-            } else if faceImageView.image == #imageLiteral(resourceName: "BrownFace") {
-                cheeksView.tintColor = UIColor(red:0.53, green:0.43, blue:0.24, alpha:1.00)
-            }
-            cheeksView.layer.anchorPoint = CGPoint(x: 0.5, y: 0
-            )
+            cheeksView.tintColor = skinColor["Dark"]
+            cheeksView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
             cheeksView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.3975)
             cheeksView.layer.zPosition = 4
             view.addSubview(cheeksView)
+        }
+        
+        let glassesView = UIImageView(image: glasses.randomItem())
+        if glassesView.image != nil {
+            glassesView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            glassesView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.34)
+            glassesView.layer.zPosition = 5
+            view.addSubview(glassesView)
+            
         }
         
         let avatarImage = view.renderToImage(afterScreenUpdates: true)
@@ -135,5 +162,3 @@ class AvatarBuilder {
         return avatarImage
     }
 }
-
-

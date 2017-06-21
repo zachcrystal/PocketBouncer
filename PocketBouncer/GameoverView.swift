@@ -10,8 +10,11 @@ import UIKit
 
 class GameoverView: UIView {
     
-    var gameOverLabel: UILabel = {
+    var gameoverLabel: UILabel = {
         let label = UILabel()
+        label.text = "Gameover"
+        label.font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightBlack)
+        label.textAlignment = .center
         label.textColor = .black
         return label
     }()
@@ -51,18 +54,27 @@ class GameoverView: UIView {
     }
     
     override func layoutSubviews() {
-        addSubview(reasonLabel)
-        
+
         let scoreStackview = UIStackView(arrangedSubviews: [scoreLabel, highscoreLabel])
         scoreStackview.axis = .vertical
-        scoreStackview.distribution = .fillProportionally
+        scoreStackview.distribution = .fillEqually
         scoreStackview.alignment = .center
+        scoreStackview.spacing = 4
         
-        addSubview(scoreStackview)
+        let stackView = UIStackView(arrangedSubviews: [gameoverLabel, reasonLabel, scoreStackview])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+
+        addSubview(stackView)
         
-        reasonLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: frame.height / 3)
+//        gameoverLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 0)
+//        
+//        reasonLabel.anchor(top: gameoverLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: frame.height / 3)
+//        
+//        scoreStackview.anchor(top: reasonLabel.bottomAnchor, left: reasonLabel.leftAnchor, bottom: bottomAnchor, right: reasonLabel.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0)
         
-        scoreStackview.anchor(top: reasonLabel.bottomAnchor, left: reasonLabel.leftAnchor, bottom: bottomAnchor, right: reasonLabel.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0)
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 4, paddingRight: 10, width: 0, height: 0)
 
     }
 }

@@ -39,11 +39,12 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
             attributedScoreText.append(NSAttributedString(string: "\(score)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
             scoreLabel.attributedText = attributedScoreText
-
+            
         }
     }
     
     // MARK: - UIKit Components
+    
     
     var startButton: UIButton = {
         let button = UIButton(type: .system)
@@ -88,6 +89,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         button.setImage(#imageLiteral(resourceName: "deny"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
+        button.isHidden = true
         button.tag = 0
         return button
     }()
@@ -97,6 +99,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         button.setImage(#imageLiteral(resourceName: "approve"), for: .normal)
         button.imageView?.contentMode = .scaleToFill
         button.addTarget(self, action: #selector(handleMatch), for: .touchUpInside)
+        button.isHidden = true
         button.tag = 1
         return button
     }()
@@ -123,7 +126,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        button.setTitle("TRY AGAIN", for: .normal)
+        button.titleLabel?.textColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
         button.tintColor = .black
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 3
@@ -132,17 +137,36 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         return button
     }()
     
+    let quitToMenuButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.setTitle("QUIT TO MENU", for: .normal)
+        button.titleLabel?.textColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
+        button.tintColor = .black
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 3
+        button.layer.zPosition = 1500
+        button.addTarget(self, action: #selector(handleMainMenuState), for: .touchUpInside)
+        return button
+    }()
+
+    
     // MARK: - Action Selectors
     
     func handlePlayAgain() {
         gameoverCard.removeFromSuperview()
         playAgainButton.removeFromSuperview()
-        self.score = 0
-        self.selectRandomPerson()
-        slideInIDCardAndPerson()
-        self.presentNextPerson()
-        
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+        quitToMenuButton.removeFromSuperview()
+        score = 0
+        selectRandomPerson()
+        presentNextPerson()
+        putIDCardDown()
+    }
+    
+    fileprivate func putIDCardDown() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             
             var transform = CATransform3DIdentity
             let divider: CGFloat = 500
@@ -164,18 +188,90 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.IDCardContainer.layer.transform = transform
             self.IDCardContainer.layer.zPosition = 80
             
-            self.IDCardContainer.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 1.39)
-            
+            self.IDCardContainer.center.y = self.view.frame.size.height / 1.39
+
         }) { (_) in
             
+        }
+
+    }
+    
+    
+    // MARK: - Menu Screen
+    func handleMainMenuState() {
+        
+        playAgainButton.removeFromSuperview()
+        quitToMenuButton.removeFromSuperview()
+        
+        
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.IDCardContainer.center.x = -self.view.bounds.width / 2
+        }) { (_) in
+            self.IDCardContainer.center.y = self.view.frame.size.height / 1.39
+
+        }
+        
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.personImageView.center.x = -self.view.bounds.width / 2
+        }) { (_) in
+
+        }
+
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+            self.tableImageView.frame = CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: self.view.bounds.height * 0.4)
+        }) { (_) in
+            // left completion if needed
+        }
+        
+        UIView.animate(withDuration: 1.0, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+            self.denyButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
+            self.denyButton.isHidden = true
+        }) { (_) in
+            self.putIDCardDown()
+        }
+        
+        
+        approveButton.isHidden = false
+        UIView.animate(withDuration: 1.0, delay: 0.8, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+            self.approveButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
+            self.approveButton.isHidden = true
+        }) { (_) in
+            self.startButton.isHidden = false
         }
     }
     
     func handleStart() {
+        gameoverCard.removeFromSuperview()
+        playAgainButton.removeFromSuperview()
+        quitToMenuButton.removeFromSuperview()
+        score = 0
+        selectRandomPerson()
         startButton.isHidden = true
-        unhideApproveDenyButtons()
-        slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 5)
+
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+            self.tableImageView.frame = CGRect(x: 0, y: self.view.bounds.height * 0.60, width: self.view.bounds.width, height: self.view.bounds.height * 0.4)
+        }) { (_) in
+            // left completion if needed
+        }
+        
+        denyButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
+        denyButton.isHidden = false
+        UIView.animate(withDuration: 1.0, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+            self.denyButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
+        }) { (_) in
+            // left completion if needed
+        }
+        
+        approveButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
+        approveButton.isHidden = false
+        UIView.animate(withDuration: 1.0, delay: 0.8, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+            self.approveButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
+            
+        }) { (_) in
+            self.presentNextPerson()
+            self.circleTimer.start(beginingValue: 5)
+        }
     }
     
     func hideApproveDenyButtons() {
@@ -239,7 +335,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
         circleTimer.start(beginingValue: 5)
-        
     }
     
     // MARK: - Gameover
@@ -290,6 +385,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }) { (_) in
             self.view.addSubview(self.playAgainButton)
             self.playAgainButton.anchor(top: self.gameoverCard.bottomAnchor, left: self.gameoverCard.leftAnchor, bottom: nil, right: self.gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
+            self.view.addSubview(self.quitToMenuButton)
+            self.quitToMenuButton.anchor(top: self.playAgainButton.bottomAnchor, left: self.gameoverCard.leftAnchor, bottom: nil, right: self.gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
         }
     }
     
@@ -304,41 +401,35 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         highScore = defaults.object(forKey: highscoreKey) as? Int ?? 0
         
-        hideApproveDenyButtons()
         setupLayout()
         personShadow.isHidden = true
-        selectRandomPerson()
+        
         //        playMusic()
         
     }
+    
     
     // MARK: - Layout
     
     fileprivate func setupLayout() {
         view.addSubview(backgroundImageView)
         
-        let buttonStackView = UIStackView(arrangedSubviews: [denyButton, approveButton])
-        buttonStackView.axis = .horizontal
-        buttonStackView.spacing = 15
-        buttonStackView.distribution = .fillEqually
-        
-        tableImageView.frame = CGRect(x: 0, y: view.bounds.height * 0.60, width: view.bounds.width, height: view.bounds.height * 0.40)
+        tableImageView.frame = CGRect(x: 0, y: view.bounds.height, width: view.bounds.width, height: view.bounds.height * 0.4)
         view.addSubview(tableImageView)
         view.addSubview(personShadow)
         view.addSubview(personImageView)
         view.addSubview(scoreLabel)
-        view.addSubview(buttonStackView)
         view.addSubview(startButton)
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         personShadow.frame.size = CGSize(width: view.frame.width, height: 250)
         personShadow.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        personShadow.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
+        personShadow.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height * 0.60)
         
         personImageView.frame.size = CGSize(width: 240 * 0.7, height: 400 * 0.7)
         personImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        personImageView.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height - tableImageView.frame.height)
+        personImageView.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height * 0.60)
         
         scoreLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -349,14 +440,23 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         circleTimer.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor).isActive = true
         circleTimer.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor, constant: -4).isActive = true
         
-        buttonStackView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 185, height: 85)
-        buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
         view.addSubview(startButton)
-        startButton.anchor(top: nil, left: nil, bottom: tableImageView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: view.frame.width / 2, height: 60)
+        startButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 2, height: 60)
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        approveButton.frame.size = CGSize(width: 85, height: 85)
+        denyButton.frame.size = CGSize(width: 85, height: 85)
+        approveButton.center = CGPoint(x: self.view.center.x + view.center.x * 0.3, y: view.center.y * 1.86)
+        denyButton.center = CGPoint(x: self.view.center.x - view.center.x * 0.3, y: view.center.y * 1.86)
+        
+        
+        
+        view.addSubview(approveButton)
+        view.addSubview(denyButton)
         
         setupIDCard()
+
         
     }
     
@@ -382,10 +482,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         view.addSubview(IDCardContainer)
     }
-    
-    let testGameoverCard = GameoverView()
-    
-    
     
     
     fileprivate func slideInIDCardAndPerson() {
