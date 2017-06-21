@@ -26,7 +26,6 @@ class Components {
     enum Gender {
         case male
         case female
-        
     }
     
     func buildPerson(gender: Gender) -> [String: Any] {
@@ -49,7 +48,6 @@ class Components {
         do {
             let data = try Data(contentsOf: url)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-            
             
             guard let componentDictionaries = json as? [String: Any] else { return }
             let dobs = componentDictionaries["birthdays"] as! [String]

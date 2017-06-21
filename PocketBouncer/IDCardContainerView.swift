@@ -51,7 +51,6 @@ class IDCardContainerView: UIView {
         layer.cornerRadius = 10
         clipsToBounds = true
         
-        
         var transform = CATransform3DIdentity
         let divider: CGFloat = 500
         let degree: Double = 45

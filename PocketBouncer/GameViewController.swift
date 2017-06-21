@@ -31,6 +31,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     let defaults = UserDefaults.standard
     let highscoreKey = "highscore"
     
+    var level: Int = 1
+    
     var highScore: Int = 0
     
     var score: Int = 0 {
@@ -39,6 +41,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
             attributedScoreText.append(NSAttributedString(string: "\(score)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
             scoreLabel.attributedText = attributedScoreText
+            if score == 10 {
+                level = 2
+            }
             
         }
     }
@@ -231,7 +236,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         
-        approveButton.isHidden = false
         UIView.animate(withDuration: 1.0, delay: 0.8, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
             self.approveButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
             self.approveButton.isHidden = true
@@ -247,6 +251,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         score = 0
         selectRandomPerson()
         startButton.isHidden = true
+        self.denyButton.isHidden = true
+        self.approveButton.isHidden = true
+
 
         
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
@@ -255,19 +262,20 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             // left completion if needed
         }
         
+        self.denyButton.isHidden = false
         denyButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
-        denyButton.isHidden = false
-        UIView.animate(withDuration: 1.0, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.4, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
+            
             self.denyButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
+            
         }) { (_) in
             // left completion if needed
         }
         
+        self.approveButton.isHidden = false
         approveButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
-        approveButton.isHidden = false
         UIView.animate(withDuration: 1.0, delay: 0.8, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
             self.approveButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
-            
         }) { (_) in
             self.presentNextPerson()
             self.circleTimer.start(beginingValue: 5)
@@ -404,10 +412,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         setupLayout()
         personShadow.isHidden = true
         
-        //        playMusic()
-        
     }
-    
     
     // MARK: - Layout
     
@@ -449,15 +454,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         denyButton.frame.size = CGSize(width: 85, height: 85)
         approveButton.center = CGPoint(x: self.view.center.x + view.center.x * 0.3, y: view.center.y * 1.86)
         denyButton.center = CGPoint(x: self.view.center.x - view.center.x * 0.3, y: view.center.y * 1.86)
-        
-        
-        
+
         view.addSubview(approveButton)
         view.addSubview(denyButton)
         
         setupIDCard()
-
-        
     }
     
     // MARK: - IDCard
@@ -495,9 +496,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.personImageView.center.x = self.view.bounds.width / 2
         }) { (_) in
             // completion closure kept if needed in future
-            
         }
-        
     }
     
     enum Direction {
@@ -570,7 +569,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
-        let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male)
+        let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male, level: level)
         
         for (key, value) in randomPerson.avatarDictionary {
             personImageView.image = value
@@ -583,7 +582,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             
             let anotherGenderProbability = arc4random_uniform(10) + 1
             let anotherPersonDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
-            let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary, gender: anotherGenderProbability >= 5 ? .female : .male)
+            let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary, gender: anotherGenderProbability >= 5 ? .female : .male, level: level)
             IDCardContainer.person = anotherRandomPerson
         } else {
             IDCardContainer.person = randomPerson
@@ -593,6 +592,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     var personCanEnter: Bool?
+    let locale = Locale.current.regionCode
+    
     
     fileprivate func checkIfPersonCanEnter(person: Person) {
         
@@ -604,11 +605,26 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         } else if expiryTimestamp < currentTimestamp {
             isExpired = true
         }
-        
-        if person.age >= 19 {
-            isLegal = true
+                
+        if locale == "US" {
+            if person.age >= 21 {
+                isLegal = true
+            } else {
+                isLegal = false
+            }
+            
+        } else if locale == "CA" {
+            if person.age >= 19 {
+                isLegal = true
+            } else {
+                isLegal = false
+            }
         } else {
-            isLegal = false
+            if person.age >= 21 {
+                isLegal = true
+            } else {
+                isLegal = false
+            }
         }
     }
     

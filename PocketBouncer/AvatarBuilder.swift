@@ -10,6 +10,7 @@ import UIKit
 
 class AvatarBuilder {
     
+
     static let avatarBuilder = AvatarBuilder()
     
     var skinColors: [[String: UIColor]] = [["Dark": UIColor(red:0.95, green:0.72, blue:0.40, alpha:1.00), "Light": UIColor(red:0.96, green:0.81, blue:0.58, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.42, blue:0.20, alpha:1.00), "Light": UIColor(red:0.72, green:0.56, blue:0.27, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), "Light": UIColor(red:0.71, green:0.63, blue:0.46, alpha:1.00)]]

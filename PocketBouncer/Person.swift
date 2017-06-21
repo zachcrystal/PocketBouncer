@@ -22,10 +22,9 @@ class Person: Equatable {
     enum Gender {
         case male
         case female
-        
     }
     
-    init(personDictionary: [String: Any], gender: Gender) {
+    init(personDictionary: [String: Any], gender: Gender, level: Int) {
         self.firstName = personDictionary["firstName"] as! String
         self.lastName = personDictionary["lastName"] as! String
         

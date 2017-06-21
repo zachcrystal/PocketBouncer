@@ -73,19 +73,14 @@ class IDCardView: UIView {
 
     override func layoutSubviews() {
         
-        
         let stackView = UIStackView(arrangedSubviews: [identificationImageView, idBadgeImageView])
         stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
         stackView.spacing = 40
         
-        
         let textStackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel, dobLabel])
         textStackView.axis = .vertical
         textStackView.distribution = .fillProportionally
-        
-        
-
         
         addSubview(stackView)
         addSubview(expiryLabel)
