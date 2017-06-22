@@ -15,4 +15,5 @@ enum GameoverReason: String {
     case wrongID = "You let somebody in that used a fake ID!"
     case falseDeny = "Why are you turning away perfectly good customers?"
     case expiredAndUnderage = "The person was underage AND their ID was expired!"
+    case isWearingSunglasses = "Do you see the sign that says No Sunglasses?"
 }

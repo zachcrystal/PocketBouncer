@@ -49,8 +49,15 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             scoreLabel.attributedText = attributedScoreText
             if score == 10 {
                 level = 2
+                rulesLabel.text?.append("\nNo Sunglasses")
             }
-            
+            if score == 15 {
+                level = 3
+                rulesLabel.text?.append("\nNo Hats")
+            }
+            if score == 20 {
+                level = 4
+            }
         }
     }
     
@@ -58,7 +65,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     var rulesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Rules:\n19+\nNo hats\nNo Sunglasses"
+        label.text = "Rules:\n19+"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
         label.backgroundColor = .white
@@ -295,7 +302,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.approveButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
         }) { (_) in
             self.presentNextPerson()
-            self.circleTimer.start(beginingValue: 5)
+            if self.level >= 4 {
+                self.circleTimer.start(beginningValue: 4)
+            } else {
+                self.circleTimer.start(beginningValue: 5)
+            }
         }
     }
     
@@ -316,10 +327,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
-        print(isWearingSunglasses)
-        
-        
-        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true, isWearingSunglasses == false {
+        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true, isWearingSunglasses == false, isWearingHat == false {
             isMatch = true
         } else {
             isMatch = false
@@ -341,6 +349,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         if isMatch == false && sender.tag == 1 {
+            
+            if isWearingSunglasses == true {
+                gameover(for: .isWearingSunglasses)
+                flashRed()
+                return
+            }
+            
             if personImageViewKey != IDCardViewKey {
                 gameover(for: .wrongID)
                 flashRed()
@@ -360,7 +375,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     func presentNextPerson() {
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
-        circleTimer.start(beginingValue: 5)
+        if level >= 4 {
+            circleTimer.start(beginningValue: 4)
+        } else {
+        circleTimer.start(beginningValue: 5)
+        }
     }
     
     // MARK: - Gameover
@@ -432,11 +451,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         personShadow.isHidden = true
         
         if locale == "US" {
-            rulesLabel.text = "Rules:\n21+\nNo hats\nNo Sunglasses"
+            rulesLabel.text = "Rules:\n21+"
         } else if locale == "CA" {
-            rulesLabel.text = "Rules:\n19+\nNo hats\nNo Sunglasses"
+            rulesLabel.text = "Rules:\n19+"
         } else {
-            rulesLabel.text = "Rules:\n21+\nNo hats\nNo Sunglasses"
+            rulesLabel.text = "Rules:\n21+"
         }
     }
     
@@ -457,7 +476,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         backgroundImageView.addSubview(rulesLabel)
         
         rulesLabel.anchor(top: backgroundImageView.topAnchor, left: backgroundImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 3, height: view.frame.height / 5)
-        rulesLabel.alpha = 0.5
+        rulesLabel.alpha = 0.6
         
         
         personShadow.frame.size = CGSize(width: view.frame.width, height: 250)
@@ -595,6 +614,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     var randomPerson: Person?
     var isWearingSunglasses = false
+    var isWearingHat = false
     
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
@@ -604,6 +624,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male, level: level)
         isWearingSunglasses = randomPerson.isWearingSunglasses
+        isWearingHat = randomPerson.isWearingHat
         
         for (key, value) in randomPerson.avatarDictionary {
             personImageView.image = value

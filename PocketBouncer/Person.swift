@@ -19,6 +19,7 @@ class Person: Equatable {
     let avatarDictionary: [String: UIImage]
     let idBadge: UIImage
     let isWearingSunglasses: Bool
+    let isWearingHat: Bool
     
     enum Gender {
         case male
@@ -49,6 +50,7 @@ class Person: Equatable {
         let uuid = UUID().uuidString
         let avatarImage = avatar.0
         self.isWearingSunglasses = avatar.1
+        self.isWearingHat = avatar.2
 
         self.avatarDictionary = [uuid: avatarImage]
         

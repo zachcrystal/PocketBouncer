@@ -27,11 +27,14 @@ class AvatarBuilder {
     var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe"), #imageLiteral(resourceName: "Tuft")]
     var hairColours: [UIColor] = [UIColor(red:0.60, green:0.60, blue:0.60, alpha:1.00), UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), UIColor(red:0.95, green:0.91, blue:0.41, alpha:1.00), UIColor(red:0.89, green:0.64, blue:0.31, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)]
     var glasses = [nil, nil, nil, #imageLiteral(resourceName: "RoundGlasses")]
-    var sunglasses = [nil, nil, nil, #imageLiteral(resourceName: "Sunglasses")]
+    var sunglasses = [nil, nil, #imageLiteral(resourceName: "Sunglasses")]
+    var hat = [nil, nil, nil, "hat"]
     
-    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool) {
+    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool, Bool) {
         
         var wearingSunglasses = false
+        var wearingHat = false
+        
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 400))
         view.layer.zPosition = -1
@@ -168,10 +171,30 @@ class AvatarBuilder {
             }
         }
         
+        if level >= 3 {
+            let hatCheck = hat.randomItem()
+            if hatCheck != nil {
+                wearingHat = true
+                let hatBottomView = UIImageView(image: #imageLiteral(resourceName: "HatBottom"))
+                let hatTopView = UIImageView(image: #imageLiteral(resourceName: "HatTop"))
+                let hatColor = colourPaletes.randomItem()
+                hatBottomView.tintColor = hatColor["Light"]
+                hatTopView.tintColor = hatColor["Dark"]
+                hatBottomView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+                hatTopView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+                hatBottomView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.2825)
+                hatTopView.layer.position = CGPoint(x: view.bounds.width / 2, y: 0)
+                hatBottomView.layer.zPosition = 6
+                hatTopView.layer.zPosition = 6
+                view.addSubview(hatBottomView)
+                view.addSubview(hatTopView)
+            }
+        }
+        
         
         // Extension that takes a "snapshot" of the UIView and converts it into a UIImageView
         let avatarImage = view.renderToImage(afterScreenUpdates: true)
         
-        return (avatarImage, wearingSunglasses)
+        return (avatarImage, wearingSunglasses, wearingHat)
     }
 }
