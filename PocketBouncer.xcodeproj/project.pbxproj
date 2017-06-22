@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2726629A96EDCA4317D04CB8 /* Pods_ColorGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */; };
 		9218E0091EF8311300B6A4C5 /* AvatarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9218E0081EF8311300B6A4C5 /* AvatarBuilder.swift */; };
 		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
 		92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */; };
@@ -55,7 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2726629A96EDCA4317D04CB8 /* Pods_ColorGame.framework in Frameworks */,
 				DA23FF4D7A591131313FA91A /* Pods_PocketBouncer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
