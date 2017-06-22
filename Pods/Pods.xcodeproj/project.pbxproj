@@ -15,12 +15,14 @@
 		16F42BF375B3677739F8AA468C2F06A7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA79B8172B0A1C8580C5872F5DA9D03 /* Team.swift */; };
 		20C301F8EA842463177CC7B727058DAC /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B328636491B159B0123CA49EB1A5D0 /* Company.swift */; };
 		298644E73B69C91AC45FC1FE4F692542 /* sv.json in Resources */ = {isa = PBXBuildFile; fileRef = CD06050C84000C5CF97462BDD7AE123B /* sv.json */; };
+		2DF3E053E24FE799D3A695BD141B28C4 /* Pods-PocketBouncer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 340D7173C1AE087D8E69CDF6D673F3BE /* Pods-PocketBouncer-dummy.m */; };
 		3635D9B2812A1B8047643B5D3112D2CE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7421D2AF77643E67A4406A8FCEF1532 /* ArrayExtension.swift */; };
 		3DDFADFBE883589060A9982CFB17C4BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		44DEE7031917A532485633897095B5C9 /* en-GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C6F197C47409409B2355751C70A830D /* en-GB.json */; };
 		4C27560D177860C9D46382A24148EF56 /* Commerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6247442AD2A8BE553FE4EA3F17E8880F /* Commerce.swift */; };
 		4DEC19E7C03A9C3291DE41CE35EEB0EF /* nb-NO.json in Resources */ = {isa = PBXBuildFile; fileRef = 6C87245D31CABDA8513867FC30E94420 /* nb-NO.json */; };
 		5035DAC2D9EF82E9D9788B43FEF22865 /* de-CH.json in Resources */ = {isa = PBXBuildFile; fileRef = 95843310E390EC6E461ABEDF93B54681 /* de-CH.json */; };
+		5390D180E5CF9E953517FBA85D115C94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		5825E146596AC8BF7B7A757BE2626354 /* pl.json in Resources */ = {isa = PBXBuildFile; fileRef = D4AC6AC931D05E49E14F7FC25001D05C /* pl.json */; };
 		59D454623603D43F2823ABBA42887DCA /* en-CA.json in Resources */ = {isa = PBXBuildFile; fileRef = D1455ED32D7F9D30FA0FE72BA2D020AC /* en-CA.json */; };
 		5BFCD5F9F85CAE2D104FB8F2490C8827 /* zh-TW.json in Resources */ = {isa = PBXBuildFile; fileRef = 363C56FCC8031C5DBB69A7A2909BAA79 /* zh-TW.json */; };
@@ -28,15 +30,14 @@
 		5F17369C2AB189AA028FFACBD0D38426 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54F487957A8DF3223D29F11D3C8A16 /* Provider.swift */; };
 		609E9A5EEE66CF00DCE9F2E215E79CA7 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = 38E9CD25103F20596BFC59AC60533484 /* en.json */; };
 		6122E5C27C4059B06F190796FA354089 /* fr.json in Resources */ = {isa = PBXBuildFile; fileRef = A272674A466B7DB1F79BD5343B68F29F /* fr.json */; };
-		6134A8DC2E9F4A6D809F2880614E1CC1 /* Faker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */; };
+		6134A8DC2E9F4A6D809F2880614E1CC1 /* Faker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66033E7435E0C8644C9296238F10BF99 /* Faker.bundle */; };
+		61CA14207A683D281E764E245AC88C7D /* Pods-PocketBouncer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FBFA03FFD28B9E6ADADFEB17FF9438D /* Pods-PocketBouncer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6243ECD63492CD676B75774E2FA3427E /* it.json in Resources */ = {isa = PBXBuildFile; fileRef = 247FFB3A5271061C609C2CA80785F990 /* it.json */; };
-		65D3842CCCC9EF15CAC25BFC72AEBB06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		689387DF8E0DC2D88B8025D87456A6B3 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778FD13631CF097BBE8CB027FB76758 /* PhoneNumber.swift */; };
 		68B0A2BF1648E265E4B2C92B228E936C /* de-AT.json in Resources */ = {isa = PBXBuildFile; fileRef = D440FDB1F013A28B69154AC973E00288 /* de-AT.json */; };
 		713A0F0ECC2DC902A2B62E09F4454AE9 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A699E71BC649EE05540B827A6024E638 /* Generator.swift */; };
 		749610C3798F18EC4E6086168CF3CB15 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C2351EF23CF2089E68A539FD95C6B /* Business.swift */; };
 		76CD27CDD527A3E747775B70AE47F522 /* ru.json in Resources */ = {isa = PBXBuildFile; fileRef = 54C600F2209C239F3B9E1D0627E29B5B /* ru.json */; };
-		77C77A45FA3D3ABC900840BED294DD06 /* Pods-ColorGame-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8043D59614ACFE34F278AF84C284C87B /* de.json in Resources */ = {isa = PBXBuildFile; fileRef = 6453E80B615AB930DBF512A816C559F4 /* de.json */; };
 		9050A04C1DBDF4FBDB32491ECB43AACE /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D9020349E34B99386A843C84A8AAA /* Parser.swift */; };
 		A6B7938AB0B4BAEF9D86C17AEF2FC55A /* zh-CN.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AAE10A3838F94E24E916D433D652FCF /* zh-CN.json */; };
@@ -48,7 +49,6 @@
 		BF2809020536426AF092D5F0007C64DE /* Fakery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E5A191FD3F46E7317CE031CA32ED566B /* Fakery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C305FDB68C5B95DD17634D65E0DBF6A2 /* en-TEST.json in Resources */ = {isa = PBXBuildFile; fileRef = F110D4AC44BD4FA45607F53E4FF52B8B /* en-TEST.json */; };
 		C573F3292602DF4D00732F72ECF5F2F8 /* uk.json in Resources */ = {isa = PBXBuildFile; fileRef = 68E970370313B5C745CD25D870A5E27D /* uk.json */; };
-		D65E8D819F0997E9A55AA227E80B5470 /* Pods-ColorGame-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */; };
 		D736E48C93C71425A94119F5A1709C70 /* Fakery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB883C9EC288E06668F3734F3E7DF373 /* Fakery-dummy.m */; };
 		E557D814DB56AE718202563E4CE5B2A2 /* en-AU.json in Resources */ = {isa = PBXBuildFile; fileRef = 350E6F0AD0766B62DE39684224E2717E /* en-AU.json */; };
 		E989A658F01B6817A2794F766DB1CFD9 /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8002324EF08DE6C109E05A773CB009A /* Internet.swift */; };
@@ -65,7 +65,7 @@
 			remoteGlobalIDString = C498EBDBE0A2EF6EF719EC8718286AD6;
 			remoteInfo = "Fakery-Faker";
 		};
-		36C38E9788430C416FDBE6E9D69FB69A /* PBXContainerItemProxy */ = {
+		2E4965FA49DD954CCC1491296CA6D460 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -78,20 +78,19 @@
 		00B00E972050AA3609EC3CB9387FEC62 /* Name.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Name.swift; path = Source/Generators/Name.swift; sourceTree = "<group>"; };
 		05998B349CFD005CAAF20D560DEF6B7C /* Address.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Source/Generators/Address.swift; sourceTree = "<group>"; };
 		0778FD13631CF097BBE8CB027FB76758 /* PhoneNumber.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhoneNumber.swift; path = Source/Generators/PhoneNumber.swift; sourceTree = "<group>"; };
-		07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ColorGame-dummy.m"; sourceTree = "<group>"; };
-		0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Fakery.framework; path = Fakery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CA74A43BB4ADF4B399BFE214D99B970 /* Pods-ColorGame-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ColorGame-frameworks.sh"; sourceTree = "<group>"; };
 		195D9020349E34B99386A843C84A8AAA /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Source/Data/Parser.swift; sourceTree = "<group>"; };
 		1AAE10A3838F94E24E916D433D652FCF /* zh-CN.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-CN.json"; path = "Resources/Locales/zh-CN.json"; sourceTree = "<group>"; };
-		1E3D1BF83D14DBB8F69D61BA7343A46B /* Pods-ColorGame-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ColorGame-acknowledgements.plist"; sourceTree = "<group>"; };
 		245CA538F0C5E68F8FA00550289DB117 /* Fakery-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fakery-prefix.pch"; sourceTree = "<group>"; };
 		247FFB3A5271061C609C2CA80785F990 /* it.json */ = {isa = PBXFileReference; includeInIndex = 1; name = it.json; path = Resources/Locales/it.json; sourceTree = "<group>"; };
+		2742A8EE96F467CA619C379984F47C1A /* Pods-PocketBouncer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketBouncer.release.xcconfig"; sourceTree = "<group>"; };
+		28AEBBE3D05B43140288A0565F6C190F /* Pods_PocketBouncer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PocketBouncer.framework; path = "Pods-PocketBouncer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B328636491B159B0123CA49EB1A5D0 /* Company.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Company.swift; path = Source/Generators/Company.swift; sourceTree = "<group>"; };
 		2A08B79CBFE91D9B604591BD8B8C2B08 /* Config.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
-		2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ColorGame.release.xcconfig"; sourceTree = "<group>"; };
-		2DCF273AC7A0E86B700F1BAE9FC6559A /* Pods-ColorGame-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ColorGame-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2B79DB6DCC1AD346D8229AA261825A97 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D4D3927F29414BD23A47AD5FA116C62 /* Fakery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Fakery.framework; path = Fakery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		305A208AD1090AC201960D590AE9E3DB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3303D5C95C6421AA693113ECC4F96915 /* Number.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Number.swift; path = Source/Generators/Number.swift; sourceTree = "<group>"; };
+		340D7173C1AE087D8E69CDF6D673F3BE /* Pods-PocketBouncer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketBouncer-dummy.m"; sourceTree = "<group>"; };
 		34F557D97134B62EEC8708B0658197C9 /* fa.json */ = {isa = PBXFileReference; includeInIndex = 1; name = fa.json; path = Resources/Locales/fa.json; sourceTree = "<group>"; };
 		350E6F0AD0766B62DE39684224E2717E /* en-AU.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-AU.json"; path = "Resources/Locales/en-AU.json"; sourceTree = "<group>"; };
 		363C56FCC8031C5DBB69A7A2909BAA79 /* zh-TW.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-TW.json"; path = "Resources/Locales/zh-TW.json"; sourceTree = "<group>"; };
@@ -100,40 +99,41 @@
 		498C2351EF23CF2089E68A539FD95C6B /* Business.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Business.swift; path = Source/Generators/Business.swift; sourceTree = "<group>"; };
 		4F3C6229E81011223E98139C02B41013 /* Fakery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Fakery.modulemap; sourceTree = "<group>"; };
 		54C600F2209C239F3B9E1D0627E29B5B /* ru.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.json; path = Resources/Locales/ru.json; sourceTree = "<group>"; };
-		54F4FB4DC6E896F1D5C23DD86ECD40DC /* Pods-ColorGame-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ColorGame-resources.sh"; sourceTree = "<group>"; };
 		5CA79B8172B0A1C8580C5872F5DA9D03 /* Team.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Team.swift; path = Source/Generators/Team.swift; sourceTree = "<group>"; };
 		6247442AD2A8BE553FE4EA3F17E8880F /* Commerce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Commerce.swift; path = Source/Generators/Commerce.swift; sourceTree = "<group>"; };
 		6453E80B615AB930DBF512A816C559F4 /* de.json */ = {isa = PBXFileReference; includeInIndex = 1; name = de.json; path = Resources/Locales/de.json; sourceTree = "<group>"; };
+		66033E7435E0C8644C9296238F10BF99 /* Faker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Faker.bundle; path = Faker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		68E970370313B5C745CD25D870A5E27D /* uk.json */ = {isa = PBXFileReference; includeInIndex = 1; name = uk.json; path = Resources/Locales/uk.json; sourceTree = "<group>"; };
 		6C87245D31CABDA8513867FC30E94420 /* nb-NO.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "nb-NO.json"; path = "Resources/Locales/nb-NO.json"; sourceTree = "<group>"; };
+		6FBFA03FFD28B9E6ADADFEB17FF9438D /* Pods-PocketBouncer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketBouncer-umbrella.h"; sourceTree = "<group>"; };
 		7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fakery.xcconfig; sourceTree = "<group>"; };
-		7C0D2ECD4D6FDBC2BA090C6A28A998D2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		891A5B9EEDAA9CAF421BE8831B7ADF67 /* es.json */ = {isa = PBXFileReference; includeInIndex = 1; name = es.json; path = Resources/Locales/es.json; sourceTree = "<group>"; };
 		8C54F487957A8DF3223D29F11D3C8A16 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Source/Data/Provider.swift; sourceTree = "<group>"; };
 		90F42F0735AD8AF5490BCE0E23FA6D18 /* en-IND.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-IND.json"; path = "Resources/Locales/en-IND.json"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95843310E390EC6E461ABEDF93B54681 /* de-CH.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "de-CH.json"; path = "Resources/Locales/de-CH.json"; sourceTree = "<group>"; };
+		99C781B67B724AC11B7826FFB4FE5F4B /* Pods-PocketBouncer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PocketBouncer-acknowledgements.plist"; sourceTree = "<group>"; };
 		9B6B605E3EB5D4A794A197FB6DA1E30A /* App.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = App.swift; path = Source/Generators/App.swift; sourceTree = "<group>"; };
-		9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Faker.bundle; path = Faker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA52C1B46A9AC5DA30FF76D3186E906 /* Pods-PocketBouncer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PocketBouncer-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A272674A466B7DB1F79BD5343B68F29F /* fr.json */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.json; path = Resources/Locales/fr.json; sourceTree = "<group>"; };
 		A699E71BC649EE05540B827A6024E638 /* Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = Source/Generators/Generator.swift; sourceTree = "<group>"; };
+		AD37AFD1B92DD82B6B5F3714C97FD4B1 /* Pods-PocketBouncer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketBouncer.debug.xcconfig"; sourceTree = "<group>"; };
+		B3D0ED94052564490F11FE8E9D9EB5B8 /* Pods-PocketBouncer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PocketBouncer.modulemap"; sourceTree = "<group>"; };
 		B8002324EF08DE6C109E05A773CB009A /* Internet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Internet.swift; path = Source/Generators/Internet.swift; sourceTree = "<group>"; };
 		B99C7B831B2DD27C36EE48CEEC99C00D /* sk.json */ = {isa = PBXFileReference; includeInIndex = 1; name = sk.json; path = Resources/Locales/sk.json; sourceTree = "<group>"; };
+		BF36AD0A2BD561FBBC935DAC21FFD469 /* Pods-PocketBouncer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketBouncer-resources.sh"; sourceTree = "<group>"; };
 		C216427E9C466CFCCD9C6F323A5C87AB /* Faker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Faker.swift; path = Source/Faker.swift; sourceTree = "<group>"; };
-		C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ColorGame.framework; path = "Pods-ColorGame.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA7BCC782DCD94092B15A036E26F1F02 /* Pods-ColorGame.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ColorGame.modulemap"; sourceTree = "<group>"; };
 		CD06050C84000C5CF97462BDD7AE123B /* sv.json */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.json; path = Resources/Locales/sv.json; sourceTree = "<group>"; };
 		D1455ED32D7F9D30FA0FE72BA2D020AC /* en-CA.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-CA.json"; path = "Resources/Locales/en-CA.json"; sourceTree = "<group>"; };
-		D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ColorGame-umbrella.h"; sourceTree = "<group>"; };
 		D233781BE05B05A425C3D4648DED5357 /* ResourceBundle-Faker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Faker-Info.plist"; sourceTree = "<group>"; };
 		D440FDB1F013A28B69154AC973E00288 /* de-AT.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "de-AT.json"; path = "Resources/Locales/de-AT.json"; sourceTree = "<group>"; };
 		D4AC6AC931D05E49E14F7FC25001D05C /* pl.json */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.json; path = Resources/Locales/pl.json; sourceTree = "<group>"; };
+		D6A33152116F12DD784CCF20A30F3908 /* Pods-PocketBouncer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketBouncer-frameworks.sh"; sourceTree = "<group>"; };
 		D6DA409868141A724B3F615713B0A318 /* ko.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ko.json; path = Resources/Locales/ko.json; sourceTree = "<group>"; };
 		DB883C9EC288E06668F3734F3E7DF373 /* Fakery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Fakery-dummy.m"; sourceTree = "<group>"; };
 		E1F2AB6EBD9B70751D2D72238E351F1D /* ja.json */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.json; path = Resources/Locales/ja.json; sourceTree = "<group>"; };
 		E296C07E38B2519BE6B8A178BF72E62B /* en-US.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-US.json"; path = "Resources/Locales/en-US.json"; sourceTree = "<group>"; };
-		E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ColorGame.debug.xcconfig"; sourceTree = "<group>"; };
 		E5A191FD3F46E7317CE031CA32ED566B /* Fakery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fakery-umbrella.h"; sourceTree = "<group>"; };
 		F110D4AC44BD4FA45607F53E4FF52B8B /* en-TEST.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "en-TEST.json"; path = "Resources/Locales/en-TEST.json"; sourceTree = "<group>"; };
 		F3635406C714284BF10EFEA0DE7E160C /* Lorem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lorem.swift; path = Source/Generators/Lorem.swift; sourceTree = "<group>"; };
@@ -149,11 +149,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5B131E5E72E010B2346AAD51DB1131E9 /* Frameworks */ = {
+		4A4D6D7C56B775A99DBF7F7F6F5EF643 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D3842CCCC9EF15CAC25BFC72AEBB06 /* Foundation.framework in Frameworks */,
+				5390D180E5CF9E953517FBA85D115C94 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +167,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F20BAF9A5E601D8F36FFCE5F84348C2 /* Pods-PocketBouncer */ = {
+			isa = PBXGroup;
+			children = (
+				2B79DB6DCC1AD346D8229AA261825A97 /* Info.plist */,
+				B3D0ED94052564490F11FE8E9D9EB5B8 /* Pods-PocketBouncer.modulemap */,
+				9DA52C1B46A9AC5DA30FF76D3186E906 /* Pods-PocketBouncer-acknowledgements.markdown */,
+				99C781B67B724AC11B7826FFB4FE5F4B /* Pods-PocketBouncer-acknowledgements.plist */,
+				340D7173C1AE087D8E69CDF6D673F3BE /* Pods-PocketBouncer-dummy.m */,
+				D6A33152116F12DD784CCF20A30F3908 /* Pods-PocketBouncer-frameworks.sh */,
+				BF36AD0A2BD561FBBC935DAC21FFD469 /* Pods-PocketBouncer-resources.sh */,
+				6FBFA03FFD28B9E6ADADFEB17FF9438D /* Pods-PocketBouncer-umbrella.h */,
+				AD37AFD1B92DD82B6B5F3714C97FD4B1 /* Pods-PocketBouncer.debug.xcconfig */,
+				2742A8EE96F467CA619C379984F47C1A /* Pods-PocketBouncer.release.xcconfig */,
+			);
+			name = "Pods-PocketBouncer";
+			path = "Target Support Files/Pods-PocketBouncer";
+			sourceTree = "<group>";
+		};
 		3DCA41A3C14E36B1C953866DD092F089 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +206,8 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				AB4457B621EE53494F4B225237011AF6 /* Pods */,
-				B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */,
-				FC62A67C3E1C54C1FFC5791A839E6CE6 /* Targets Support Files */,
+				CE48ECAD1E8841C436500BE0FDDA3DD7 /* Products */,
+				E9314AA95E8FB862A4245C5A81260EF7 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,16 +250,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */,
-				0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */,
-				C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +285,16 @@
 			path = Fakery;
 			sourceTree = "<group>";
 		};
+		CE48ECAD1E8841C436500BE0FDDA3DD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66033E7435E0C8644C9296238F10BF99 /* Faker.bundle */,
+				2D4D3927F29414BD23A47AD5FA116C62 /* Fakery.framework */,
+				28AEBBE3D05B43140288A0565F6C190F /* Pods_PocketBouncer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,28 +303,10 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		E84645937B08F3BB951604B4A4981887 /* Pods-ColorGame */ = {
+		E9314AA95E8FB862A4245C5A81260EF7 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				7C0D2ECD4D6FDBC2BA090C6A28A998D2 /* Info.plist */,
-				CA7BCC782DCD94092B15A036E26F1F02 /* Pods-ColorGame.modulemap */,
-				2DCF273AC7A0E86B700F1BAE9FC6559A /* Pods-ColorGame-acknowledgements.markdown */,
-				1E3D1BF83D14DBB8F69D61BA7343A46B /* Pods-ColorGame-acknowledgements.plist */,
-				07FE660B65F896A13C752774BB83AF33 /* Pods-ColorGame-dummy.m */,
-				0CA74A43BB4ADF4B399BFE214D99B970 /* Pods-ColorGame-frameworks.sh */,
-				54F4FB4DC6E896F1D5C23DD86ECD40DC /* Pods-ColorGame-resources.sh */,
-				D21FF2FA2F4ACE34C7AECE19919D9425 /* Pods-ColorGame-umbrella.h */,
-				E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */,
-				2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */,
-			);
-			name = "Pods-ColorGame";
-			path = "Target Support Files/Pods-ColorGame";
-			sourceTree = "<group>";
-		};
-		FC62A67C3E1C54C1FFC5791A839E6CE6 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E84645937B08F3BB951604B4A4981887 /* Pods-ColorGame */,
+				2F20BAF9A5E601D8F36FFCE5F84348C2 /* Pods-PocketBouncer */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
@@ -314,11 +314,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		319598F8FDC7981A4BE663A566A27EC3 /* Headers */ = {
+		9F2F0D4BE4AC4C949035153D79382B24 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77C77A45FA3D3ABC900840BED294DD06 /* Pods-ColorGame-umbrella.h in Headers */,
+				61CA14207A683D281E764E245AC88C7D /* Pods-PocketBouncer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,24 +333,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07ABB6954C7A10823465559B7FD7CE1B /* Pods-ColorGame */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EEFB9AE9743270556C1F9480ED27C088 /* Build configuration list for PBXNativeTarget "Pods-ColorGame" */;
-			buildPhases = (
-				8535C57CCBDD39A093697EB740E1FA56 /* Sources */,
-				5B131E5E72E010B2346AAD51DB1131E9 /* Frameworks */,
-				319598F8FDC7981A4BE663A566A27EC3 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C9D78E742F6DF3C1119D952B7A511C7C /* PBXTargetDependency */,
-			);
-			name = "Pods-ColorGame";
-			productName = "Pods-ColorGame";
-			productReference = C4CC8AC53188EE24E99C4D7224C1EE93 /* Pods_ColorGame.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		481A2DE87CCC53B450C75302063F2CB1 /* Fakery */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC42024938969071495900F584D7B1BF /* Build configuration list for PBXNativeTarget "Fakery" */;
@@ -367,7 +349,25 @@
 			);
 			name = Fakery;
 			productName = Fakery;
-			productReference = 0BCEAA6EF35E33321B78B8D725E6E96B /* Fakery.framework */;
+			productReference = 2D4D3927F29414BD23A47AD5FA116C62 /* Fakery.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9630CF61F8683DA6766CD95CECCB77D8 /* Pods-PocketBouncer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 519FD871A1428202035A7272B0127E6D /* Build configuration list for PBXNativeTarget "Pods-PocketBouncer" */;
+			buildPhases = (
+				9AAB0868B6CFFB7F12C2E9E35FADE5EB /* Sources */,
+				4A4D6D7C56B775A99DBF7F7F6F5EF643 /* Frameworks */,
+				9F2F0D4BE4AC4C949035153D79382B24 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E80280A3B1356E7C0FB0FDF4DDAAC00B /* PBXTargetDependency */,
+			);
+			name = "Pods-PocketBouncer";
+			productName = "Pods-PocketBouncer";
+			productReference = 28AEBBE3D05B43140288A0565F6C190F /* Pods_PocketBouncer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */ = {
@@ -384,7 +384,7 @@
 			);
 			name = "Fakery-Faker";
 			productName = "Fakery-Faker";
-			productReference = 9EAEEB128B5EA69A71897636176C3F53 /* Faker.bundle */;
+			productReference = 66033E7435E0C8644C9296238F10BF99 /* Faker.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -404,13 +404,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = B5F5B96B1C3EB8CF9F582BA537D6EA16 /* Products */;
+			productRefGroup = CE48ECAD1E8841C436500BE0FDDA3DD7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				481A2DE87CCC53B450C75302063F2CB1 /* Fakery */,
 				C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */,
-				07ABB6954C7A10823465559B7FD7CE1B /* Pods-ColorGame */,
+				9630CF61F8683DA6766CD95CECCB77D8 /* Pods-PocketBouncer */,
 			);
 		};
 /* End PBXProject section */
@@ -458,11 +458,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8535C57CCBDD39A093697EB740E1FA56 /* Sources */ = {
+		9AAB0868B6CFFB7F12C2E9E35FADE5EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65E8D819F0997E9A55AA227E80B5470 /* Pods-ColorGame-dummy.m in Sources */,
+				2DF3E053E24FE799D3A695BD141B28C4 /* Pods-PocketBouncer-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,11 +507,11 @@
 			target = C498EBDBE0A2EF6EF719EC8718286AD6 /* Fakery-Faker */;
 			targetProxy = 2C5B529863ED4956EDDE497ADA2B735D /* PBXContainerItemProxy */;
 		};
-		C9D78E742F6DF3C1119D952B7A511C7C /* PBXTargetDependency */ = {
+		E80280A3B1356E7C0FB0FDF4DDAAC00B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Fakery;
 			target = 481A2DE87CCC53B450C75302063F2CB1 /* Fakery */;
-			targetProxy = 36C38E9788430C416FDBE6E9D69FB69A /* PBXContainerItemProxy */;
+			targetProxy = 2E4965FA49DD954CCC1491296CA6D460 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -598,43 +598,44 @@
 			};
 			name = Debug;
 		};
-		6B8F3A96901414D1DF1765C991E16A09 /* Release */ = {
+		17D7D7EEEB2FA38435F3FF43E153BC5E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AF21660FF1CA088CAB3755247810DBD /* Pods-ColorGame.release.xcconfig */;
+			baseConfigurationReference = AD37AFD1B92DD82B6B5F3714C97FD4B1 /* Pods-PocketBouncer.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ColorGame/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketBouncer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ColorGame/Pods-ColorGame.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketBouncer/Pods-PocketBouncer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ColorGame;
+				PRODUCT_NAME = Pods_PocketBouncer;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		707B86CFB21B645E37109F39754D4051 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -697,45 +698,6 @@
 			};
 			name = Debug;
 		};
-		86E8215F224E4F1CF929AC3043D9B992 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5862B4FCFF6A0AC76A83DA849AD3011 /* Pods-ColorGame.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ColorGame/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ColorGame/Pods-ColorGame.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ColorGame;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		8D3C14AD42D9F53BEE911D6BFABEBF46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7134F28AFDD27DC397A965BF7CD28AE1 /* Fakery.xcconfig */;
@@ -788,6 +750,44 @@
 			};
 			name = Release;
 		};
+		AA1DA3557916D9662DE3DA116B0D4D7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2742A8EE96F467CA619C379984F47C1A /* Pods-PocketBouncer.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketBouncer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketBouncer/Pods-PocketBouncer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_PocketBouncer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -809,20 +809,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		519FD871A1428202035A7272B0127E6D /* Build configuration list for PBXNativeTarget "Pods-PocketBouncer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17D7D7EEEB2FA38435F3FF43E153BC5E /* Debug */,
+				AA1DA3557916D9662DE3DA116B0D4D7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BC42024938969071495900F584D7B1BF /* Build configuration list for PBXNativeTarget "Fakery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D3C14AD42D9F53BEE911D6BFABEBF46 /* Debug */,
 				0C1794624CDABFD95232E743F935B664 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EEFB9AE9743270556C1F9480ED27C088 /* Build configuration list for PBXNativeTarget "Pods-ColorGame" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				86E8215F224E4F1CF929AC3043D9B992 /* Debug */,
-				6B8F3A96901414D1DF1765C991E16A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

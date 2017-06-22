@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07ABB6954C7A10823465559B7FD7CE1B"
-               BuildableName = "Pods_ColorGame.framework"
-               BlueprintName = "Pods-ColorGame"
+               BlueprintIdentifier = "9630CF61F8683DA6766CD95CECCB77D8"
+               BuildableName = "Pods_PocketBouncer.framework"
+               BlueprintName = "Pods-PocketBouncer"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07ABB6954C7A10823465559B7FD7CE1B"
-            BuildableName = "Pods_ColorGame.framework"
-            BlueprintName = "Pods-ColorGame"
+            BlueprintIdentifier = "9630CF61F8683DA6766CD95CECCB77D8"
+            BuildableName = "Pods_PocketBouncer.framework"
+            BlueprintName = "Pods-PocketBouncer"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

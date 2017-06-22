@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ColorGameVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ColorGameVersionString[];
+FOUNDATION_EXPORT double Pods_PocketBouncerVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_PocketBouncerVersionString[];
 

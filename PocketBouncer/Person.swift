@@ -18,6 +18,7 @@ class Person: Equatable {
     let expiryDateTimeStamp: Double
     let avatarDictionary: [String: UIImage]
     let idBadge: UIImage
+    let isWearingSunglasses: Bool
     
     enum Gender {
         case male
@@ -44,10 +45,12 @@ class Person: Equatable {
         self.address = personDictionary["address"] as! String
         
         let avatarBuilder = AvatarBuilder.avatarBuilder
-        let avatar = avatarBuilder.buildAvatar(for: gender)
+        let avatar = avatarBuilder.buildAvatar(for: gender, level: level)
         let uuid = UUID().uuidString
-        
-        self.avatarDictionary = [uuid: avatar]
+        let avatarImage = avatar.0
+        self.isWearingSunglasses = avatar.1
+
+        self.avatarDictionary = [uuid: avatarImage]
         
         self.expiryDateString = personDictionary["expiryDate"] as! String
         let dateFormatterGet = DateFormatter()

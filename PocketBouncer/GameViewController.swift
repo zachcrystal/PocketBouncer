@@ -12,9 +12,13 @@ import AudioToolbox
 
 class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
+    // MARK: Status Bar
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    // MARK: Components Singleton
     
     let components = Components.sharedComponentsData
     
@@ -28,6 +32,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     var people: [Person]?
     
+    
+    // User Defaults for storing highscore
     let defaults = UserDefaults.standard
     let highscoreKey = "highscore"
     
@@ -50,6 +56,19 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     // MARK: - UIKit Components
     
+    var rulesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Rules:\n19+\nNo hats\nNo Sunglasses"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.backgroundColor = .white
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 3
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        return label
+    }()
     
     var startButton: UIButton = {
         let button = UIButton(type: .system)
@@ -201,31 +220,30 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
 
     }
     
-    
     // MARK: - Menu Screen
+    
+    // function animates everything off screen and removes gameover buttons from the superview for a clean slate. Not fully clean though, because the people and IDCard arent removed from the superview, they are just placed to the left for when they are called to slide in.
     func handleMainMenuState() {
         
         playAgainButton.removeFromSuperview()
         quitToMenuButton.removeFromSuperview()
         
-        
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             self.IDCardContainer.center.x = -self.view.bounds.width / 2
         }) { (_) in
             self.IDCardContainer.center.y = self.view.frame.size.height / 1.39
-
         }
         
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             self.personImageView.center.x = -self.view.bounds.width / 2
         }) { (_) in
-
+            // left completion block if needed
         }
 
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
             self.tableImageView.frame = CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: self.view.bounds.height * 0.4)
         }) { (_) in
-            // left completion if needed
+            // left completion block if needed
         }
         
         UIView.animate(withDuration: 1.0, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
@@ -235,7 +253,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.putIDCardDown()
         }
         
-        
         UIView.animate(withDuration: 1.0, delay: 0.8, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.8, options: [UIViewAnimationOptions.curveEaseIn], animations: {
             self.approveButton.layer.transform = CATransform3DMakeScale(0, 0, 0)
             self.approveButton.isHidden = true
@@ -244,6 +261,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
     }
     
+    // function removes gameover labels, animates in the table and buttons, sets the ID Card down and slides in both the person and the ID Card
     func handleStart() {
         gameoverCard.removeFromSuperview()
         playAgainButton.removeFromSuperview()
@@ -253,9 +271,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         startButton.isHidden = true
         self.denyButton.isHidden = true
         self.approveButton.isHidden = true
-
-
         
+        // the buttons don't pop in at different times, not sure why...
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
             self.tableImageView.frame = CGRect(x: 0, y: self.view.bounds.height * 0.60, width: self.view.bounds.width, height: self.view.bounds.height * 0.4)
         }) { (_) in
@@ -296,11 +313,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         hideApproveDenyButtons()
         
         // deny tag = 0, approve tag = 1
-        
         var isMatch = Bool()
         guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
-        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true {
+        print(isWearingSunglasses)
+        
+        
+        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true, isWearingSunglasses == false {
             isMatch = true
         } else {
             isMatch = false
@@ -314,13 +333,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         if isMatch == true && sender.tag == 1  {
             score += 1
             slideOutIDCardAndPerson(.right)
-            
         }
         
         if isMatch == false && sender.tag == 0 {
             score += 1
             slideOutIDCardAndPerson(.left)
-            
         }
         
         if isMatch == false && sender.tag == 1 {
@@ -339,6 +356,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
     }
     
+    // presents next person, should figure out if I'm accidentally calling methods twice by introducing this function.
     func presentNextPerson() {
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
@@ -347,6 +365,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     // MARK: - Gameover
     
+    // instantiate the gameoverCard. Method for gameover includes pausing the timer, hiding the buttons, a vibration, and a red flash. In addition, there is a highscore check, the card "unperspective" animation, and the addition of the playAgainButton and the quitToMenuButton.
     let gameoverCard = GameoverView()
     fileprivate func gameover(for reason: GameoverReason) {
         circleTimer.pause()
@@ -412,6 +431,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         setupLayout()
         personShadow.isHidden = true
         
+        if locale == "US" {
+            rulesLabel.text = "Rules:\n21+\nNo hats\nNo Sunglasses"
+        } else if locale == "CA" {
+            rulesLabel.text = "Rules:\n19+\nNo hats\nNo Sunglasses"
+        } else {
+            rulesLabel.text = "Rules:\n21+\nNo hats\nNo Sunglasses"
+        }
     }
     
     // MARK: - Layout
@@ -427,6 +453,12 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         view.addSubview(startButton)
         
         backgroundImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        backgroundImageView.addSubview(rulesLabel)
+        
+        rulesLabel.anchor(top: backgroundImageView.topAnchor, left: backgroundImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 3, height: view.frame.height / 5)
+        rulesLabel.alpha = 0.5
+        
         
         personShadow.frame.size = CGSize(width: view.frame.width, height: 250)
         personShadow.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
@@ -562,6 +594,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     // MARK: - New Person Setup
     
     var randomPerson: Person?
+    var isWearingSunglasses = false
     
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
@@ -570,6 +603,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
         let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male, level: level)
+        isWearingSunglasses = randomPerson.isWearingSunglasses
         
         for (key, value) in randomPerson.avatarDictionary {
             personImageView.image = value
@@ -605,7 +639,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         } else if expiryTimestamp < currentTimestamp {
             isExpired = true
         }
-                
+        
+        
+        // USA and Canada localization... quebec?
         if locale == "US" {
             if person.age >= 21 {
                 isLegal = true

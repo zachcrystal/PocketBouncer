@@ -10,7 +10,6 @@ import UIKit
 
 class AvatarBuilder {
     
-
     static let avatarBuilder = AvatarBuilder()
     
     var skinColors: [[String: UIColor]] = [["Dark": UIColor(red:0.95, green:0.72, blue:0.40, alpha:1.00), "Light": UIColor(red:0.96, green:0.81, blue:0.58, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.42, blue:0.20, alpha:1.00), "Light": UIColor(red:0.72, green:0.56, blue:0.27, alpha:1.00)], ["Dark": UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), "Light": UIColor(red:0.71, green:0.63, blue:0.46, alpha:1.00)]]
@@ -28,8 +27,12 @@ class AvatarBuilder {
     var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe"), #imageLiteral(resourceName: "Tuft")]
     var hairColours: [UIColor] = [UIColor(red:0.60, green:0.60, blue:0.60, alpha:1.00), UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), UIColor(red:0.95, green:0.91, blue:0.41, alpha:1.00), UIColor(red:0.89, green:0.64, blue:0.31, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)]
     var glasses = [nil, nil, nil, #imageLiteral(resourceName: "RoundGlasses")]
+    var sunglasses = [nil, nil, nil, #imageLiteral(resourceName: "Sunglasses")]
     
-    func buildAvatar(for gender: Person.Gender) -> UIImage {
+    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool) {
+        
+        var wearingSunglasses = false
+        
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 400))
         view.layer.zPosition = -1
         view.backgroundColor = .clear
@@ -68,14 +71,12 @@ class AvatarBuilder {
         neckImageView.layer.zPosition = 3
         view.addSubview(neckImageView)
         
-        
         let noseImageView = UIImageView(image: noses.randomItem())
         noseImageView.tintColor = skinColor["Dark"]
         noseImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         noseImageView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.395)
         noseImageView.layer.zPosition = 4
         view.addSubview(noseImageView)
-        
         
         let stripes = UIImageView(image: shirtAccessories.randomItem())
         if stripes.image != nil {
@@ -100,8 +101,6 @@ class AvatarBuilder {
             }
             view.addSubview(stripes)
         }
-        
-        
         
         let eyesImageView = UIImageView(image: eyes.randomItem())
         eyesImageView.tintColor = eyeColours.randomItem()
@@ -154,12 +153,25 @@ class AvatarBuilder {
             glassesView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.34)
             glassesView.layer.zPosition = 5
             view.addSubview(glassesView)
-            
         }
         
+        if level >= 2 {
+            let sunglassesView = UIImageView(image: sunglasses.randomItem())
+            if sunglassesView.image != nil {
+                if glassesView.image == nil {
+                    wearingSunglasses = true
+                    sunglassesView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                    sunglassesView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.34)
+                    sunglassesView.layer.zPosition = 5
+                    view.addSubview(sunglassesView)
+                }
+            }
+        }
+        
+        
+        // Extension that takes a "snapshot" of the UIView and converts it into a UIImageView
         let avatarImage = view.renderToImage(afterScreenUpdates: true)
         
-        
-        return avatarImage
+        return (avatarImage, wearingSunglasses)
     }
 }
