@@ -13,13 +13,11 @@ import AudioToolbox
 class GameViewController: UIViewController, SRCountdownTimerDelegate {
     
     // MARK: Status Bar
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     // MARK: Components Singleton
-    
     let components = Components.sharedComponentsData
     
     
@@ -28,14 +26,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     var isExpired: Bool?
     var isLegal: Bool?
     
-    // MARK: - Isolated Properties
     
-    var people: [Person]?
-    
-    
-    // User Defaults for storing highscore
-    let defaults = UserDefaults.standard
-    let highscoreKey = "highscore"
+    let defaults = UserDefaults.standard // User Defaults for storing highscore
+    let highscoreKey = "highscore" // key for storing and retrieving highscore from user defaults
     
     var level: Int = 1
     
@@ -62,7 +55,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - UIKit Components
-    
     var rulesLabel: UILabel = {
         let label = UILabel()
         label.text = "Rules:\n19+"
@@ -106,12 +98,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let iv = UIImageView()
         iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "placeholder")
-        return iv
-    }()
-    
-    var personShadow: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "RedShadow")
         return iv
     }()
     
@@ -185,7 +171,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
 
     
     // MARK: - Action Selectors
-    
     func handlePlayAgain() {
         gameoverCard.removeFromSuperview()
         playAgainButton.removeFromSuperview()
@@ -224,7 +209,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }) { (_) in
             
         }
-
     }
     
     // MARK: - Menu Screen
@@ -426,8 +410,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.gameoverCard.reasonLabel.text = reason.rawValue
             self.IDCardContainer.addSubview(self.gameoverCard)
             self.gameoverCard.anchor(top: self.IDCardContainer.topAnchor, left: self.IDCardContainer.leftAnchor, bottom: self.IDCardContainer.bottomAnchor, right: self.IDCardContainer.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
-            
-            
+       
         }) { (_) in
             self.view.addSubview(self.playAgainButton)
             self.playAgainButton.anchor(top: self.gameoverCard.bottomAnchor, left: self.gameoverCard.leftAnchor, bottom: nil, right: self.gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
@@ -437,7 +420,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - Life Cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -448,7 +430,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         highScore = defaults.object(forKey: highscoreKey) as? Int ?? 0
         
         setupLayout()
-        personShadow.isHidden = true
         
         if locale == "US" {
             rulesLabel.text = "Rules:\n21+"
@@ -466,7 +447,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         tableImageView.frame = CGRect(x: 0, y: view.bounds.height, width: view.bounds.width, height: view.bounds.height * 0.4)
         view.addSubview(tableImageView)
-        view.addSubview(personShadow)
         view.addSubview(personImageView)
         view.addSubview(scoreLabel)
         view.addSubview(startButton)
@@ -477,11 +457,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         rulesLabel.anchor(top: backgroundImageView.topAnchor, left: backgroundImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 3, height: view.frame.height / 5)
         rulesLabel.alpha = 0.6
-        
-        
-        personShadow.frame.size = CGSize(width: view.frame.width, height: 250)
-        personShadow.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        personShadow.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height * 0.60)
         
         personImageView.frame.size = CGSize(width: 240 * 0.7, height: 400 * 0.7)
         personImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
@@ -513,7 +488,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - IDCard
-    
     var IDCard: IDCardView = {
         let view = IDCardView()
         return view
@@ -525,7 +499,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }()
     
     // MARK: - Animations
-    
     fileprivate func setupIDCard() {
         
         IDCardContainer.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 1.39)
@@ -534,7 +507,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         
         view.addSubview(IDCardContainer)
     }
-    
     
     fileprivate func slideInIDCardAndPerson() {
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
@@ -585,7 +557,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                     self.selectRandomPerson()
                     self.presentNextPerson()
                 }
-                
             }
         }
     }
@@ -597,28 +568,20 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         redBorderFlash.layer.zPosition = 1200
         view.addSubview(redBorderFlash)
         
-        
-        personShadow.isHidden = false
-        
-        self.personShadow.alpha = 1
         UIView.animate(withDuration: 4, animations: {
-            self.personShadow.alpha = 0
             redBorderFlash.alpha = 0
         }) { (_) in
-            self.personShadow.isHidden = true
             redBorderFlash.removeFromSuperview()
         }
     }
     
     // MARK: - New Person Setup
-    
     var randomPerson: Person?
     var isWearingSunglasses = false
     var isWearingHat = false
     
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
-        
         
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
@@ -649,7 +612,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     var personCanEnter: Bool?
     let locale = Locale.current.regionCode
     
-    
     fileprivate func checkIfPersonCanEnter(person: Person) {
         
         let currentTimestamp = Date().timeIntervalSince1970
@@ -661,15 +623,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             isExpired = true
         }
         
-        
-        // USA and Canada localization... quebec?
+        // USA and Canada localization... quebec?... if I added localization by province, I'd have to make the locale auto-update I think. I have to look into whether province localization is even possible. I may have to go by language in Canada, "en-CA" and fr-CA" to determine legal drinking age.
         if locale == "US" {
             if person.age >= 21 {
                 isLegal = true
             } else {
                 isLegal = false
             }
-            
         } else if locale == "CA" {
             if person.age >= 19 {
                 isLegal = true
@@ -686,7 +646,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - Timer
-    
     let circleTimer: SRCountdownTimer = {
         let timer = SRCountdownTimer()
         timer.backgroundColor = .clear
