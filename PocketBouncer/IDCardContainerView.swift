@@ -10,7 +10,6 @@ import UIKit
 
 class IDCardContainerView: UIView {
     
-    
     var person: Person? {
         didSet {
             guard let person = person else { return }

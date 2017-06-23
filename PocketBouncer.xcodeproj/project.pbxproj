@@ -22,8 +22,19 @@
 		92E84D0E1EEE4CBA0074C05A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84D0D1EEE4CBA0074C05A /* Person.swift */; };
 		92E84D171EEEE93C0074C05A /* IDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84D161EEEE93C0074C05A /* IDCardView.swift */; };
 		92E84D1C1EEEF8A40074C05A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E84D1B1EEEF8A40074C05A /* GameViewController.swift */; };
+		92F776B91EFC632A000F9E0E /* PocketBouncerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F776B81EFC632A000F9E0E /* PocketBouncerUITests.swift */; };
 		DA23FF4D7A591131313FA91A /* Pods_PocketBouncer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA13BE28FCC0BB8F6B1A604 /* Pods_PocketBouncer.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92F776BB1EFC632A000F9E0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92E84CE81EEE07D80074C05A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92E84CEF1EEE07D80074C05A;
+			remoteInfo = PocketBouncer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +55,9 @@
 		92E84D0D1EEE4CBA0074C05A /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		92E84D161EEEE93C0074C05A /* IDCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDCardView.swift; sourceTree = "<group>"; };
 		92E84D1B1EEEF8A40074C05A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		92F776B61EFC632A000F9E0E /* PocketBouncerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketBouncerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F776B81EFC632A000F9E0E /* PocketBouncerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketBouncerUITests.swift; sourceTree = "<group>"; };
+		92F776BA1EFC632A000F9E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDA13BE28FCC0BB8F6B1A604 /* Pods_PocketBouncer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PocketBouncer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F604F7623521400D3A36FF27 /* Pods-PocketBouncer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketBouncer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PocketBouncer/Pods-PocketBouncer.debug.xcconfig"; sourceTree = "<group>"; };
 		F6702794EC1B3F976FF41262 /* Pods-PocketBouncer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketBouncer.release.xcconfig"; path = "Pods/Target Support Files/Pods-PocketBouncer/Pods-PocketBouncer.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +69,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA23FF4D7A591131313FA91A /* Pods_PocketBouncer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F776B31EFC632A000F9E0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				92E84CF21EEE07D80074C05A /* PocketBouncer */,
+				92F776B71EFC632A000F9E0E /* PocketBouncerUITests */,
 				92E84CF11EEE07D80074C05A /* Products */,
 				CD37F103773DA7B26F85B4F5 /* Pods */,
 				EE51AB8B7F94C8B0731F159E /* Frameworks */,
@@ -92,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				92E84CF01EEE07D80074C05A /* PocketBouncer.app */,
+				92F776B61EFC632A000F9E0E /* PocketBouncerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +173,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		92F776B71EFC632A000F9E0E /* PocketBouncerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				92F776B81EFC632A000F9E0E /* PocketBouncerUITests.swift */,
+				92F776BA1EFC632A000F9E0E /* Info.plist */,
+			);
+			path = PocketBouncerUITests;
+			sourceTree = "<group>";
+		};
 		CD37F103773DA7B26F85B4F5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +223,24 @@
 			productReference = 92E84CF01EEE07D80074C05A /* PocketBouncer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		92F776B51EFC632A000F9E0E /* PocketBouncerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92F776BF1EFC632A000F9E0E /* Build configuration list for PBXNativeTarget "PocketBouncerUITests" */;
+			buildPhases = (
+				92F776B21EFC632A000F9E0E /* Sources */,
+				92F776B31EFC632A000F9E0E /* Frameworks */,
+				92F776B41EFC632A000F9E0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92F776BC1EFC632A000F9E0E /* PBXTargetDependency */,
+			);
+			name = PocketBouncerUITests;
+			productName = PocketBouncerUITests;
+			productReference = 92F776B61EFC632A000F9E0E /* PocketBouncerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,6 +255,12 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 7RM6BABA7D;
 						ProvisioningStyle = Automatic;
+					};
+					92F776B51EFC632A000F9E0E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 7RM6BABA7D;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 92E84CEF1EEE07D80074C05A;
 					};
 				};
 			};
@@ -222,6 +278,7 @@
 			projectRoot = "";
 			targets = (
 				92E84CEF1EEE07D80074C05A /* PocketBouncer */,
+				92F776B51EFC632A000F9E0E /* PocketBouncerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +291,13 @@
 				92E84CFE1EEE07D80074C05A /* LaunchScreen.storyboard in Resources */,
 				92BE8C211EF60E8C00D15E45 /* Components.json in Resources */,
 				92E84CFB1EEE07D80074C05A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F776B41EFC632A000F9E0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +371,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92F776B21EFC632A000F9E0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F776B91EFC632A000F9E0E /* PocketBouncerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92F776BC1EFC632A000F9E0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92E84CEF1EEE07D80074C05A /* PocketBouncer */;
+			targetProxy = 92F776BB1EFC632A000F9E0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		92E84CFC1EEE07D80074C05A /* LaunchScreen.storyboard */ = {
@@ -450,6 +530,34 @@
 			};
 			name = Release;
 		};
+		92F776BD1EFC632A000F9E0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7RM6BABA7D;
+				INFOPLIST_FILE = PocketBouncerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zacharycrystal.PocketBouncerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PocketBouncer;
+			};
+			name = Debug;
+		};
+		92F776BE1EFC632A000F9E0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7RM6BABA7D;
+				INFOPLIST_FILE = PocketBouncerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zacharycrystal.PocketBouncerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PocketBouncer;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -470,6 +578,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		92F776BF1EFC632A000F9E0E /* Build configuration list for PBXNativeTarget "PocketBouncerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92F776BD1EFC632A000F9E0E /* Debug */,
+				92F776BE1EFC632A000F9E0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

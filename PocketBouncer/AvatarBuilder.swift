@@ -29,6 +29,7 @@ class AvatarBuilder {
     var glasses = [nil, nil, nil, #imageLiteral(resourceName: "RoundGlasses")]
     var sunglasses = [nil, nil, #imageLiteral(resourceName: "Sunglasses")]
     var hat = [nil, nil, nil, "hat"]
+    var tie = [nil, nil, #imageLiteral(resourceName: "Tie")]
     
     func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool, Bool) {
         
@@ -81,16 +82,16 @@ class AvatarBuilder {
         noseImageView.layer.zPosition = 4
         view.addSubview(noseImageView)
         
-        let stripes = UIImageView(image: shirtAccessories.randomItem())
-        if stripes.image != nil {
-            stripes.tintColor = lightColor
-            stripes.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-            if stripes.image != #imageLiteral(resourceName: "StripesHorz") {
-                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.6175)
-                stripes.layer.zPosition = 1
-                if stripes.image == #imageLiteral(resourceName: "Lapels") {
-                    stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.60)
-                    stripes.layer.zPosition = 3
+        let shirtAccessoryView = UIImageView(image: shirtAccessories.randomItem())
+        if shirtAccessoryView.image != nil {
+            shirtAccessoryView.tintColor = lightColor
+            shirtAccessoryView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+            if shirtAccessoryView.image != #imageLiteral(resourceName: "StripesHorz") {
+                shirtAccessoryView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.6175)
+                shirtAccessoryView.layer.zPosition = 1
+                if shirtAccessoryView.image == #imageLiteral(resourceName: "Lapels") {
+                    shirtAccessoryView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.60)
+                    shirtAccessoryView.layer.zPosition = 3
                     let undershirtView = UIImageView(image: #imageLiteral(resourceName: "Undershirt"))
                     undershirtView.tintColor = colourPaletes.randomItem()["Light"]
                     undershirtView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
@@ -99,10 +100,10 @@ class AvatarBuilder {
                     view.addSubview(undershirtView)
                 }
             } else {
-                stripes.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.67)
-                stripes.layer.zPosition = 1
+                shirtAccessoryView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.67)
+                shirtAccessoryView.layer.zPosition = 1
             }
-            view.addSubview(stripes)
+            view.addSubview(shirtAccessoryView)
         }
         
         let eyesImageView = UIImageView(image: eyes.randomItem())

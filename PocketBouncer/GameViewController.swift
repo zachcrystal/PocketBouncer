@@ -50,6 +50,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             }
             if score == 20 {
                 level = 4
+                rulesLabel.text?.append("\nNo Ties")
             }
         }
     }
@@ -176,6 +177,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         playAgainButton.removeFromSuperview()
         quitToMenuButton.removeFromSuperview()
         score = 0
+        level = 0
+        setupRules()
         selectRandomPerson()
         presentNextPerson()
         putIDCardDown()
@@ -258,6 +261,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         playAgainButton.removeFromSuperview()
         quitToMenuButton.removeFromSuperview()
         score = 0
+        level = 0
+        setupRules()
         selectRandomPerson()
         startButton.isHidden = true
         self.denyButton.isHidden = true
@@ -419,6 +424,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
     }
     
+    
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -430,7 +437,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         highScore = defaults.object(forKey: highscoreKey) as? Int ?? 0
         
         setupLayout()
+        setupRules()
         
+    }
+    
+    func setupRules() {
         if locale == "US" {
             rulesLabel.text = "Rules:\n21+"
         } else if locale == "CA" {
