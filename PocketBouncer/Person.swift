@@ -20,6 +20,7 @@ class Person: Equatable {
     let idBadge: UIImage
     let isWearingSunglasses: Bool
     let isWearingHat: Bool
+    let isWearingTie: Bool
     
     enum Gender {
         case male
@@ -31,18 +32,18 @@ class Person: Equatable {
         self.lastName = personDictionary["lastName"] as! String
         
         let dob = personDictionary["dob"] as! String
+        
+        let ageComponents = dob.components(separatedBy: "-")
+        let dateFromComponents = Calendar.current.date(from: DateComponents(year: Int(ageComponents[2]), month: Int(ageComponents[0]), day: Int(ageComponents[1])))!
+        self.age = dateFromComponents.ageInt
+        
         let dobDateFormatter = DateFormatter()
         dobDateFormatter.dateFormat = "MM-dd-yyyy"
         let dobDate = dobDateFormatter.date(from: dob)
-        
         dobDateFormatter.dateStyle = .medium
-        
         self.dob = dobDateFormatter.string(from: dobDate!)
 
-        let ageComponents = dob.components(separatedBy: "-")
-        let dateDob = Calendar.current.date(from: DateComponents(year: Int(ageComponents[2]), month: Int(ageComponents[1]), day: Int(ageComponents[0])))!
-        self.age = dateDob.ageInt
-        
+
         self.address = personDictionary["address"] as! String
         
         let avatarBuilder = AvatarBuilder.avatarBuilder
@@ -51,6 +52,7 @@ class Person: Equatable {
         let avatarImage = avatar.0
         self.isWearingSunglasses = avatar.1
         self.isWearingHat = avatar.2
+        self.isWearingTie = avatar.3
 
         self.avatarDictionary = [uuid: avatarImage]
         

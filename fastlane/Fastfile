@@ -57,6 +57,11 @@ platform :ios do
     # )
   end
 
+ desc "Take screenshots"
+  lane :screenshot do
+    snapshot
+  end
+
   error do |lane, exception|
     # slack(
     #   message: exception.message,

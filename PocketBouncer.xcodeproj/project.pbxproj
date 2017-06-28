@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9218E0091EF8311300B6A4C5 /* AvatarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9218E0081EF8311300B6A4C5 /* AvatarBuilder.swift */; };
 		923436751EF1175E004CEA6D /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923436741EF1175E004CEA6D /* SRCountdownTimer.swift */; };
+		9262390A1EFD905C003AF49F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926239091EFD905C003AF49F /* SnapshotHelper.swift */; };
 		92BE8C1A1EF5BEBD00D15E45 /* GameoverReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */; };
 		92BE8C1D1EF5C40300D15E45 /* GameoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */; };
 		92BE8C1F1EF60BD100D15E45 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BE8C1E1EF60BD100D15E45 /* Components.swift */; };
@@ -40,6 +41,7 @@
 		9203D6F12A480BBB96A671A3 /* Pods_ColorGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9218E0081EF8311300B6A4C5 /* AvatarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBuilder.swift; sourceTree = "<group>"; };
 		923436741EF1175E004CEA6D /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
+		926239091EFD905C003AF49F /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		92BE8C191EF5BEBD00D15E45 /* GameoverReason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverReason.swift; sourceTree = "<group>"; };
 		92BE8C1C1EF5C40300D15E45 /* GameoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverView.swift; sourceTree = "<group>"; };
 		92BE8C1E1EF60BD100D15E45 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		92F776B71EFC632A000F9E0E /* PocketBouncerUITests */ = {
 			isa = PBXGroup;
 			children = (
+				926239091EFD905C003AF49F /* SnapshotHelper.swift */,
 				92F776B81EFC632A000F9E0E /* PocketBouncerUITests.swift */,
 				92F776BA1EFC632A000F9E0E /* Info.plist */,
 			);
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F776B91EFC632A000F9E0E /* PocketBouncerUITests.swift in Sources */,
+				9262390A1EFD905C003AF49F /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +590,7 @@
 				92F776BE1EFC632A000F9E0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

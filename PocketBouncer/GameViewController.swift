@@ -52,6 +52,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
                 level = 4
                 rulesLabel.text?.append("\nNo Ties")
             }
+            if score == 25 {
+                level = 5
+            }
         }
     }
     
@@ -169,7 +172,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         button.addTarget(self, action: #selector(handleMainMenuState), for: .touchUpInside)
         return button
     }()
-
+    
     
     // MARK: - Action Selectors
     func handlePlayAgain() {
@@ -208,7 +211,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.IDCardContainer.layer.zPosition = 80
             
             self.IDCardContainer.center.y = self.view.frame.size.height / 1.39
-
+            
         }) { (_) in
             
         }
@@ -233,7 +236,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }) { (_) in
             // left completion block if needed
         }
-
+        
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
             self.tableImageView.frame = CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: self.view.bounds.height * 0.4)
         }) { (_) in
@@ -291,7 +294,10 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.approveButton.layer.transform = CATransform3DMakeScale(1, 1, 1)
         }) { (_) in
             self.presentNextPerson()
-            if self.level >= 4 {
+            if self.level == 5 {
+                self.circleTimer.start(beginningValue: 3)
+            }
+            if self.level == 3 {
                 self.circleTimer.start(beginningValue: 4)
             } else {
                 self.circleTimer.start(beginningValue: 5)
@@ -316,7 +322,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         var isMatch = Bool()
         guard let IDCardViewKey = IDCardContainer.IDCard.identificationImageKey else { return }
         
-        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true, isWearingSunglasses == false, isWearingHat == false {
+        if personImageViewKey == IDCardViewKey && isExpired == false && isLegal == true, isWearingSunglasses == false, isWearingHat == false, isWearingTie == false {
             isMatch = true
         } else {
             isMatch = false
@@ -338,6 +344,18 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         }
         
         if isMatch == false && sender.tag == 1 {
+            
+            if isWearingTie == true {
+                gameover(for: .isWearingTie)
+                flashRed()
+                return
+            }
+            
+            if isWearingHat == true {
+                gameover(for: .isWearingHat)
+                flashRed()
+                return
+            }
             
             if isWearingSunglasses == true {
                 gameover(for: .isWearingSunglasses)
@@ -364,10 +382,13 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     func presentNextPerson() {
         unhideApproveDenyButtons()
         slideInIDCardAndPerson()
-        if level >= 4 {
+        if level == 5 {
+            circleTimer.start(beginningValue: 3)
+        }
+        if level == 3 {
             circleTimer.start(beginningValue: 4)
         } else {
-        circleTimer.start(beginningValue: 5)
+            circleTimer.start(beginningValue: 5)
         }
     }
     
@@ -415,7 +436,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
             self.gameoverCard.reasonLabel.text = reason.rawValue
             self.IDCardContainer.addSubview(self.gameoverCard)
             self.gameoverCard.anchor(top: self.IDCardContainer.topAnchor, left: self.IDCardContainer.leftAnchor, bottom: self.IDCardContainer.bottomAnchor, right: self.IDCardContainer.rightAnchor, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2, width: 0, height: 0)
-       
+            
         }) { (_) in
             self.view.addSubview(self.playAgainButton)
             self.playAgainButton.anchor(top: self.gameoverCard.bottomAnchor, left: self.gameoverCard.leftAnchor, bottom: nil, right: self.gameoverCard.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
@@ -452,7 +473,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     }
     
     // MARK: - Layout
-    
     fileprivate func setupLayout() {
         view.addSubview(backgroundImageView)
         
@@ -469,7 +489,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         rulesLabel.anchor(top: backgroundImageView.topAnchor, left: backgroundImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 3, height: view.frame.height / 5)
         rulesLabel.alpha = 0.6
         
-        personImageView.frame.size = CGSize(width: 240 * 0.7, height: 400 * 0.7)
+        personImageView.frame.size = CGSize(width: view.frame.width * 0.48, height: view.frame.height * 0.42)
         personImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         personImageView.layer.position = CGPoint(x: view.frame.width / 2, y: view.frame.height * 0.60)
         
@@ -487,11 +507,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        approveButton.frame.size = CGSize(width: 85, height: 85)
-        denyButton.frame.size = CGSize(width: 85, height: 85)
+        approveButton.frame.size = CGSize(width: 80, height: 80)
+        denyButton.frame.size = CGSize(width: 80, height: 80)
         approveButton.center = CGPoint(x: self.view.center.x + view.center.x * 0.3, y: view.center.y * 1.86)
         denyButton.center = CGPoint(x: self.view.center.x - view.center.x * 0.3, y: view.center.y * 1.86)
-
+        
         view.addSubview(approveButton)
         view.addSubview(denyButton)
         
@@ -590,6 +610,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
     var randomPerson: Person?
     var isWearingSunglasses = false
     var isWearingHat = false
+    var isWearingTie = false
     
     fileprivate func selectRandomPerson() {
         let genderProbability = arc4random_uniform(10) + 1
@@ -599,6 +620,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate {
         let randomPerson = Person(personDictionary: personDictionary, gender: genderProbability >= 5 ? .female : .male, level: level)
         isWearingSunglasses = randomPerson.isWearingSunglasses
         isWearingHat = randomPerson.isWearingHat
+        isWearingTie = randomPerson.isWearingTie
         
         for (key, value) in randomPerson.avatarDictionary {
             personImageView.image = value

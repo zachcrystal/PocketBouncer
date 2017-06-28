@@ -31,13 +31,12 @@ class Components {
     func buildPerson(gender: Gender) -> [String: Any] {
         let faker = Faker(locale: "en")
         
-        let address = "\(faker.address.streetAddress(includeSecondary: true))\n\(faker.address.city()), \(faker.address.stateAbbreviation()) \(faker.address.postcode())"
+        let address = "\(faker.address.streetAddress(includeSecondary: false))\n\(faker.address.city()), \(faker.address.stateAbbreviation())"
         
         let personDictionary = [ "firstName": gender == .male ? maleFirstNames.randomItem() : femaleFirstNames.randomItem(), "lastName": lastNames.randomItem(), "dob": dobs.randomItem(), "expiryDate": expiryDates.randomItem(), "avatar": gender == .male ? maleAvatars.randomItem() : femaleAvatars.randomItem(), "idBadge": idBadges.randomItem(), "address": address]
         
         return personDictionary
     }
-    
     
     init () {
         

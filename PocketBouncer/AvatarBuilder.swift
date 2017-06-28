@@ -31,10 +31,11 @@ class AvatarBuilder {
     var hat = [nil, nil, nil, "hat"]
     var tie = [nil, nil, #imageLiteral(resourceName: "Tie")]
     
-    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool, Bool) {
+    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool, Bool, Bool) {
         
         var wearingSunglasses = false
         var wearingHat = false
+        var wearingTie = false
         
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 400))
@@ -192,10 +193,29 @@ class AvatarBuilder {
             }
         }
         
+        if level >= 4 {
+            let tieView = UIImageView(image: tie.randomItem())
+            if shirtAccessoryView.image != #imageLiteral(resourceName: "Collar") {
+                if tieView.image != nil {
+                    wearingTie = true
+                    let tieColor = colourPaletes.randomItem()
+                    tieView.tintColor = tieColor["Dark"]
+                    let collarView = UIImageView(image: #imageLiteral(resourceName: "Collar"))
+                    collarView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+                    collarView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.6175)
+                    collarView.layer.zPosition = 2
+                    tieView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+                    tieView.layer.position = CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.7325)
+                    tieView.layer.zPosition = 1
+                    view.addSubview(collarView)
+                    view.addSubview(tieView)
+                }
+            }
+        }
         
         // Extension that takes a "snapshot" of the UIView and converts it into a UIImageView
         let avatarImage = view.renderToImage(afterScreenUpdates: true)
         
-        return (avatarImage, wearingSunglasses, wearingHat)
+        return (avatarImage, wearingSunglasses, wearingHat, wearingTie)
     }
 }

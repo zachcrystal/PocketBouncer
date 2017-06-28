@@ -40,7 +40,7 @@ public class SRCountdownTimer: UIView {
     public weak var delegate: SRCountdownTimerDelegate?
     
     private var timer: Timer?
-    private var totalTime: TimeInterval = 1
+    public var totalTime: TimeInterval = 1
     private var elapsedTime: TimeInterval = 0
     private let fireInterval: TimeInterval = 0.01 // ~60 FPS
     private lazy var counterLabel: UILabel = {
