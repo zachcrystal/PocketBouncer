@@ -19,3 +19,4 @@ enum GameoverReason: String {
     case isWearingHat = "Do you see the sign that says No Hats?"
     case isWearingTie = "Do you see the sign that says No Ties?"
 }
+
