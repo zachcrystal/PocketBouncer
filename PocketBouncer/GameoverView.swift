@@ -54,7 +54,6 @@ class GameoverView: UIView {
     }
     
     override func layoutSubviews() {
-
         let scoreStackview = UIStackView(arrangedSubviews: [scoreLabel, highscoreLabel])
         scoreStackview.axis = .vertical
         scoreStackview.distribution = .fillEqually
@@ -69,6 +68,5 @@ class GameoverView: UIView {
         addSubview(stackView)
                 
         stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 4, paddingRight: 10, width: 0, height: 0)
-
     }
 }

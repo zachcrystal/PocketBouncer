@@ -39,7 +39,6 @@ class Components {
     }
     
     init () {
-        
         guard let path = Bundle.main.path(forResource: "Components", ofType: "json") else { return }
         let url = URL(fileURLWithPath: path)
         
