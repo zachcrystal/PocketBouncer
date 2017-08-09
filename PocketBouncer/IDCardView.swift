@@ -72,7 +72,6 @@ class IDCardView: UIView {
     }
 
     override func layoutSubviews() {
-        
         let stackView = UIStackView(arrangedSubviews: [identificationImageView, idBadgeImageView])
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal

@@ -43,7 +43,6 @@ class Person: Equatable {
         dobDateFormatter.dateStyle = .medium
         self.dob = dobDateFormatter.string(from: dobDate!)
 
-
         self.address = personDictionary["address"] as! String
         
         let avatarBuilder = AvatarBuilder.avatarBuilder

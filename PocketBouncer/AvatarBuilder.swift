@@ -31,12 +31,10 @@ class AvatarBuilder {
     var hat = [nil, nil, nil, "hat"]
     var tie = [nil, nil, #imageLiteral(resourceName: "Tie")]
     
-    func buildAvatar(for gender: Person.Gender, level: Int) -> (UIImage, Bool, Bool, Bool) {
-        
+    func buildAvatar(for gender: Person.Gender, level: Int) -> (avatarImage: UIImage, wearingSunglasses: Bool, wearingHat: Bool, wearingTie: Bool) {
         var wearingSunglasses = false
         var wearingHat = false
         var wearingTie = false
-        
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 400))
         view.layer.zPosition = -1
