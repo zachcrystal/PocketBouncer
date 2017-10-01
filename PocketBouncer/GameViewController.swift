@@ -82,9 +82,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
     
     var score: Int = 0 {
         didSet {
-            let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 10)])
-            attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
-            attributedScoreText.append(NSAttributedString(string: "\(score)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
+			let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 10)])
+			attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 2)]))
+			attributedScoreText.append(NSAttributedString(string: "\(score)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34)]))
             gameView.scoreLabel.attributedText = attributedScoreText
             if score == 10 {
                 level = 2

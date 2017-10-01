@@ -13,7 +13,7 @@ class GameoverView: UIView {
     var gameoverLabel: UILabel = {
         let label = UILabel()
         label.text = "Gameover"
-        label.font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightBlack)
+		label.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.black)
         label.textAlignment = .center
         label.textColor = .black
         return label

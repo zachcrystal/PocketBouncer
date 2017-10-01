@@ -47,7 +47,7 @@ class GameView: UIView {
         return button
     }()
     
-    func handleStart() {
+	@objc func handleStart() {
         delegate?.didTapStart()
     }
     
@@ -55,9 +55,9 @@ class GameView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 10)])
-        attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 2)]))
-        attributedScoreText.append(NSAttributedString(string: "0", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34)]))
+		let attributedScoreText = NSMutableAttributedString(string: "SCORE", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 10)])
+		attributedScoreText.append(NSAttributedString(string: "\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 2)]))
+		attributedScoreText.append(NSAttributedString(string: "0", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34)]))
         label.attributedText = attributedScoreText
         label.textColor = .white
         return label
@@ -73,7 +73,7 @@ class GameView: UIView {
         return button
     }()
     
-    func handleDidTapDeny() {
+	@objc func handleDidTapDeny() {
         delegate?.didTapDeny()
     }
     
@@ -87,7 +87,7 @@ class GameView: UIView {
         return button
     }()
     
-    func handleDidTapApprove() {
+	@objc func handleDidTapApprove() {
         delegate?.didTapApprove()
     }
     
@@ -118,7 +118,7 @@ class GameView: UIView {
         return button
     }()
     
-    func handlePlayAgain() {
+	@objc func handlePlayAgain() {
         delegate?.didTapTryAgain()
     }
     
@@ -137,7 +137,7 @@ class GameView: UIView {
         return button
     }()
 
-    func handleMainMenu() {
+	@objc func handleMainMenu() {
         delegate?.didTapQuitToMenu()
     }
     
@@ -162,7 +162,6 @@ class GameView: UIView {
         rulesLabel.anchor(top: backgroundImageView.topAnchor, left: backgroundImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 100)
         rulesLabel.alpha = 0.6
 
-        
         scoreLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         scoreLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
@@ -175,8 +174,7 @@ class GameView: UIView {
         startButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 60)
         startButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         startButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-
+    
         addSubview(approveButton)
         addSubview(denyButton)
         

@@ -18,7 +18,16 @@ class AvatarBuilder {
     var eyes: [UIImage] = [#imageLiteral(resourceName: "DownEyes"), #imageLiteral(resourceName: "HappyEyes"), #imageLiteral(resourceName: "NormalEyes")]
     var shirtAccessories = [nil, #imageLiteral(resourceName: "StripesHorz"), #imageLiteral(resourceName: "StripesVert"), #imageLiteral(resourceName: "Lapels"), #imageLiteral(resourceName: "Collar")]
     var mouths: [UIImage] = [#imageLiteral(resourceName: "MouthTongue"), #imageLiteral(resourceName: "HappySmallBlack"), #imageLiteral(resourceName: "SmallTongue"), #imageLiteral(resourceName: "HappySmallWhite"), #imageLiteral(resourceName: "Closed"), #imageLiteral(resourceName: "Round"), #imageLiteral(resourceName: "Singing")]
-    var colourPaletes: [[String: UIColor]] = [["Dark": UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00), "Light": UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.00)], ["Dark": UIColor(red:0.57, green:0.57, blue:0.57, alpha:1.00), "Light": UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.00)], ["Dark": UIColor(red:0.60, green:0.17, blue:0.14, alpha:1.00), "Light": UIColor(red:0.77, green:0.26, blue:0.23, alpha:1.00)], ["Dark": UIColor(red:0.72, green:0.48, blue:0.19, alpha:1.00), "Light": UIColor(red:0.84, green:0.60, blue:0.30, alpha:1.00)], ["Dark": UIColor(red:0.82, green:0.76, blue:0.26, alpha:1.00), "Light": UIColor(red:0.91, green:0.87, blue:0.39, alpha:1.00)], ["Dark": UIColor(red:0.30, green:0.62, blue:0.23, alpha:1.00), "Light": UIColor(red:0.38, green:0.77, blue:0.30, alpha:1.00)], ["Dark": UIColor(red:0.15, green:0.23, blue:0.60, alpha:1.00), "Light": UIColor(red:0.25, green:0.34, blue:0.77, alpha:1.00)], ["Dark": UIColor(red:0.40, green:0.18, blue:0.52, alpha:1.00), "Light": UIColor(red:0.49, green:0.29, blue:0.62, alpha:1.00)], ["Dark": UIColor(red:0.56, green:0.18, blue:0.39, alpha:1.00), "Light": UIColor(red:0.73, green:0.27, blue:0.53, alpha:1.00)]]
+    var colourPaletes: [[String: UIColor]] = [
+        ["Dark": UIColor(red:0.19, green:0.19, blue:0.19, alpha:1.00), "Light": UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.00)],
+        ["Dark": UIColor(red:0.57, green:0.57, blue:0.57, alpha:1.00), "Light": UIColor(red:0.76, green:0.76, blue:0.76, alpha:1.00)],
+        ["Dark": UIColor(red:0.60, green:0.17, blue:0.14, alpha:1.00), "Light": UIColor(red:0.77, green:0.26, blue:0.23, alpha:1.00)],
+        ["Dark": UIColor(red:0.72, green:0.48, blue:0.19, alpha:1.00), "Light": UIColor(red:0.84, green:0.60, blue:0.30, alpha:1.00)],
+        ["Dark": UIColor(red:0.82, green:0.76, blue:0.26, alpha:1.00), "Light": UIColor(red:0.91, green:0.87, blue:0.39, alpha:1.00)],
+        ["Dark": UIColor(red:0.30, green:0.62, blue:0.23, alpha:1.00), "Light": UIColor(red:0.38, green:0.77, blue:0.30, alpha:1.00)],
+        ["Dark": UIColor(red:0.15, green:0.23, blue:0.60, alpha:1.00), "Light": UIColor(red:0.25, green:0.34, blue:0.77, alpha:1.00)],
+        ["Dark": UIColor(red:0.40, green:0.18, blue:0.52, alpha:1.00), "Light": UIColor(red:0.49, green:0.29, blue:0.62, alpha:1.00)],
+        ["Dark": UIColor(red:0.56, green:0.18, blue:0.39, alpha:1.00), "Light": UIColor(red:0.73, green:0.27, blue:0.53, alpha:1.00)]]
     var maleHairBack: [UIImage] = [#imageLiteral(resourceName: "Short")]
     var maleHairFront: [UIImage] = [#imageLiteral(resourceName: "Tuft"), #imageLiteral(resourceName: "Bobble"), #imageLiteral(resourceName: "LongFringeChip")]
     var facialHair = [nil, nil, #imageLiteral(resourceName: "BeardLarge"), #imageLiteral(resourceName: "BeardSmall")]

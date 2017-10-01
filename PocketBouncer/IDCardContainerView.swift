@@ -70,7 +70,6 @@ class IDCardContainerView: UIView {
         self.layer.transform = transform
         self.layer.zPosition = 80
         
-        
         IDCard.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
         addSubview(IDCard)
     }

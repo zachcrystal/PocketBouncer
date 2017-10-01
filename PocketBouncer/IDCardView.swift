@@ -11,12 +11,12 @@ import UIKit
 class IDCardView: UIView {
 
     func setupAttributedText(dob: String, expiry: String) {
-        let attributedDobText = NSMutableAttributedString(string: "DOB:", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
-        attributedDobText.append(NSAttributedString(string: " \(dob)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+		let attributedDobText = NSMutableAttributedString(string: "DOB:", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 12)])
+		attributedDobText.append(NSAttributedString(string: " \(dob)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]))
         dobLabel.attributedText = attributedDobText
         
-        let attributedExpiryString = NSMutableAttributedString(string: "EXPIRATION DATE\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 9)])
-        attributedExpiryString.append(NSAttributedString(string: "\(expiry)", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.5)]))
+		let attributedExpiryString = NSMutableAttributedString(string: "EXPIRATION DATE\n", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 9)])
+		attributedExpiryString.append(NSAttributedString(string: "\(expiry)", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14.5)]))
         expiryLabel.attributedText = attributedExpiryString
     }
     
