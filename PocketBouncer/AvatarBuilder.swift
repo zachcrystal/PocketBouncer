@@ -36,9 +36,9 @@ class AvatarBuilder {
     var femaleHairFront: [UIImage] = [#imageLiteral(resourceName: "LongFringe"), #imageLiteral(resourceName: "Tuft")]
     var hairColours: [UIColor] = [UIColor(red:0.60, green:0.60, blue:0.60, alpha:1.00), UIColor(red:0.54, green:0.46, blue:0.29, alpha:1.00), UIColor(red:0.95, green:0.91, blue:0.41, alpha:1.00), UIColor(red:0.89, green:0.64, blue:0.31, alpha:1.00), UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)]
     var glasses = [nil, nil, nil, #imageLiteral(resourceName: "RoundGlasses")]
-    var sunglasses = [nil, nil, #imageLiteral(resourceName: "Sunglasses")]
-    var hat = [nil, nil, nil, "hat"]
-    var tie = [nil, nil, #imageLiteral(resourceName: "Tie")]
+    var sunglasses = [nil, nil, nil, nil,  #imageLiteral(resourceName: "Sunglasses")]
+    var hat = [nil, nil, nil, nil, "hat"]
+    var tie = [nil, nil, nil, nil,  #imageLiteral(resourceName: "Tie")]
     
     func buildAvatar(for gender: Person.Gender, level: Int) -> (avatarImage: UIImage, wearingSunglasses: Bool, wearingHat: Bool, wearingTie: Bool) {
         var wearingSunglasses = false

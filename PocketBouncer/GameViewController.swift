@@ -156,11 +156,12 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
     
     // MARK: - Gameover
     fileprivate func gameover(for reason: GameoverReason) {
+		hideApproveDenyButtons()
+		gameView.circleTimer.pause()
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             self.personImageView.center.x = -self.view.bounds.width / 2
         })
-        gameView.circleTimer.pause()
-        hideApproveDenyButtons()
+
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         flashRed()
         
@@ -196,17 +197,18 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
         
         gameView.frame = self.view.bounds
         gameView.delegate = self
-        
-        gameView.frame = self.view.bounds
         view.addSubview(gameView)
         
         gameView.circleTimer.delegate = self
         
         highScore = defaults.object(forKey: highscoreKey) as? Int ?? 0
-        
-        setupLegalAgeLocale()
+		
         setupIDCardPersonLayout()
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		 setupLegalAgeLocale()
+	}
     
     var legalAge: Int?
     
@@ -235,7 +237,6 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
     }
     
     fileprivate func slideInIDCardAndPerson() {
-       
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
             self.IDCardView.center.x = self.view.bounds.width / 2
             self.personImageView.center.x = self.view.bounds.width / 2
@@ -266,8 +267,9 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
                 personOverlay.center.x = self.gameView.bounds.width * 2
             }) { (_) in
                 self.IDCardView.center.x = -self.gameView.bounds.width / 2
+				callNextPerson()
                 personOverlay.removeFromSuperview()
-                callNextPerson()
+
             }
         } else {
             if direction == .left {
@@ -303,7 +305,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
     var isUnderage: Bool?
     
     fileprivate func selectRandomPerson() {
-        let genderProbability = arc4random_uniform(10) + 1
+        let genderProbability = arc4random_uniform(11) + 1
         
         let personDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
         
@@ -317,11 +319,11 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
             personImageViewKey = key
         }
         
-        let probabilityValue = arc4random_uniform(100) + 1
+        let probabilityValue = arc4random_uniform(101) + 1
         if probabilityValue > 80 {
             personCanEnter = (false, .wrongID)
             
-            let anotherGenderProbability = arc4random_uniform(10) + 1
+            let anotherGenderProbability = arc4random_uniform(11) + 1
             let anotherPersonDictionary = genderProbability >= 5 ? components.buildPerson(gender: .female) : components.buildPerson(gender: .male)
             let anotherRandomPerson = Person(personDictionary: anotherPersonDictionary, gender: anotherGenderProbability >= 5 ? .female : .male, level: level)
             IDCardView.person = anotherRandomPerson
@@ -353,7 +355,7 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
         isExpired = currentTimestamp > person.expiryDateTimeStamp
         
         guard let legalAge = legalAge else { return }
-        isUnderage = legalAge >= person.age
+        isUnderage = legalAge > person.age
         
         if isExpired == true && isUnderage == true {
             personCanEnter = (false, .expiredAndUnderage)
@@ -365,7 +367,8 @@ class GameViewController: UIViewController, SRCountdownTimerDelegate, GameViewDe
             personCanEnter = (false, .underage)
             return
         } else {
-            personCanEnter = (true, .expiredID)
+            personCanEnter = (true, .falseDeny)
+			return
         }
     }
     
